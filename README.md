@@ -10,7 +10,9 @@ These notes are written in markdown and designed to be served/hosted/generated v
 
 ```bash
 $ python3 -m pip install --upgrade pip
-$ python3 -m pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin
+$ python3 -m pip install mkdocs mkdocs-material \
+                         mkdocs-git-revision-date-localized-plugin \
+                         mkdocs-mermaid2-plugin
 ```
 
 ### From Repository Root

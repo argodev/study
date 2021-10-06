@@ -1,17 +1,10 @@
-# Welcome to MkDocs
+# Overview
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+This site contains a series of sub-notebooks that were created and maintained as I've been studying various topics. It should be considered in a perpetual state of flux - if you have any questions, or see any errors, please let me know.
 
-## Commands
+## Projects
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+A current list of projects are as follows:
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+* [Hack The Box (HTB)](/hackthebox/)
+* [VSRG Testbed](/testbed/)
