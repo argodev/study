@@ -1,0 +1,16 @@
+site_name: Rob's Study
+theme:
+  name: material
+  features:
+    - search.highlight
+
+repo_url: https://code.ornl.gov/ru7/study
+
+
+
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      type: iso_datetime
+      fallback_to_build_date: true
