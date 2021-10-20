@@ -20,7 +20,7 @@ The network router in the testbed is an used [Netgear Nighthawk R7000](https://w
 - Firmware Version: `V1.0.11.106_10.2.100`
 - Username: `admin`
 - Password: _standard lab password_
-- Internal IP: `192.168.1.1`
+- Internal IP: `192.168.89.1`
 
 
 ### Switch
@@ -31,7 +31,7 @@ We decided to use a [Netgear GS724T](https://www.netgear.com/support/product/GS7
 
 - Firmware Version: `6.3.1.19, B1.0.0.4`
 - Password: `password`
-- IP Address: `192.168.20.2`
+- IP Address: `192.168.89.2`
 
 ### Lap01
 
@@ -45,7 +45,7 @@ The intent is to configure a series of virtual machines on this laptop that will
 - Password: _standard lab password_
 - CPU: `8 cores`
 - RAM: `24 GB`
-- IP Address: `192.168.1.3` (DHCP Reservation)
+- IP Address: `192.168.89.3` (DHCP Reservation)
 
 ### Lap02
 
@@ -59,7 +59,7 @@ The intent is to configure a series of virtual machines on this laptop that will
 - Password: _standard lab password_
 - CPU: `8 cores`
 - RAM: `24 GB`
-- IP Address: `192.168.1.4` (DHCP Reservation)
+- IP Address: `192.168.89.4` (DHCP Reservation)
 
 ## Network Space
 
@@ -67,10 +67,10 @@ As detailed above within the _configuration_ blocks for each device, the network
 
 ### Devices:
 
-- router: `192.168.1.1`
-- switch: `192.168.1.2`
-- lap01: `192.168.1.3`
-- lap02: `192.168.1.2`
+- router: `192.168.89.1`
+- switch: `192.168.89.2`
+- lap01: `192.168.89.3`
+- lap02: `192.168.89.2`
 
 ### Wireless Network
 
