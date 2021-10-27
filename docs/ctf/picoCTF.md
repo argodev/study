@@ -7,6 +7,26 @@ picoCTF is .....
 
 ## Web Exploitation
 
+### GET aHEAD
+
+This probably goes down as one of those "boy, did you make it harder than it should have been" activities.
+
+You are asked to find the flag hidden at http://mercury.picoctf.net:47967.
+
+After a bit of benign poking around, I assumed that you need to use burp (or similar) to modify the requests, so I fired it up and started looking around. I had expected to find something in the headers taht would give the answer, but no joy. After fighting with this for too long, I broke down and looked at the first hint, which said something like _"maybe you have more than two choices"_. Score one for my lack of creativity. Looking at the page code again, I noticed that one option submitted a `GET` request and the other did a `POST` request.
+
+Great! All I need to do is loop through the valid HTTP verbs, and I'll be set. So, I captured a request in burp, sent it to the Repeater tool, modified the verb, and sent it... did it again for each verb (`GET`, `PUT`, `POST`, `PATCH`, `DELETE`) and, as you might guess... no joy. My creative thinking fails again. Finally, I tried `HEAD` (a guess, based on the title of the challenge) and, wouldn't you guess... bingo.
+
+I then stepped back to `curl` to see if I could have done it there, and ended up with this one-liner:
+
+```bash
+# -I (or --head) fetches the HTTP headers only. --> this is the same as sending a HEAD verb
+$ curl http://mercury.picoctf.net:47967 -I     
+HTTP/1.1 200 OK
+flag: picoCTF{redacted_value}
+Content-type: text/html; charset=UTF-8
+```
+
 ## Cryptography
 
 ### Mod 26
