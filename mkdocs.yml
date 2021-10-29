@@ -94,17 +94,19 @@ plugins:
 
 nav:
     - 'Overview': 'index.md'
+    - 'Core Skills':
+        - 'Password Cracking': 'skills/passwordcracking.md'
     - 'Capture The Flag (CTF)':
         - 'Hack The Box (HTB)': 'ctf/htb.md'
         - 'picoCTF': 'ctf/picoCTF.md'
         - 'RingZer0 Team Online CTF': 'ctf/rzeroctf.md'
-    - Test Beds: 
+    - 'Test Beds': 
         - 'Portable Testbed': 'testbed/index.md'
         - 'Lan Turtle': 'testbed/lanturtle.md'
         - 'Packet Squirrel': 'testbed/pktsquirrel.md'
         - 'Virtual Machine Hosting': 'testbed/virtual_machines.md'
         - 'VPN': 'testbed/vpn.md'
-    - Miscellaney:
+    - Miscellany:
         - 'Change Log': changelog.md
         - 'License': license.md
 

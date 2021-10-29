@@ -6,5 +6,7 @@ This site contains a series of sub-notebooks that were created and maintained as
 
 A current list of projects are as follows:
 
-* [Hack The Box (HTB)](/hackthebox/)
+* [Hack The Box (HTB)](/ctf/htb/)
+* [picoCTF](/ctf/picoCTF/)
+* [RingZer0 Team Online CTF](/ctf/rzeroctf/)
 * [VSRG Testbed](/testbed/)
