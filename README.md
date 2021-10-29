@@ -12,9 +12,10 @@ These notes are written in markdown and designed to be served/hosted/generated v
 $ python3 -m pip install --upgrade pip
 $ python3 -m pip install mkdocs mkdocs-material \
                          mkdocs-git-revision-date-localized-plugin \
-                         mkdocs-mermaid2-plugin \
                          mkdocs-with-pdf
 ```
+                         <!-- mkdocs-mermaid2-plugin \ -->
+
 
 ### From Repository Root
 
@@ -55,4 +56,8 @@ $ sudo apt-get install chromium-browser
 
 More information on this documentation approach can be found at https://squidfunk.github.io/mkdocs-material
 
+Other things to look at:
 
+* https://github.com/orzih/mkdocs-with-pdf
+* https://mermaid.live/
+* http://bwmarrin.github.io/MkDocsPlus 
