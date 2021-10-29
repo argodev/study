@@ -44,8 +44,6 @@ We are encouraged to inspect the following URL: https://jupiter.challenges.picoc
 
 Upon viewing the source, we quickly see 1/3rd of the key in the comment string at the bottom: `picoCTF{tru3_d3` ... now to find the remaining 2/3rds.  Poking around at the downloaded JS file `myjs.js`, we see the end of the flag: `_lucky?2e7b23e3}`. All we are missing now is the middle part... Thinking ever so little, we assume that we can go to the only other referenced file (`mycss.css`) and find the middle part of the key, which we do: `t3ct1ve_0r_ju5t`
 
-picoCTF{tru3_d3t3ct1ve_0r_ju5t_lucky?2e7b23e3}
-
 !!! note
     for what it is worth, I found this to be a very easy "challenge", and more on the lines of a 10 point challenge than the two prior ones...
 

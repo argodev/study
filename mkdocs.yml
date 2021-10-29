@@ -1,4 +1,5 @@
-site_name: Rob's Study
+site_name: Rob's Study Notes
+site_author: Rob Gillen
 theme:
   name: material
   features:
@@ -47,6 +48,8 @@ markdown_extensions:
       repo: mkdocs-material
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.snippets
   # - pymdownx.superfences:
   #     custom_fences:
   #       - name: mermaid
@@ -65,5 +68,24 @@ plugins:
       type: iso_datetime
       fallback_to_build_date: true
   - mermaid2
+  - with-pdf:
+        cover_subtitle: "Digital scrapbook of various security topics"
+        enabled_if_env: ENABLE_PDF_EXPORT
+        two_columns_level: 3
 
+nav:
+    - 'Overview': 'index.md'
+    - 'Capture The Flag (CTF)':
+        - 'Hack The Box (HTB)': 'ctf/htb.md'
+        - 'picoCTF': 'ctf/picoCTF.md'
+        - 'RingZer0 Team Online CTF': 'ctf/rzeroctf.md'
+    - Test Beds: 
+        - 'Portable Testbed': 'testbed/index.md'
+        - 'Lan Turtle': 'testbed/lanturtle.md'
+        - 'Packet Squirrel': 'testbed/pktsquirrel.md'
+        - 'Virtual Machine Hosting': 'testbed/virtual_machines.md'
+        - 'VPN': 'testbed/vpn.md'
+    - Miscellaney:
+        - 'Change Log': changelog.md
+        - 'License': LICENSE.md
 

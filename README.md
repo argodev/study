@@ -37,7 +37,7 @@ Edit the `mkdocs.yml` file and add:
     - with-pdf
 ```
 
-The next time you run `mkdocs build`, a PDF will be generated.
+Run `$ ENABLE_PDF_EXPORT=1 mkdocs build` and a PDF will be generated.
 
 
 ### Make Your Own

@@ -99,7 +99,7 @@ graph LR
 ```
 
 <figure>
-  <img src="/images/turtle.jpg" width="400" />
+  <img src="../../assets/images/turtle.jpg" width="400" />
   <figcaption>Deployed LanTurtle</figcaption>
 </figure>
 

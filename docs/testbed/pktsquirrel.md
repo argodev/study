@@ -16,7 +16,7 @@ graph LR
 ```
 
 <figure>
-  <img src="/images/squirrel.jpg" width="400" />
+  <img src="../../assets/images/squirrel.jpg" width="400" />
   <figcaption>Deployed Packet Squirrel</figcaption>
 </figure>
 
