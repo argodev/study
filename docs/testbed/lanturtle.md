@@ -88,20 +88,30 @@ This will map the local `/sshfs` directory on the turtle to the `/home/turtle` d
 ## Deployment
 
 In the testbed, the turtle is plugged into a USB port on `Lap01` for the purposes of providing power. It could theoretically also provide some MITM capabilities for this machine, but we are not using them. The ethernet jack is connected directly to the primary switch and it serves as a remotely-accesible beachhead. 
-
+<!-- 
 ```mermaid
 graph LR
-  A[Router] --> B[Switch];
-  B --> C[Lap01];
-  B --> D[Turtle];
-  C --> D;
-  B --> E[Lap02];
+  A[Router] -- > B[Switch];
+  B -- > C[Lap01];
+  B -- > D[Turtle];
+  C -- > D;
+  B -- > E[Lap02];
 ```
+-->
 
-<figure>
-  <img src="../../assets/images/turtle.jpg" width="400" />
+<figure markdown> 
+  [![Turtle Layout][1]][1]
+  <figcaption>Turtle Layout</figcaption>
+</figure>
+
+<figure markdown id="turtle">
+  [![Deployed LanTurtle][2]{width=400"}][2]
   <figcaption>Deployed LanTurtle</figcaption>
 </figure>
+
+  [1]: ../assets/images/turtle_layout.png
+  [2]: ../assets/images/turtle.jpg
+
 
 
 ## Use

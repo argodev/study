@@ -7,6 +7,8 @@
 - Reorganized pages a little and worked on PDF rendering
 - Added License
 - Added Changelog
+- Added Footnote Support
+- Replaced Mermaid-based drawings with PNGs
 - picoCTF Solution: Stonks
 - picoCTF Solution: Glory of the Garden
 - picoCTF Solution: So Meta

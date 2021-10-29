@@ -12,9 +12,9 @@ graph LR
 ```
 -->
 
-[![Testbed Layout][18]][18]
+[![Testbed Layout][1]][1]
 
-  [18]: ../assets/images/testbed_layout.png
+  [1]: ../assets/images/testbed_layout.png
 
 
 ### Router
