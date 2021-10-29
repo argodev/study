@@ -1,5 +1,6 @@
-site_name: Rob's Study Notes
+site_name: Vulnerability Science Study Notes
 site_author: Rob Gillen
+site_description: Digital scrapbook of various security topics
 theme:
   name: material
   features:
@@ -7,17 +8,6 @@ theme:
 
 repo_url: https://code.ornl.gov/ru7/study
 
-
-# markdown_extensions:
-#   - admonition
-#   - pymdownx.arithmatex
-#   - pymdownx.betterem:
-#       smart_enable: all
-#   - pymdownx.superfences:
-#       custom_fences:
-#         - name: mermaid
-#           class: mermaid-xperimental
-#           format: !!python/name:pymdownx.superfences.fence_code_format
 
 # Extensions
 markdown_extensions:
@@ -48,13 +38,12 @@ markdown_extensions:
       repo: mkdocs-material
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+    #   custom_fences:
+    #     - name: mermaid
+    #       class: mermaid-xperimental
+    #       format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.snippets
-  # - pymdownx.superfences:
-  #     custom_fences:
-  #       - name: mermaid
-  #         class: mermaid-experimental
-  #         format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -67,11 +56,14 @@ plugins:
   - git-revision-date-localized:
       type: iso_datetime
       fallback_to_build_date: true
-  - mermaid2
+#   - mermaid2
   - with-pdf:
         cover_subtitle: "Digital scrapbook of various security topics"
         enabled_if_env: ENABLE_PDF_EXPORT
         two_columns_level: 3
+        toc_level: 3
+        # render_js: true
+        # headless_chrome_path: chromium
 
 nav:
     - 'Overview': 'index.md'
@@ -89,3 +81,4 @@ nav:
         - 'Change Log': changelog.md
         - 'License': LICENSE.md
 
+copyright: Copyright &copy; 2021 Rob Gillen

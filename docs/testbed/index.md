@@ -3,13 +3,19 @@
 While many things can (and should) be virtualized, I wanted to build a small testbed wherein I could validate not only my logical access to various things, but also confirm some physical attacks/interactions. Additionally, this will allow others in my team to participate and train once I get a few of the kinks worked out. This section of the documentation describes the environment and some of the uses.
 
 ## Testbed Layout
-
-```mermaid
+<!--
+``` mermaid
 graph LR
-  A[Router] --> B[Switch];
-  B --> C[Lap01];
-  B --> D[Lap02];
+  A[Router] -- > B[Switch];
+  B -- > C[Lap01];
+  B -- > D[Lap02];
 ```
+-->
+
+[![Testbed Layout][18]][18]
+
+  [18]: ../assets/images/testbed_layout.png
+
 
 ### Router
 

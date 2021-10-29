@@ -455,7 +455,10 @@ And your account balance will be 2147482896
 
 Again with the waste-of-time challenges.
 
-If you want to waste your time trying to solve it, go ahead. Otherwise, consider this write-up: https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/1_wanna_b3_a_r0ck5tar.md
+If you want to waste your time trying to solve it, go ahead. Otherwise, consider checking out an online write-up.[^1]
+
+  [^1]:
+    A decent writeup of `1_wanna_b3_a_r0ck5star` can be found here: https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/1_wanna_b3_a_r0ck5tar.md
 
 ## Binary Exploitation
 
