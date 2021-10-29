@@ -7,6 +7,26 @@ theme:
     - search.highlight
 
 repo_url: https://code.ornl.gov/ru7/study
+edit_uri: ""
+
+theme:
+  name: material
+  language: en
+  palette:
+    primary: grey
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/argodev
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/argodev 
+
 
 
 # Extensions
@@ -62,8 +82,15 @@ plugins:
         enabled_if_env: ENABLE_PDF_EXPORT
         two_columns_level: 3
         toc_level: 3
+        output_path: pdf/vsnotebook.pdf
         # render_js: true
         # headless_chrome_path: chromium
+#   - pdf-export:
+#         verbose: true
+#         media_type: print
+#         enabled_if_env: ENABLE_PDF_EXPORT
+#         combined: true
+#         combined_output_path: pdf/vsnotebook.pdf
 
 nav:
     - 'Overview': 'index.md'
@@ -79,6 +106,6 @@ nav:
         - 'VPN': 'testbed/vpn.md'
     - Miscellaney:
         - 'Change Log': changelog.md
-        - 'License': LICENSE.md
+        - 'License': license.md
 
 copyright: Copyright &copy; 2021 Rob Gillen
