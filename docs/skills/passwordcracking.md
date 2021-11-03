@@ -144,3 +144,7 @@ $ ./john --incremental=lowernum.chr ~/Downloads/hash.8lowernum
    * tried a *very* targeted (cheating) mask based on what I know of how the password is formed `?l?d?l?d?l?d?l?l`
    * you can benchmark your system for a particular hash: `$ ./hashcat.bin -b -m 1800`. Mine claims 114.5 kH/s.
    * `-m 1800` is sha512crypt with 5000 iterations (e.g. `$6$`)
+   * setting the mask to *exactly* what the password has (cheating), allowed the crack to finish in 8:20:00, after having made it through 27.86% of the search space. The speedd averaged 111.6 kH/s. The command run was: `./hashcat.bin -O -w 3 -m 1800 -a 3 hash2 ?l?d?l?d?l?d?l?l`
+   * Next, we tried "loosening" it a bit, to see what we learn perf-wise: `./hashcat.bin -O -w 3 -m 1800 -a 3 -1 ?l -2 ?l?d hash2 ?1?2?1?2?1?2?1?1`. The estimate is that it will take 54 days to exhaust the search space.
+   
+
