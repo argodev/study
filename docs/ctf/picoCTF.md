@@ -59,6 +59,91 @@ We are asked to find the interesting information hidden here: http://mercury.pic
 * looking at `.DS_Store`, we find the last portion: `_f7ce8828}`
 
 
+### Some Assembly Required 1
+
+No description provided, no hints provided, just this url: `http://mercury.picoctf.net:26318/index.html`. Once you get there, you have a form that says "enter flag" with a submit button.
+
+After noodling around a little, this challenge looks like an introduction to [Web Assembly](https://webassembly.org)
+
+As I normally do, I spent way too much time trying to unravel the JS code here (mild obfuscation) only to realize that I was missing the really obvious piece... the following is the magic line:
+
+```javascript
+let _0x5f0229 = await fetch(_0x48c3be(489)),
+```
+
+In order to understand what is going on (and get the flag), you need to know the following:
+* `_0x48c3be` is a function pointer, declared two lines prior, that points to the function defined on line 28 of the de-mangled javascript (`const _0x4e0e = function (_0x553839, _0x53c021) {`).
+* you then need to know how the `_0x4e0e()` function works.
+* It essentially takes in a number, subtracts `470` from it, and then uses the result as an index into the `_0x402c` array defined at the top of the file.
+* Before you get too excited, however, you need to understand that the immediately-executing function defined prior to the current code block (line `33` for me, which starts liek `(function (_0x76dd13, _0x3dfcae) {`) modifies/sorts the array into a different order. Without this knowledge, your indicies will point to the wrong place.
+* Having done all of that, you can determine that `fetch()` call referenced above is grabbing a pre-compiled blob of web assembly code. If you download that file (`http://mercury.picoctf.net:26318/JIFxzHyW8W`) and run strings on it, you will see the flag you can submit.
+
+
+!!! tip:
+    A few things that were helpful for me as I worked through this one:
+    * Using [jsbin](https://jsbin.com) to execute random JavaScript was quite helpful
+    * Figuring out that when FireFox's dev tools "demangled" the javascript, it left the two words `await fetch()` slammed together as `awaitfetch()`. The latter is _not_ a function that you will find, and searching for it will leave you disappointed. Adding the space in between them and _then_ trying to understand the code will place you in a much better position.
+
+
+
+### More Cookies
+
+### where are the robots
+
+### logon
+
+### dont-use-client-side
+
+### It is my Birthday
+
+### Who are you?
+
+### login
+
+### Some Assembly Required 2
+
+### Super Serial
+
+### Most Cookies
+
+### caas
+
+### Some Assembly Required 3
+
+### Web Gauntlet 2
+
+### picobrowser
+
+### Client-side-again
+
+### Web Gauntlet
+
+### Some Assembly Required 4
+
+### X marks the spot
+
+### notepad
+
+### Irish-Name-Repo 1
+
+### Web Gauntlet 3
+
+### JAuth
+
+### Irish-Name-Repo 2
+
+### Irish-Name-Repo 3
+
+### JaWT Scratchpad
+
+### Java Script Kiddie
+
+### Java Script Kiddie 2
+
+### Bithug
+
+
+
 
 
 
