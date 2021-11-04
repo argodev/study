@@ -78,19 +78,52 @@ In order to understand what is going on (and get the flag), you need to know the
 * Before you get too excited, however, you need to understand that the immediately-executing function defined prior to the current code block (line `33` for me, which starts liek `(function (_0x76dd13, _0x3dfcae) {`) modifies/sorts the array into a different order. Without this knowledge, your indicies will point to the wrong place.
 * Having done all of that, you can determine that `fetch()` call referenced above is grabbing a pre-compiled blob of web assembly code. If you download that file (`http://mercury.picoctf.net:26318/JIFxzHyW8W`) and run strings on it, you will see the flag you can submit.
 
-
-!!! tip:
+!!! tip
     A few things that were helpful for me as I worked through this one:
     * Using [jsbin](https://jsbin.com) to execute random JavaScript was quite helpful
     * Figuring out that when FireFox's dev tools "demangled" the javascript, it left the two words `await fetch()` slammed together as `awaitfetch()`. The latter is _not_ a function that you will find, and searching for it will leave you disappointed. Adding the space in between them and _then_ trying to understand the code will place you in a much better position.
 
 
-
 ### More Cookies
+
+Instructions suggest that there exists "encrypted" cookies that must be modified client-side in order to solve the challenge. Pointer to url: `http://mercury.picoctf.net:15614/`. Visiting the page shows nothing other than a "reset" link and a comment that only the admin can use the cookie search page.
+
+After poking around a little in Firefox and seeing the cookie (text below), I decided to open up Burp and start there.
+
+``` text
+Cookie: name=7; auth_name=dEJSZTVtTlZOajVGSWc0WFBRckZzWmtiMi8vNWJkUzQ2MURNLzYySUlXS1BlZXFUK1BqaHk3MGlwTm96ampFTU1qUitXT2s1cXZUWUUrbS9GeXJHZzN0bTltdDBjL21YNXJWSy83YjF6SFR0ektWNWVWVmpwSnErMDFQYW9mVW4=
+```
+
+After decoding the base64 version of `auth_name`, we were left with this:
+
+``` text
+tBRe5mNVNj5FIg4XPQrFsZkb2//5bdS461DM/62IIWKPeeqT+Pjhy70ipNozjjEMMjR+WOk5qvTYE+m/FyrGg3tm9mt0c/mX5rVK/7b1zHTtzKV5eVVjpJq+01PaofUn
+FSly8XvmFjLPdS83KXonEoEDE4cmhz8QwWCiNnsmdS0FrZmIouQghyQcnmOayk2fJ9LNM25QxcQF69MuYoAdXJWd206be16+q39R76T3GOmW7CxUBCl7wtm7W1HmZtPA
+```
+
+Which wasn't too helpful. I decided to click on the first hint, and was pointed to a wikipedia page on [homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption)
+
+After reading this article and deciding that it was unhelpful, I clicked on the second hint that basically said, even if you *were* to crack it, you likely won't be helped out. (__I missed the point here__).
+
+I noodled around with the challenge for a bit longer, and eventually decided that this was one of those "I need to learn" so I started googling for a write-up. I quickly found one that confirmed that I likely would not have found the solution because I wasn't thinking creatively enough and also wasn't noticing sufficient details.
+
+The hint about homomorphic encryption should be pointing me to the fact that I might have been able to make some changes to the encrypted text (cipher text) and cause some effect. The second hint in this direction was *completely* lost on me, in that the challenge description said the following: _I forgot ==Cookies== can ==Be== modified ==Client-side,== so now I decided to encrypt them!_ You'll note that I highlighted the three oddly-capitalized letters, forming `CBC` which (after reading a bit) should have triggered me into considering a bit-flipping attack (e.g. `admin=0` vs `admin=1`) due to the way cipher-block chaining works.
+
+I learned a bit about how to do this in Python3 and developed a script, only to have it *not* work. I did some additional reading and found that in the most recent version of the challenge (at least as of 2021), the cookie value was *double* base64 encoded. I needed to double-decode, bit flip, and then double-encode. With this in place, it "sovled" the problem on the 10th byte in, flipping the 0th bit.
+
+Helpful Writeups:
+
+* https://docs.abbasmj.com/ctf-writeups/picoctf2021#more-cookies (don't take this verbatim)
+* https://github.com/HHousen/PicoCTF-2021/blob/master/Web%20Exploitation/More%20Cookies/script.py
+
 
 ### where are the robots
 
+After the last one that took me quite a long time to solve, this one was nearly a joke. The title suggests that mabye it is a robots.txt problem. Visiting the URL and then adjusting it for `robots.txt` renders a page that is prohibited (`1bb4c.html`). If you point your browser there, you will be presented  the flag.
+
 ### logon
+
+This one was, once again, pretty easy. You follow the instructions given and log in as `jason` (no password). Nothing is obvious other than no flag being shown. If, however, you inspect the cookies, you'll see a parameter that says `admin=False`. If you alter this to say `admin=True` and resend the request, you'll be rewarded with the flag to submit.
 
 ### dont-use-client-side
 
