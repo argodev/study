@@ -3,6 +3,19 @@
 ## Rob's Study Notes
 
 
+### 0.1.9 <small>_ November 22, 2021</small>
+
+- Adding PortSwigger Academy page
+- PortSwigger Solution: SQL injection vulnerability allowing login bypass
+- PortSwigger Solution: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+- PortSwigger Solution: SQL injection UNION attack, determining the number of columns returned by the query
+- PortSwigger Solution: SQL injection UNION attack, finding a column containing text
+- PortSwigger Solution: SQL injection UNION attack, retrieving data from other tables
+- PortSwigger Solution: SQL injection UNION attack, retrieving multiple values in a single column
+- PortSwigger Solution: SQL injection attack, querying the database type and version on Oracle
+
+
+
 ### 0.1.8 <small>_ November 3, 2021</small>
 
 - picoCTF Solution: Some Assembly Required 1

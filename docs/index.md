@@ -8,5 +8,6 @@ A current list of projects are as follows:
 
 * [Hack The Box (HTB)](/ctf/htb/)
 * [picoCTF](/ctf/picoCTF/)
+* [PortSwigger Academy](/ctf/portswigger/)
 * [RingZer0 Team Online CTF](/ctf/rzeroctf/)
 * [VSRG Testbed](/testbed/)

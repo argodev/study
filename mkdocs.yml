@@ -99,6 +99,7 @@ nav:
     - 'Capture The Flag (CTF)':
         - 'Hack The Box (HTB)': 'ctf/htb.md'
         - 'picoCTF': 'ctf/picoCTF.md'
+        - 'PortSwigger Academy': 'ctf/portswigger.md'
         - 'RingZer0 Team Online CTF': 'ctf/rzeroctf.md'
     - 'Test Beds': 
         - 'Portable Testbed': 'testbed/index.md'
