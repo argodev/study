@@ -96,6 +96,7 @@ nav:
     - 'Overview': 'index.md'
     - 'Core Skills':
         - 'Password Cracking': 'skills/passwordcracking.md'
+        - 'Website Exploitation': 'skills/webexploit.md'
     - 'Capture The Flag (CTF)':
         - 'Hack The Box (HTB)': 'ctf/htb.md'
         - 'picoCTF': 'ctf/picoCTF.md'

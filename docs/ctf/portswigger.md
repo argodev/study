@@ -1,17 +1,19 @@
 # PortSwigger Academy
 
+PortSwigger Academy (https://portswigger.net/web-security/dashboard) is a collection of training materials (reading & videos) combined with hands-on-labs designed to help you learn how to "secure the web one step at a time". It covers a number of the most common vulnerabilities, helping you understand them, understand how to exploit them, and how they can be prevented. Best of all, they are all free. The tools *are* designed to work with/be supported by PortSwigger's flagship product, Burp Suite Professional, but you can utilize any number of other tools (curl/browsers/ZAP/etc). At the time I worked through these, I did not have access to a professional license, so I used the Burp Suite Community edition (free). Below are my notes written as I worked through the various challenges. 
+
 ## SQL Injection
 
-### SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+### Vulnerability in WHERE clause allowing retrieval of hidden data
 
 This is a simple challenge to introduce you to the idea of SQL injection. Given a site such as https://acd01f0d1f5c2eb5c0cc51a2007a0016.web-security-academy.net/ you can view differenct product categories which are controlled by the URL (e.g. `/filter?category=Pets`). A simple SQL injection attack added to the end (`/filter?category=' OR 1=1 --`) solves the challenge by telling the SQL server to return all products with no category set or where 1=1 (which always evaluates to True). Adding the `--` at the end comments out any remainder of the SQL statment in the application code.
 
-### SQL injection vulnerability allowing login bypass
+### Vulnerability allowing login bypass
 
 This is another simple case wherein you are encouraged to log in at a standard username/password form (https://ac031f731e5b8017c0984a7400ba0058.web-security-academy.net/login). Much like the prior example, however, you can manipulate the query directly by providing a username of `administrator'--` and any value for the password field. This terminates the query that is presumeably something like 
 `SELECT * FROM users WHERE username = 'administrator' AND password = 'myPassword'`. It results in the following query: `SELECT * FROM users WHERE username = 'administrator'--' AND password = 'no matter'`
 
-### SQL injection UNION attack, determining the number of columns returned by the query
+### UNION attack, determining the number of columns returned by the query
 
 What we know:
 
@@ -38,7 +40,7 @@ The second approach (and the one required for solving this lab) is to use the `U
 /filter?category=Pets' UNION SELECT NULL, NULL, NULL --
 ```
 
-### SQL injection UNION attack, finding a column containing text
+### UNION attack, finding a column containing text
 
 Given:
 
@@ -189,6 +191,40 @@ Similar to the prior
 ## Access Control Vulnerabilities
 
 ## Authentication
+
+### Username enumeration via different responses
+
+Goal: Enumerate a valid username, brute-force the user's password, and then access the user's account page.
+
+You are provided a wordlist of candidate usernames as well as a list of candidate passwords.
+
+Here are the steps I took to solve this challenge:
+
+1. Load up Burp and start the embedded browser
+1. Connect to the URL provided and visit the `/login` page
+1. Attempt to log in with a random username/password
+1. View the `POST` request in Burp and send it to the intruder
+1. On the Positions tab, I cleared the `§` from the session cookie, leaving just the username and password positions
+1. Pasted the values from the list of candidate usernames (100 of them) into the Payload Options (simple list) and started the attack, paying attention to the response payload size.
+1. After the list ran through, I sorted by response length and noticed that one of them (username: `agenda`) had a different payload length. Looking at the response text, I noticed that it said _"Incorrect password"_. 
+1. Returning to the positions page, I changed the username to a static value of `agenda`
+1. I cleared the payload list and pasted in the values from the candidate password list and then ran the attack
+1. Watching the response lengths, I again noticed taht one of them (password: `robert`) had a different length. Inspecting the response showed that user had logged in. 
+1. With this information, I then returned to the browser, manually logged in with this information, and completed the challenge
+
+### 2FA simple bypass
+
+Given a valid username/password and access to that account's email, as well as a victim username/password, you are asked to bypass the 2FA for the victim's account (you do not have access to their email) and get to their profile page.
+
+Walking through the auth flow with a valid user is pretty straight foward. You log in at `/login` and then are directed to `/login2` to enter the 2FA code. Once you get that from your email, you are redirected to `/my-account`.
+
+The "attack" is as simple as completing the first stage with the victim's credentials and then changing the URL to `/my-account`. This succeeds as there is no session logic to confirm that the 2FA code was entered (only redirection logic).
+
+### Password reset broken logic
+
+Given a valid set of credentials as well as a victim username, you are asked to reset the victim's password and then log in to view the "my account" page.
+
+Using the valid credentials, I pretended to have forgotton my password and requested a password reset link. I then completed that process and reviewed the `POST` request to `/forgot-password`. I noticed the payload had not only the reset token and the new password, but also the username. I sent the request to the repeater, changed the `username` to the victim username and re-submitted it. The request completed, so I went to the browser, logged in with the victim username and my newly-set password and was able to view the account page.
 
 ## WebSockets
 

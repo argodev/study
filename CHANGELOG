@@ -2,6 +2,14 @@
 
 ## Rob's Study Notes
 
+### 0.1.10 <small>_ November 30, 2021</small>
+
+- PortSwigger Solution: Authentication, Username enumeration via different responses
+- PortSwigger Solution: Authentication, 2FA simple bypass
+- PortSwigger Solution: Authentication, Password reset broken logic
+
+
+### Username enumeration via different responses
 
 ### 0.1.9 <small>_ November 22, 2021</small>
 
