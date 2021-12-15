@@ -2,6 +2,10 @@
 
 ## Rob's Study Notes
 
+### 0.1.11 <small>_ December 13, 2021</small>
+
+- Adding initial Linux From Scratch (LFS) material
+
 ### 0.1.10 <small>_ November 30, 2021</small>
 
 - PortSwigger Solution: Authentication, Username enumeration via different responses

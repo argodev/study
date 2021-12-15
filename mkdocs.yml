@@ -95,21 +95,33 @@ plugins:
 nav:
     - 'Overview': 'index.md'
     - 'Core Skills':
-        - 'Password Cracking': 'skills/passwordcracking.md'
+        - 'Password Cracking':
+            - 'Overview': 'skills/passwords/index.md'
+            - 'Search Space': 'skills/passwords/searchspace.md'
+            - 'HashCat': 'skills/passwords/hashcat.md'
+            - 'John the Ripper': 'skills/passwords/john.md'
         - 'Website Exploitation': 'skills/webexploit.md'
     - 'Capture The Flag (CTF)':
         - 'Hack The Box (HTB)': 'ctf/htb.md'
         - 'picoCTF': 'ctf/picoCTF.md'
         - 'PortSwigger Academy': 'ctf/portswigger.md'
         - 'RingZer0 Team Online CTF': 'ctf/rzeroctf.md'
+    - 'Linux':
+        - 'Linux From Scratch': 'linux/lfs.md'
     - 'Test Beds': 
         - 'Portable Testbed': 'testbed/index.md'
         - 'Lan Turtle': 'testbed/lanturtle.md'
         - 'Packet Squirrel': 'testbed/pktsquirrel.md'
         - 'Virtual Machine Hosting': 'testbed/virtual_machines.md'
         - 'VPN': 'testbed/vpn.md'
-    - Miscellany:
+    - 'Miscellany':
         - 'Change Log': changelog.md
         - 'License': license.md
 
 copyright: Copyright &copy; 2021 Rob Gillen
+
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
