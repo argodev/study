@@ -100,6 +100,8 @@ nav:
             - 'Search Space': 'skills/passwords/searchspace.md'
             - 'HashCat': 'skills/passwords/hashcat.md'
             - 'John the Ripper': 'skills/passwords/john.md'
+        - 'Reverse Engineering':
+            - 'Ghidra': 'skills/re/ghidra.md'
         - 'Website Exploitation': 'skills/webexploit.md'
     - 'Capture The Flag (CTF)':
         - 'Hack The Box (HTB)': 'ctf/htb.md'
