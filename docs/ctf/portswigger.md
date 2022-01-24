@@ -168,6 +168,29 @@ Similar to the prior
 
 ## Cross-site Scripting
 
+### Reflected XSS into HTML conext with Nothing Encoded
+
+This was a rather simple challenge and serves as an introduction to XSS. The instructions suggested that there existed an XSS vuln on the website and the solution was to get the browser to call `alert()`.
+
+Visiting the site, there is a search form. I searched for `test` and was redirected to `t/?search=test`. I then searched for `test <script>alert();</script>` and, not surprisingly, I receieved an alert and completed the lab.
+
+### Stored XSS into HTML context with nothing encoded
+
+Found an comment form on the website and submitted the following: `This is awesome!<script>alert('you stink');</script>`. Once I submitted and then visited the post again, the alert was triggered and the lab was solved.
+
+### DOM XSS in document.write sink using source location.search
+
+This lab contains a DOM-based cross-site scripting vulnerability in the search query tracking functionality. It uses the JavaScript `document.write` function, which writes data out to the page. The `document.write` function is called with data from `location.search`, which you can control using the website URL.
+
+I started out by attempting to search for `test <script>alert();</script>` which displayed the exact same contents out on the page (no alert box). I then reviewed the source code for the page and found this bit of Javascript:
+
+```javascript
+document.write('<img src="/resources/images/tracker.gif?searchTerms='+query+'">');
+```
+
+With this knowledge, I re-structured my query to close out the end of the `img` tag and render my javascript. Submitting this: `test'"><script>alert();</script>` allowed me to solve the challenge.
+
+
 ## Cross-site Request Forgery (CSRF)
 
 ## Clickjacking
