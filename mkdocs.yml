@@ -28,6 +28,7 @@ extra:
       link: https://twitter.com/argodev 
 
 
+use_directory_urls: false
 
 # Extensions
 markdown_extensions:
@@ -91,6 +92,7 @@ plugins:
 #         enabled_if_env: ENABLE_PDF_EXPORT
 #         combined: true
 #         combined_output_path: pdf/vsnotebook.pdf
+#  - print-site
 
 nav:
     - 'Overview': 'index.md'
@@ -120,7 +122,7 @@ nav:
         - 'Change Log': changelog.md
         - 'License': license.md
 
-copyright: Copyright &copy; 2021 Rob Gillen
+copyright: Copyright &copy; 2021-2022 Rob Gillen
 
 
 extra_javascript:

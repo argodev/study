@@ -100,4 +100,4 @@ Included with the distribution of Ghidra are some tutorials `<installdir>/docs/G
 - Function Call Tree
 
 
-  [1]: /assets/images/ghidra01.png
+  [1]: ../../assets/images/ghidra01.png

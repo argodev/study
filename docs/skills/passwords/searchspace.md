@@ -24,7 +24,7 @@ Let's consider for a moment, the impact of both the size of your character set a
 
 A couple of key items to point out in this figure include:
 
-1. The y-axis scale is *logrithmic*. This means that each major tickmark is an order of magnitude (10x larger) than the prior major line. So, while the data in this figure appears linear, it is actually increasing logrithmically. If this were plotted on a non-logrithmic scale, the values for `length == 4` would be so much larger `length == 3`, everything would appear as a nearly straight line prior. An example of this is [provided here](../../../assets/images/pwsearchspace00.png).
+1. The y-axis scale is *logrithmic*. This means that each major tickmark is an order of magnitude (10x larger) than the prior major line. So, while the data in this figure appears linear, it is actually increasing logrithmically. If this were plotted on a non-logrithmic scale, the values for `length == 4` would be so much larger `length == 3`, everything would appear as a nearly straight line prior. An example of this is [provided here](../../assets/images/pwsearchspace00.png).
 1. Stating the obvious, but each character added to the password drastically increases the search space, even if the available character set is limited. Adding 1 additional character to a password consisting just of the numbers `0..9` increases the search space by an order of magnitude. The increase is more stark the further complicated the character set becomes.
 1. Given a password length of 4, the digit-only option has `100,000` possible passwords. On the other end of the spectrum, the mixed case, digits and special characters option has `7,737,809,375` possible combinations - over 7.7 billion _more_ than the digit-based version.
 
@@ -46,6 +46,6 @@ Our final version of the chart simply drives home what we now know: long passwor
 
 On the [overview](./index) page we discuss password lists and the value they provide. Given this, one may wonder if when using a mask-based or brute-force attack, is there value in pre-computing the list of candidates that would then be hashed in an attempt to match the target hash. The short answer is _no_. The longer answer is that, assuming there is not an overly complex set of rules needed to generate your candidates, the size of the resulting files would quickly become a barrier to efficient cracking operations. For example, if you assume a modest-length password of 8, and the simplest character set (`0..9`), the pre-computed word list will be 858M. If, however, you are targeting a password with a complex character set, the word list will be approximately 53 PiB (yes, _Pebibytes_). The sheer delays caused by disk I/O would be overwhelming, not to mention needing to move that data around, divy it up amongst processors, etc. It becomes far simplier to define the approach, and then let the processor generate the permutations.
 
-  [1]: ../../../assets/images/pwsearchspace01.png
-  [2]: ../../../assets/images/pwsearchspace02.png
-  [3]: ../../../assets/images/pwsearchspace03.png
+  [1]: ../../assets/images/pwsearchspace01.png
+  [2]: ../../assets/images/pwsearchspace02.png
+  [3]: ../../assets/images/pwsearchspace03.png

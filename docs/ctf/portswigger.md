@@ -4,24 +4,18 @@ PortSwigger Academy (https://portswigger.net/web-security/dashboard) is a collec
 
 ## SQL Injection
 
-### Vulnerability in WHERE clause allowing retrieval of hidden data
+### :material-gauge: UNION attack, determining the number of columns returned by the query
 
-This is a simple challenge to introduce you to the idea of SQL injection. Given a site such as https://acd01f0d1f5c2eb5c0cc51a2007a0016.web-security-academy.net/ you can view differenct product categories which are controlled by the URL (e.g. `/filter?category=Pets`). A simple SQL injection attack added to the end (`/filter?category=' OR 1=1 --`) solves the challenge by telling the SQL server to return all products with no category set or where 1=1 (which always evaluates to True). Adding the `--` at the end comments out any remainder of the SQL statment in the application code.
+!!! question
+    This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. The first step of such an attack is to determine the number of columns that are being returned by the query. You will then use this technique in subsequent labs to construct the full attack.
 
-### Vulnerability allowing login bypass
-
-This is another simple case wherein you are encouraged to log in at a standard username/password form (https://ac031f731e5b8017c0984a7400ba0058.web-security-academy.net/login). Much like the prior example, however, you can manipulate the query directly by providing a username of `administrator'--` and any value for the password field. This terminates the query that is presumeably something like 
-`SELECT * FROM users WHERE username = 'administrator' AND password = 'myPassword'`. It results in the following query: `SELECT * FROM users WHERE username = 'administrator'--' AND password = 'no matter'`
-
-### UNION attack, determining the number of columns returned by the query
+    To solve the lab, determine the number of columns returned by the query by performing an SQL injection UNION attack that returns an additional row containing null values.
 
 What we know:
 
 - vulnerability in product category filter
 - should be able to use UNION attack to see data from other tables
 - first step is to see number of columns being returned by the query
-
-> Goal: determine number of columns returned by query by adding an additional row contiaining null values
 
 https://acd21fe61eb0074fc0b23b47009700b8.web-security-academy.net/filter?category=Pets
 
@@ -40,7 +34,12 @@ The second approach (and the one required for solving this lab) is to use the `U
 /filter?category=Pets' UNION SELECT NULL, NULL, NULL --
 ```
 
-### UNION attack, finding a column containing text
+### :material-gauge: UNION attack, finding a column containing text
+
+!!! question
+    This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. To construct such an attack, you first need to determine the number of columns returned by the query. You can do this using a technique you learned in a previous lab. The next step is to identify a column that is compatible with string data.
+
+    The lab will provide a random value that you need to make appear within the query results. To solve the lab, perform an SQL injection UNION attack that returns an additional row containing the value provided. This technique helps you determine which columns are compatible with string data.
 
 Given:
 
@@ -61,7 +60,14 @@ We walk through the three fields looking for a match:
 
 And we can see that the second attempt solved the challenge - we now know that the query is returning 3 columns and the second is compatible with string data.
 
-### SQL injection UNION attack, retrieving data from other tables
+### :material-gauge: SQL injection UNION attack, retrieving data from other tables
+
+!!! question
+    This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. To construct such an attack, you need to combine some of the techniques you learned in previous labs.
+
+    The database contains a different table called users, with columns called username and password.
+
+    To solve the lab, perform an SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.
 
 Building on prior solutions, we wnt to retrieve data from other tables. We are told that there is another table called `users` that has a column named `username` and another called `password`. Note that this is easier than the above as we don't have to shove things into one column (yet).
 
@@ -91,7 +97,15 @@ wiener
 
 We can then take this information and log in as the administrator account.
 
-### SQL injection UNION attack, retrieving multiple values in a single column
+
+### :material-gauge: SQL injection UNION attack, retrieving multiple values in a single column
+
+!!! question
+    This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response so you can use a UNION attack to retrieve data from other tables.
+
+    The database contains a different table called users, with columns called username and password.
+
+    To solve the lab, perform an SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.
 
 This is very much like the prior scenario, but uses the structure from the prior challenges wherein you have three columns, and only the second is compatible with strings. Therefore, we have to shove both the username and password into the same field. This can be done with a query that looks like the following:
 
@@ -121,9 +135,16 @@ carlos~z54oyd1moidzjxuz9oxm
 
 And we can then log in as the administrator, solving the challenge
 
-### SQL injection attack, querying the database type and version on Oracle
 
-> NOTE: I failed quite a bit on this until I clicked the 'hint' and learned that every select on ORACLE needs a from stmt. 
+### :material-gauge: SQL injection attack, querying the database type and version on Oracle
+
+!!! question
+    This lab contains an SQL injection vulnerability in the product category filter. You can use a UNION attack to retrieve the results from an injected query.
+
+    To solve the lab, display the database version string.
+
+!!! tip
+    I failed quite a bit on this until I clicked the 'hint' and learned that every select on ORACLE needs a from stmt. 
 
 ```
 // determine how many columns are being returned (2)
@@ -154,6 +175,28 @@ TNS for Linux: Version 11.2.0.2.0 - Production
 a
 ```
 
+
+### :material-gauge-empty: Vulnerability in WHERE clause allowing retrieval of hidden data
+
+!!! question
+    This lab contains an SQL injection vulnerability in the product category filter. When the user selects a category, the application carries out an SQL query like the following:
+
+    `SELECT * FROM products WHERE category = 'Gifts' AND released = 1`
+
+    To solve the lab, perform an SQL injection attack that causes the application to display details of all products in any category, both released and unreleased.
+
+This is a simple challenge to introduce you to the idea of SQL injection. Given a site such as https://acd01f0d1f5c2eb5c0cc51a2007a0016.web-security-academy.net/ you can view differenct product categories which are controlled by the URL (e.g. `/filter?category=Pets`). A simple SQL injection attack added to the end (`/filter?category=' OR 1=1 --`) solves the challenge by telling the SQL server to return all products with no category set or where 1=1 (which always evaluates to True). Adding the `--` at the end comments out any remainder of the SQL statment in the application code.
+
+### :material-gauge-empty: Vulnerability allowing login bypass
+
+This is another simple case wherein you are encouraged to log in at a standard username/password form (https://ac031f731e5b8017c0984a7400ba0058.web-security-academy.net/login). Much like the prior example, however, you can manipulate the query directly by providing a username of `administrator'--` and any value for the password field. This terminates the query that is presumeably something like 
+`SELECT * FROM users WHERE username = 'administrator' AND password = 'myPassword'`. It results in the following query: `SELECT * FROM users WHERE username = 'administrator'--' AND password = 'no matter'`
+
+
+
+
+
+
 ### SQL injection attack, querying the database type and version on MySQL and Microsoft
 
 Similar to the prior
@@ -168,19 +211,23 @@ Similar to the prior
 
 ## Cross-site Scripting
 
-### Reflected XSS into HTML conext with Nothing Encoded
+### :material-gauge-empty: Reflected XSS into HTML conext with Nothing Encoded
 
-This was a rather simple challenge and serves as an introduction to XSS. The instructions suggested that there existed an XSS vuln on the website and the solution was to get the browser to call `alert()`.
+!!! question
+    This lab contains a simple reflected cross-site scripting vulnerability in the search functionality.
+
+    To solve the lab, perform a cross-site scripting attack that calls the `alert` function.
 
 Visiting the site, there is a search form. I searched for `test` and was redirected to `t/?search=test`. I then searched for `test <script>alert();</script>` and, not surprisingly, I receieved an alert and completed the lab.
 
-### Stored XSS into HTML context with nothing encoded
+### :material-gauge-empty: Stored XSS into HTML context with nothing encoded
 
 Found an comment form on the website and submitted the following: `This is awesome!<script>alert('you stink');</script>`. Once I submitted and then visited the post again, the alert was triggered and the lab was solved.
 
-### DOM XSS in document.write sink using source location.search
+### :material-gauge-empty: DOM XSS in document.write sink using source location.search
 
-This lab contains a DOM-based cross-site scripting vulnerability in the search query tracking functionality. It uses the JavaScript `document.write` function, which writes data out to the page. The `document.write` function is called with data from `location.search`, which you can control using the website URL.
+!!! question
+    This lab contains a DOM-based cross-site scripting vulnerability in the search query tracking functionality. It uses the JavaScript `document.write` function, which writes data out to the page. The `document.write` function is called with data from `location.search`, which you can control using the website URL.
 
 I started out by attempting to search for `test <script>alert();</script>` which displayed the exact same contents out on the page (no alert box). I then reviewed the source code for the page and found this bit of Javascript:
 
@@ -191,9 +238,10 @@ document.write('<img src="/resources/images/tracker.gif?searchTerms='+query+'">'
 With this knowledge, I re-structured my query to close out the end of the `img` tag and render my javascript. Submitting this: `test'"><script>alert();</script>` allowed me to solve the challenge.
 
 
-### DOM XSS in innerHTML sink using source location.search
+### :material-gauge-empty: DOM XSS in innerHTML sink using source location.search
 
-This lab contains a DOM-based cross-site scripting vulnerability in the search blog functionality. It uses an `innerHTML` assignment, which changes the HTML contents of a `div` element, using data from `location.search`.
+!!! question
+    This lab contains a DOM-based cross-site scripting vulnerability in the search blog functionality. It uses an `innerHTML` assignment, which changes the HTML contents of a `div` element, using data from `location.search`.
 
 The Javascript on the page looks like the following:
 
@@ -218,9 +266,10 @@ I went down a failed rathole here a bit before I read https://portswigger.net/we
 
 ### DOM XSS in jQuery anchor href attribute sink using location.search source
 
-This lab contains a DOM-based cross-site scripting vulnerability in the submit feedback page. It uses the jQuery library's `$` selector function to find an anchor element, and changes its `href` attribute using data from `location.search`.
+!!! question
+    This lab contains a DOM-based cross-site scripting vulnerability in the submit feedback page. It uses the jQuery library's `$` selector function to find an anchor element, and changes its `href` attribute using data from `location.search`.
 
-To solve this lab, make the "back" link alert `document.cookie`.
+    To solve this lab, make the "back" link alert `document.cookie`.
 
 I noticed the "submit feedback" link on the page, and if you click on it, you are directed to a feedback form that has a "back" link at the bottom of it (this is what we need to mess with). Additionally, the URL looks like this: `/feedback?returnPath=/`. After a little experimentation, I simply changed the URL to `/feedback?returnPath=javascript:alert(document.cookie);` and hit enter. This caused the page to render, and looking at the DOM, we now see the following:
 
@@ -232,13 +281,12 @@ I noticed the "submit feedback" link on the page, and if you click on it, you ar
 
 Of course, clicking the link completes the challenge.
 
-### DOM XSS in jQuery selector sink using a hashchange event
+### :material-gauge-empty: DOM XSS in jQuery selector sink using a hashchange event
 
-This lab contains a DOM-based cross-site scripting vulnerability on the home page. It uses jQuery's `$()` selector function to auto-scroll to a given post, whose title is passed via the `location.hash` property.
+!!! question
+    This lab contains a DOM-based cross-site scripting vulnerability on the home page. It uses jQuery's `$()` selector function to auto-scroll to a given post, whose title is passed via the `location.hash` property.
 
-To solve the lab, deliver an exploit to the victim that calls the `print()` function in their browser.
-
----
+    To solve the lab, deliver an exploit to the victim that calls the `print()` function in their browser.
 
 Ok, this one was a little weird, only because it took me a bit to a.) understand what they wanted me to do and b.) wrap my head around the who-sends-what-to-whom part of things. Once I figured out what the code on the vulnerable site was doing, I then headed over to the exploit server and, leaving the first few fields with their default values, set the body to:
 

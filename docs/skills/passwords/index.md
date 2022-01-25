@@ -44,7 +44,7 @@ asdfasdfasdf
 
 Device #1: NVIDIA GeForce RTX 2080 Ti, 10859/11019 MB, 68MCU
 Device #2: NVIDIA GeForce RTX 2080 Ti, 10741/10997 MB, 68MCU
-
+```
 $ ./hashcat.bin -O -m 1800 -w 4 -b
 hashcat (v6.2.4) starting in benchmark mode
 
@@ -61,6 +61,6 @@ Benchmark relevant options:
 Speed.#1.........:   303.6 kH/s (169.65ms) @ Accel:8192 Loops:1024 Thr:32 Vec:1
 Speed.#2.........:   357.1 kH/s (144.11ms) @ Accel:8192 Loops:1024 Thr:32 Vec:1
 Speed.#*.........:   660.7 kH/s
-
+```
 
 https://pthree.org/2018/05/23/do-not-use-sha256crypt-sha512crypt-theyre-dangerous/
