@@ -615,6 +615,42 @@ Here are the steps I took to solve this challenge:
 1. Watching the response lengths, I again noticed taht one of them (password: `robert`) had a different length. Inspecting the response showed that user had logged in. 
 1. With this information, I then returned to the browser, manually logged in with this information, and completed the challenge
 
+### :material-gauge: Username enumeration via subtly different responses
+
+!!! question
+    This lab is subtly vulnerable to username enumeration and password brute-force attacks. It has an account with a predictable username and password, which can be found in the following wordlists:
+
+    Candidate usernames
+    Candidate passwords
+
+    To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.
+
+Working on this challenge made me sharpen my understanding of the _intruder_ tool. I had two lists, and I wanted to run all permutations of them (combined). The mistake I had been making was that I had been failing to change the attack type from the default `Sniper` to the `Cluster Bomb` option. This let me define my two lists, each assigned to one of the two fields/positions, and then start.
+
+After just over 10,000 attempts, we found one request that returned a `302` rather than a `200`. Logging in as `at` with a password of `7777777` solved the challenge.
+
+
+### :material-gauge: Username enumeration via response timing
+
+!!! question
+    This lab is vulnerable to username enumeration using its response times. To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.
+
+    Your credentials: wiener:peter
+    Candidate usernames
+    Candidate passwords
+
+
+This was an unwelcome response:
+
+!!! error 
+    You have made too many incorrect login attempts. Please try again in 30 minute(s).
+
+The more accurate statement... I should have read the instructions. You are supposed to do this in two steps: 1. enumerate the username and then 2. brute force that user's password. I tried to just do the cluster bomb approach and that was foolish.
+
+
+
+
+
 ### :material-gauge-empty: 2FA simple bypass
 
 !!! question
