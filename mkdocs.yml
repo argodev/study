@@ -77,15 +77,16 @@ plugins:
   - git-revision-date-localized:
       type: iso_datetime
       fallback_to_build_date: true
-#   - mermaid2
-  - with-pdf:
-        cover_subtitle: "Digital scrapbook of various security topics"
-        enabled_if_env: ENABLE_PDF_EXPORT
-        two_columns_level: 3
-        toc_level: 3
-        output_path: pdf/vsnotebook.pdf
+  - mermaid2
+  # - with-pdf:
+  #       cover_subtitle: "Digital scrapbook of various security topics"
+  #       enabled_if_env: ENABLE_PDF_EXPORT
+  #       two_columns_level: 3
+  #       toc_level: 3
+  #       output_path: pdf/vsnotebook.pdf
         # render_js: true
         # headless_chrome_path: chromium
+
 #   - pdf-export:
 #         verbose: true
 #         media_type: print
@@ -97,6 +98,8 @@ plugins:
 nav:
     - 'Overview': 'index.md'
     - 'Core Skills':
+        - 'Assembly':
+            - 'PowerPC': 'skills/assembly/ppc.md'
         - 'Password Cracking':
             - 'Overview': 'skills/passwords/index.md'
             - 'Search Space': 'skills/passwords/searchspace.md'
@@ -128,4 +131,5 @@ copyright: Copyright &copy; 2021-2022 Rob Gillen
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/tex-mml-chtml.js
+  - javascripts/mermaid.min.js
