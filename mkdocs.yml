@@ -100,6 +100,8 @@ nav:
     - 'Core Skills':
         - 'Assembly':
             - 'PowerPC': 'skills/assembly/ppc.md'
+        - 'Languages':
+            - 'C++': 'skills/languages/cpp.md'
         - 'Password Cracking':
             - 'Overview': 'skills/passwords/index.md'
             - 'Search Space': 'skills/passwords/searchspace.md'
@@ -107,6 +109,7 @@ nav:
             - 'John the Ripper': 'skills/passwords/john.md'
         - 'Reverse Engineering':
             - 'Ghidra': 'skills/re/ghidra.md'
+            - 'Virtual Functions': 'skills/re/virtual_funcs.md'
         - 'Website Exploitation': 'skills/webexploit.md'
     - 'Capture The Flag (CTF)':
         - 'Hack The Box (HTB)': 'ctf/htb.md'
