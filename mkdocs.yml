@@ -77,7 +77,7 @@ plugins:
   - git-revision-date-localized:
       type: iso_datetime
       fallback_to_build_date: true
-  - mermaid2
+  #- mermaid2
   # - with-pdf:
   #       cover_subtitle: "Digital scrapbook of various security topics"
   #       enabled_if_env: ENABLE_PDF_EXPORT

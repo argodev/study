@@ -61,3 +61,23 @@ Other things to look at:
 * https://github.com/orzih/mkdocs-with-pdf
 * https://mermaid.live/
 * http://bwmarrin.github.io/MkDocsPlus 
+
+
+
+# Run with Docker
+
+This is all set to run and build the documentation site with Docker. Because of the plugins needed, we need to build our own docker image and then use that image for subsequent work. The following commands should all be run from the root of the project. We assume you have docker installed and properly configured.
+
+```bash
+# Build the customized image
+# should only need to do this once
+docker build -t squidfunk/mkdocs-material .
+
+# build/serve the documentation locally
+# monitors local dir and re-generates automagically
+docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
+
+# just build the documentation
+docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material build
+
+```
