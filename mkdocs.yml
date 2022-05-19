@@ -16,7 +16,7 @@ theme:
     primary: grey
     accent: indigo
   font:
-    text: Roboto
+    text: Roboto Regular
     code: Roboto Mono
 
 
@@ -78,14 +78,14 @@ plugins:
       type: iso_datetime
       fallback_to_build_date: true
   #- mermaid2
-  # - with-pdf:
-  #       cover_subtitle: "Digital scrapbook of various security topics"
-  #       enabled_if_env: ENABLE_PDF_EXPORT
-  #       two_columns_level: 3
-  #       toc_level: 3
-  #       output_path: pdf/vsnotebook.pdf
-        # render_js: true
-        # headless_chrome_path: chromium
+  - with-pdf:
+      cover_subtitle: "Digital scrapbook of various security topics"
+      #enabled_if_env: ENABLE_PDF_EXPORT
+      two_columns_level: 3
+      toc_level: 3
+      output_path: pdf/vsnotebook.pdf
+      #render_js: true
+      #headless_chrome_path: chromium
 
 #   - pdf-export:
 #         verbose: true
