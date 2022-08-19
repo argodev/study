@@ -1,12 +1,12 @@
-site_name: Vulnerability Science Study Notes
+site_name: Study Notes
 site_author: Rob Gillen
-site_description: Digital scrapbook of various security topics
+site_description: Digital scrapbook of various topics
 theme:
   name: material
   features:
     - search.highlight
 
-repo_url: https://code.ornl.gov/ru7/study
+repo_url: https://github.com/argodev/study
 edit_uri: ""
 
 theme:
@@ -18,7 +18,6 @@ theme:
   font:
     text: Roboto Regular
     code: Roboto Mono
-
 
 extra:
   social:
@@ -77,23 +76,6 @@ plugins:
   - git-revision-date-localized:
       type: iso_datetime
       fallback_to_build_date: true
-  #- mermaid2
- # - with-pdf:
- #     cover_subtitle: "Digital scrapbook of various security topics"
-      #enabled_if_env: ENABLE_PDF_EXPORT
- #     two_columns_level: 3
- #     toc_level: 3
- #     output_path: pdf/vsnotebook.pdf
-      #render_js: true
-      #headless_chrome_path: chromium
-
-#   - pdf-export:
-#         verbose: true
-#         media_type: print
-#         enabled_if_env: ENABLE_PDF_EXPORT
-#         combined: true
-#         combined_output_path: pdf/vsnotebook.pdf
-#  - print-site
 
 nav:
     - 'Overview': 'index.md'
@@ -121,20 +103,19 @@ nav:
         - 'Cross-Site Scripting': 'ctf/ps-xss.md'
         - 'OS Command Injection': 'ctf/ps-oscmdi.md'
         - 'SQL Injection': 'ctf/ps-sqi.md'
-    - 'Linux':
-        - 'Linux From Scratch': 'linux/lfs.md'
-    - 'Test Beds': 
-        - 'Portable Testbed': 'testbed/index.md'
-        - 'Lan Turtle': 'testbed/lanturtle.md'
-        - 'Packet Squirrel': 'testbed/pktsquirrel.md'
-        - 'Virtual Machine Hosting': 'testbed/virtual_machines.md'
-        - 'VPN': 'testbed/vpn.md'
-    - 'Miscellany':
-        - 'Change Log': changelog.md
-        - 'License': license.md
+#    - 'Linux':
+#        - 'Linux From Scratch': 'linux/lfs.md'
+#    - 'Test Beds': 
+#        - 'Portable Testbed': 'testbed/index.md'
+#        - 'Lan Turtle': 'testbed/lanturtle.md'
+#        - 'Packet Squirrel': 'testbed/pktsquirrel.md'
+#        - 'Virtual Machine Hosting': 'testbed/virtual_machines.md'
+#        - 'VPN': 'testbed/vpn.md'
+#    - 'Miscellany':
+#        - 'Change Log': changelog.md
+#        - 'License': license.md
 
 copyright: Copyright &copy; 2021-2022 Rob Gillen
-
 
 extra_javascript:
   - javascripts/mathjax.js
