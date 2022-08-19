@@ -47,3 +47,47 @@ I first visited the site and logged in with "my" credentials and then attempted 
 
 __UPDATE__ Actually, the above *didn't* solve it. I did successfully get to the admin page, but the request to delete the user was denied because the cookie had been re-written. I probaby could have solved this via a re-write rule, but ended up just editing the `GET` request to `/admin/delete?username=carlos` and submitting it via the repeater tool.
 
+
+## :material-gauge-empty: User role can be modified in user profile
+
+!!! question
+    This lab has an admin panel at `/admin`. It's only accessible to logged-in users with a `roleid` of `2`.
+
+    Solve the lab by accessing the admin panel and using it to delete the user `carlos`.
+
+    You can log in to your own account using the following credentials: `wiener:peter`
+
+I logged in, visited the `/admin` page and received the "access denied" error.
+
+Went back to the profile page, updated the account email and noticed that the `roleid` param is shown in the response to the `/my-account/change-email` request. I sent this request to the Repeater tool and added my own `roleid` param in the post and re-sent. As expected, it was processed and accepted fine. I was then able to visit `/admin` and delete `carlos`.
+
+## :material-gauge-empty: User ID controlled by request parameter
+
+!!! question
+    This lab has a horizontal privilege escalation vulnerability on the user account page.
+
+    To solve the lab, obtain the API key for the user `carlos` and submit it as the solution.
+
+    You can log in to your own account using the following credentials: `wiener:peter`
+
+I logged in to the application and on the `/my-account` page, my API key was shown. I noodled around a bit and failed to see anything like what I expected. Eventually, I navigated back to the home page, and then returned to the `/my-account` page. This time, however, I noticed the URL was a little different... `/my-account?id=wiener`. Of course, the solution looks obvious. I changed it to `/my-account?id=carlos` and was presented with that account's page/key. I submitted that answer and solved the challenge.
+
+
+
+## :material-gauge-empty: User ID controlled by request parameter, with unpredictable user IDs
+
+!!! question
+    This lab has a horizontal privilege escalation vulnerability on the user account page, but identifies users with GUIDs.
+
+    To solve the lab, find the GUID for carlos, then submit his API key as the solution.
+
+    You can log in to your own account using the following credentials: `wiener:peter`
+
+The key to this challenge is actually reading the entire block of instructions in the training material. Here it is suggested that user ids may be disclosed in other parts of the application (this I was guessing), such as user reviews and comments (I hadn't thought about this). I noodled around a little and found a post written by carlos. This page contained the following HTML: 
+
+```html
+<span id=blog-author><a href='/blogs?userId=091f297d-6894-4e29-97a6-21647b180a44'>carlos</a></span>
+```
+
+From here, the solution was easy.
+
