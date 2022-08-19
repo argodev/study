@@ -103,6 +103,9 @@ nav:
         - 'Cross-Site Scripting': 'ctf/ps-xss.md'
         - 'OS Command Injection': 'ctf/ps-oscmdi.md'
         - 'SQL Injection': 'ctf/ps-sqi.md'
+    - 'PicoCTF':
+        - 'Overview': 'ctf/picoCTF.md'
+        - 'General': 'ctf/pico-general.md'
 #    - 'Linux':
 #        - 'Linux From Scratch': 'linux/lfs.md'
 #    - 'Test Beds': 

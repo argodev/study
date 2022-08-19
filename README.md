@@ -2,7 +2,11 @@
 
 These are a collection of notes I've taken while working on learning various aspects of vulnerability science.
 
-## Building/Serving
+The "pretty" version of these notes is available at https://robgillen.com/study/
+
+Assets (scripts, files, etc.) that I generate while working through the various topics here are available in teh 
+
+<!-- ## Building/Serving
 
 These notes are written in markdown and designed to be served/hosted/generated via `mkdocs`.
 
@@ -17,7 +21,7 @@ $ python3 -m pip install --upgrade mkdocs mkdocs-material \
                          <!-- mkdocs-mermaid2-plugin \ -->
 
 
-### From Repository Root
+<!-- ### From Repository Root
 
 ```bash
 $ mkdocs build
@@ -25,7 +29,7 @@ $ mkdocs serve
 ```
 
 This will allow you to se the docs in a browser at http://localhost:8000
-
+ -->
 
 
 <!-- You will need to download/install the Chrome Driver
@@ -41,20 +45,7 @@ $ sudo apt-get install chromium-browser
 
 
 
-
-### Make Your Own
-
-More information on this documentation approach can be found at https://squidfunk.github.io/mkdocs-material
-
-Other things to look at:
-
-* https://github.com/orzih/mkdocs-with-pdf
-* https://mermaid.live/
-* http://bwmarrin.github.io/MkDocsPlus 
-
-
-
-# Run with Docker
+<!-- # Run with Docker
 
 This is all set to run and build the documentation site with Docker. Because of the plugins needed, we need to build our own docker image and then use that image for subsequent work. The following commands should all be run from the root of the project. We assume you have docker installed and properly configured.
 
@@ -70,4 +61,4 @@ docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
 # just build the documentation
 docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material build
 
-```
+``` -->
