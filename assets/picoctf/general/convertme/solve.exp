@@ -1,0 +1,25 @@
+#!/usr/bin/expect -f
+
+proc d2b { dval } {
+	spawn sh -c "echo 'obase=2;$dval' | bc"
+	expect -re "(.+)\$"
+	set bval $expect_out(1,string)
+	return "$bval"
+}
+
+set timeout -1
+spawn $env(SHELL)
+
+expect -exact "$"
+send "python3 convertme.py\r"
+
+#If 28 is in decimal base, what is it in binary base?\r
+#Answer: "
+expect -re {(?n)^If\s+(\d+) is in*}
+
+set ANSWER [d2b $expect_out(1,string)]
+send "$ANSWER\r"
+expect -re {(?n)^That is correct! Here's your flag: .*$}
+puts "$expect_out(0,string)"
+
+expect eof
