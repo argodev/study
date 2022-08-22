@@ -7,7 +7,7 @@ This site contains a series of sub-notebooks that were created and maintained as
 A current list of projects are as follows:
 
 * [Hack The Box (HTB)](/ctf/htb/)
-* [picoCTF](/ctf/picoCTF/)
-* [PortSwigger Academy](/ctf/portswigger/)
+* [picoCTF](/ctf/picoCTF.html)
+* [PortSwigger Academy](/ctf/portswigger.html)
 * [RingZer0 Team Online CTF](/ctf/rzeroctf/)
 * [VSRG Testbed](/testbed/)

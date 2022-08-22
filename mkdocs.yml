@@ -95,17 +95,30 @@ nav:
         - 'Website Exploitation': 'skills/webexploit.md'
     - 'Capture The Flag (CTF)':
         - 'Hack The Box (HTB)': 'ctf/htb.md'
-        - 'picoCTF': 'ctf/picoCTF.md'
-        - 'RingZer0 Team Online CTF': 'ctf/rzeroctf.md'
+    - 'RingZer0 Team Online CTF': 
+        - 'Overview': 'ctf/rzeroctf.md'
+        - 'Coding Challenges': 'ctf/rz-coding.md'
+        - 'Exotic Data Storage': 'ctf/rz-xdata.md'
+        - 'Jail Escapes': 'ctf/rz-jailescape.md'
+        - 'Javascript': 'ctf/rz-javascript.md'
     - 'PortSwigger Academy':
         - 'Overview': 'ctf/portswigger.md'
         - 'Access Control': 'ctf/ps-accesscontrol.md'
         - 'Cross-Site Scripting': 'ctf/ps-xss.md'
         - 'OS Command Injection': 'ctf/ps-oscmdi.md'
         - 'SQL Injection': 'ctf/ps-sqi.md'
+        - 'Cross-Site Request Forgery': 'ctf/ps-csrf.md'
+        - 'Directory Traversal': 'ctf/ps-dirtrav.md'
+        - 'HTTP Host Headers': 'ctf/ps-hostheader.md'
     - 'PicoCTF':
         - 'Overview': 'ctf/picoCTF.md'
-        - 'General': 'ctf/pico-general.md'
+        - 'General Skills': 'ctf/pico-general.md'
+        - 'Web Exploitation': 'ctf/pico-webex.md'
+        - 'Binary Exploitation': 'ctf/pico-binex.md'
+        - 'Cryptography': 'ctf/pico-crypto.md'
+        - 'Forensics': 'ctf/pico-forensics.md'
+        - 'Reverse Engineering': 'ctf/pico-re.md'
+        - '2019 Competition': 'ctf/pico-2019.md'
 #    - 'Linux':
 #        - 'Linux From Scratch': 'linux/lfs.md'
 #    - 'Test Beds': 
