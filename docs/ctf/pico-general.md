@@ -1,5 +1,10 @@
 # General Skills
 
+## Resources
+
+- :material-web: [Challenge Website](https://play.picoctf.org/practice?category=5&page=1){:target="_blank"}
+- :material-github: [Generated Artifacts](https://github.com/argodev/study/tree/main/assets/picoctf/general){:target="_blank"}
+
 ## Obedient Cat
 
 This is basically a "test challenge" to ensure you know how things work. You download the file, read it in a text editor (or just via `cat`), and you can recover the flag for submission.
@@ -158,7 +163,15 @@ picoCTF{redacted_value}
 
 ## Codebook
 
+Asked to run a python script in the same directory as a text file.
+
+This really wasn't even a challenge... simply run `$ python3 code.py` and you are presented with the flag.
+
 ## convertme.py
+
+In this challenge, you are given a python script that presents you a randomly-generated int in decimal that you are to convert to binary. The challenge is easy enough (use your head, a calculator, cyberchef, etc.). I quickly solved the challenge, but stumbled onto a tool chain called `expect` that is designed to automate console program interactions. I got to thinking it might be worth digging into a bit.
+
+I spent *way* more time on it than I should have, but I eventually got something working. I need to get better (and *much faster*) at this kind of scripting, but I think it might add some value.
 
 ## fixme1.py
 
@@ -194,7 +207,7 @@ I was presented a binary string that I translated using the `From Binary`, follo
 
 *__Actually__*, my first solution bothered me as I didn't think it was scalable and wouldn't really help me in the long term. I went back and re-solved it using a Python-based interactive netcat client. The script is available in the assets section.
 
-### plumbing
+## plumbing
 
 This one was a bit too easy for 200 points. You connect via `nc` to a server and are given a bunch of text. Based on what we've seen earlier, it is pretty easy to script/find the flag.
 
@@ -203,7 +216,7 @@ $ nc jupiter.challenges.picoctf.org 4427 | grep pico
 picoCTF{redacted_value}
 ```
 
-### mus1c
+## mus1c
 
 This one was a bit strange, and as I comment below, a bit of a disapointment. The "trick" you need to figure out is that it is actually a program, written in a esoteric programming language called [RockStar](https://codewithrockstar.com/). If you take the lyrics provided and dump them into the [online interpreter](https://codewithrockstar.com/online), you get a series of values that look quite like ASCII. If you convert those values into ASCII characters (either via a script or online tool such as CyberChef), you'll get the value you can then plug into the flag format for submission.
 
@@ -213,7 +226,7 @@ This one was a bit strange, and as I comment below, a bit of a disapointment. Th
 !!! failure
     I *really* do not like this type of challenge and am a bit disappointed that it is included in picoCTF. For all of the other challenges, there is a clear pedagogical rationale that maps to building strong cyber security skills. This is simply searching the Internet for a weird phrase from some provided text, assuming you will guess the linking, and plugging some things together. 
 
-### flag_shop
+## flag_shop
 
 This is a simple test to see if you can read source code and if you understand the issues with int roll-overs. You are provided the source code `store.c` and told to connect to a server via netcat. 
 
@@ -236,8 +249,9 @@ I initially did the math to get my purchase number with a calculator, but I then
 ```c
 #include <stdio.h>
 #include <stdlib.h>
-int main()
-{
+
+int main() {
+
     // these both are signed!
     int account_balance = 0;
     int number_flags = 0;
@@ -250,7 +264,7 @@ int main()
         if (total_cost <= account_balance) {
             account_balance = account_balance - total_cost;
         }
-    } while (account_balance < 10000);
+    } while (account_balance < 100000);
 
     printf("\nWhen the number of fake flags ordered is %d\n", number_flags);
     printf("The resulting cost is %d\n", total_cost);
@@ -269,7 +283,7 @@ The resulting cost is -2147481796
 And your account balance will be 2147482896
 ```
 
-### 1_wanna_b3_a_r0ck5star
+## 1_wanna_b3_a_r0ck5star
 
 Again with the waste-of-time challenges.
 

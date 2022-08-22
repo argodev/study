@@ -6,6 +6,12 @@ The "pretty" version of these notes is available at https://robgillen.com/study/
 
 Assets (scripts, files, etc.) that I generate while working through the various topics here are available in teh 
 
+
+## Helpers
+
+This page has some helpful "lookups" for finding icons: https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/
+
+
 <!-- ## Building/Serving
 
 These notes are written in markdown and designed to be served/hosted/generated via `mkdocs`.
