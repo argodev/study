@@ -175,19 +175,43 @@ I spent *way* more time on it than I should have, but I eventually got something
 
 ## fixme1.py
 
+In this one you needed to download a Python script and figure out what was wrong with it/was preventing it from running. This one was easy as there was an indentation problem... likely trying to highlight the importance of whitespace in the Python language.
+
 ## fixme2.py
+
+Similar to the last one, we had a broken python script we needed to fix. In this one, we had an assignment (`=`) operator being used in the place of equality (`==`). A simple fix and the flag was printed.
 
 ## Glitch Cat
 
+This was another simple case. When you connect to the service you get a string back, but it is a malformed code. It looks something like this:
+
+```text
+'picoCTF{gl17ch_m3_n07_' + chr(0x39) + chr(0x63) + chr(0x34) + chr(0x32) + chr(0x61) + chr(0x34) + chr(0x35) + chr(0x64) + '}'
+```
+
+The obvious task is to convert the encoded values to their actual values. I did this one step at a time, using some python one-liners such as `python3 -c "print(char(0x39))"`
+
 ## HashingJobApp
+
+This service gives you 3 strings (one at a time) that you need to calculate the md5 sum for and submit. I solved it manually, using a separate tab and an open python window. I then went back, of course, and figured that this wasn't quite the best plan givne I would likely need to automate this sort of thing moving forward.
+
+I learned a bit more about how `expect` scripts work, and ended up solving the challenge in a nicely automated fashion.
 
 ## PW Crack 1
 
+In this challenge, you simply need to read the python code to determine the hard-coded password. You then provide this password when running the script, and you are presented with the flag.
+
 ## PW Crack 2
+
+Quite similar to the last one... this time you needed to convert some hex codes to ascii and then enter the password. Felt like a repeat of things we've already done.
 
 ## PW Crack 3
 
+There is probably a "right" way to solve this, but I'm sure I didn't do it. I read enough of the code to determine it would be quite easy to write a brute-force script to match the hash. I did this, figured out which value worked, and then submitted it to earn the flag.
+
 ## PW Crack 4
+
+The point of this challenge seems to be to encourage you to script or do what I did for the prior challenge. With just some updates to a few things, the scripts/tools from pw 3 worked perfectly on pw 4.
 
 ## PW Crack 5
 

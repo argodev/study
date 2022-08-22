@@ -1,0 +1,46 @@
+#!/usr/bin/expect -f
+
+# Script runs something like this:
+#nc saturn.picoctf.net 54555
+#Please md5 hash the text between quotes, excluding the quotes: 'armed robbery'
+#Answer: 
+#986ad0db60b8d3d46281880f693a5926
+#986ad0db60b8d3d46281880f693a5926
+#Correct.
+#Please md5 hash the text between quotes, excluding the quotes: 'crawl space'
+#Answer: 
+#a320efce66b14e02f4569a08959ad2e8
+#a320efce66b14e02f4569a08959ad2e8
+#Correct.
+#Please md5 hash the text between quotes, excluding the quotes: 'musicals'
+#Answer: 
+#fb93d71bbad4b9be2e167c0914bbd83e
+#fb93d71bbad4b9be2e167c0914bbd83e
+#Correct.
+#picoCTF{redacted_vaue}
+
+proc md5 { val } {
+	spawn sh -c "python3 -c 'import hashlib; print(hashlib.md5(b\"$val\").hexdigest(), end=\"\")'"
+	expect -re "(.+)\$"
+    return $expect_out(1,string)
+}
+
+set timeout -1
+spawn nc saturn.picoctf.net 54555
+
+# first round
+expect -re {(?n)^Please .*'(.*)'}
+set ANSWER [md5 $expect_out(1,string)]
+send "$ANSWER\r"
+
+# second round
+expect -re {(?n)^Please .*'(.*)'}
+set ANSWER [md5 $expect_out(1,string)]
+send "$ANSWER\r"
+
+# third round
+expect -re {(?n)^Please .*'(.*)'}
+set ANSWER [md5 $expect_out(1,string)]
+send "$ANSWER\r"
+
+expect eof
