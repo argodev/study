@@ -215,13 +215,23 @@ The point of this challenge seems to be to encourage you to script or do what I 
 
 ## PW Crack 5
 
+This challenge was similar to the last few, but you needed to adjust your brute-forcing script to read the candidate passwords in from a file. A minor key with this is to ensure that you aren't including the line return (`\n`) in your hash attempt.
+
 ## runme.py
+
+I don't understand the purpose of this challenge. You simply downladed a python script, ran it, and were given the flag.
 
 ## Serpentine
 
+The goal of this challenge appears to be to ensure that you know how to read a python script, understand what functions are, and to ensure that a function is called correctly. All you need to do is add a line in the switch stmt to print the flag, run it, and you are good.
+
 ## First Find
 
+This challenge wants to confirm you know how to use the `find` command. You unzip the source file, search for the file in question, and then display the output.
+
 ## Big Zip
+
+Presented with a large zip file, you need to find the flag. None of the files have particularly interesting names, so you need to recursively-grep through the files... something like `grep -r "pico" .`
 
 ## Based
 
