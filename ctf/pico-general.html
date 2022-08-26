@@ -1653,10 +1653,15 @@ picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
 <h2 id="pw-crack-4">PW Crack 4<a class="headerlink" href="#pw-crack-4" title="Permanent link">&para;</a></h2>
 <p>The point of this challenge seems to be to encourage you to script or do what I did for the prior challenge. With just some updates to a few things, the scripts/tools from pw 3 worked perfectly on pw 4.</p>
 <h2 id="pw-crack-5">PW Crack 5<a class="headerlink" href="#pw-crack-5" title="Permanent link">&para;</a></h2>
+<p>This challenge was similar to the last few, but you needed to adjust your brute-forcing script to read the candidate passwords in from a file. A minor key with this is to ensure that you aren't including the line return (<code>\n</code>) in your hash attempt.</p>
 <h2 id="runmepy">runme.py<a class="headerlink" href="#runmepy" title="Permanent link">&para;</a></h2>
+<p>I don't understand the purpose of this challenge. You simply downladed a python script, ran it, and were given the flag.</p>
 <h2 id="serpentine">Serpentine<a class="headerlink" href="#serpentine" title="Permanent link">&para;</a></h2>
+<p>The goal of this challenge appears to be to ensure that you know how to read a python script, understand what functions are, and to ensure that a function is called correctly. All you need to do is add a line in the switch stmt to print the flag, run it, and you are good.</p>
 <h2 id="first-find">First Find<a class="headerlink" href="#first-find" title="Permanent link">&para;</a></h2>
+<p>This challenge wants to confirm you know how to use the <code>find</code> command. You unzip the source file, search for the file in question, and then display the output.</p>
 <h2 id="big-zip">Big Zip<a class="headerlink" href="#big-zip" title="Permanent link">&para;</a></h2>
+<p>Presented with a large zip file, you need to find the flag. None of the files have particularly interesting names, so you need to recursively-grep through the files... something like <code>grep -r "pico" .</code></p>
 <h2 id="based">Based<a class="headerlink" href="#based" title="Permanent link">&para;</a></h2>
 <p>This is another data encoding challenge. You are given a string of bits (binary) that you need to translate quickly, in this case, within 45 seconds. There are probably a handful of ways to solve this, including a script. Instead, I ended up using the online CyberChef tool to help out.</p>
 <p>I was presented a binary string that I translated using the <code>From Binary</code>, followed by an octal string for which I used thed <code>from Octal</code> tool, and finally a hexadecimal string where I used the <code>from Hex</code> tool. The easiest way to set up CyberChef for this would be to have three different input tabs, have the appropriate recipies enabled/disabled for each tab, so it is just a matter of copy/paste.</p>
@@ -1743,7 +1748,7 @@ And your account balance will be <span class="m">2147482896</span>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-22 19:23:55</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-26 12:12:42</span>
       
     
   </small>
