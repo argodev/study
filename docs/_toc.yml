@@ -83,6 +83,17 @@ parts:
       - file: ctf/rz/nc8re.ipynb
       - file: ctf/rz/web.ipynb
 
+    - file: ctf/re/ropemporium.md
+      sections:
+      - file: ctf/re/00_ret2win.md
+      - file: ctf/re/01_split.md
+      - file: ctf/re/02_callme.md
+      - file: ctf/re/03_write4.md
+      - file: ctf/re/04_badchars.md
+      - file: ctf/re/05_fluff.md
+      - file: ctf/re/06_pivot.md
+      - file: ctf/re/07_ret2csu.md
+
   - caption: Linux
     chapters:
     - file: linux/lfs.md

