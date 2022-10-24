@@ -1,0 +1,97 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Vulnerability Science
+    chapters:
+    - file: vs/languages/languages.md
+      sections:
+      - file: vs/languages/assembly.md
+      - file: vs/languages/cpp.md
+    - file: vs/fuzzing.md
+    - file: vs/re/re.md
+      sections:
+      - file: vs/re/ghidra.md
+      - file: vs/re/virtual_funcs.md
+    - file: vs/postexploit.md
+    - file: vs/webex.md
+    - file: vs/passwords/passwords.md
+      sections:
+      - file: vs/passwords/searchspace.ipynb
+      - file: vs/passwords/hashcat.md
+      - file: vs/passwords/john.md
+
+  - caption: Capture The Flag
+    chapters:
+    - file: ctf/htb/htb.md
+    - file: ctf/pico/picoctf.md
+      sections:
+      - file: ctf/pico/webex.ipynb
+      - file: ctf/pico/crypto.ipynb
+      - file: ctf/pico/re.ipynb
+      - file: ctf/pico/forensics.ipynb
+      - file: ctf/pico/general.ipynb
+      - file: ctf/pico/binex.ipynb
+      - file: ctf/pico/uncat.ipynb
+      - file: ctf/pico/picomini.ipynb
+      - file: ctf/pico/pico2019.ipynb
+      - file: ctf/pico/pico2020.ipynb
+      - file: ctf/pico/pico2021.ipynb
+
+    - file: ctf/ps/portswigger.md
+      sections:
+      - file: ctf/ps/accesscontrol.ipynb
+      - file: ctf/ps/xss.ipynb
+      - file: ctf/ps/csrf.ipynb
+      - file: ctf/ps/clickjacking.ipynb
+      - file: ctf/ps/domvuln.ipynb
+      - file: ctf/ps/cors.ipynb
+      - file: ctf/ps/xxe.ipynb
+      - file: ctf/ps/ssrf.ipynb
+      - file: ctf/ps/dirtrav.ipynb
+      - file: ctf/ps/auth.ipynb
+      - file: ctf/ps/websockets.ipynb
+      - file: ctf/ps/webcache.ipynb
+      - file: ctf/ps/deserial.ipynb
+      - file: ctf/ps/infodisclosure.ipynb
+      - file: ctf/ps/logic.ipynb
+      - file: ctf/ps/hostheader.ipynb
+      - file: ctf/ps/oauth.ipynb     
+      - file: ctf/ps/oscmdi.ipynb
+      - file: ctf/ps/sqi.ipynb
+      - file: ctf/ps/reqsmuggling.ipynb
+      - file: ctf/ps/ssti.ipynb
+      
+    - file: ctf/rz/ringzeroctf.md
+      sections:
+      - file: ctf/rz/coding.ipynb
+      - file: ctf/rz/crypto.ipynb
+      - file: ctf/rz/exoticdata.ipynb
+      - file: ctf/rz/forensics.ipynb
+      - file: ctf/rz/jailescape.ipynb
+      - file: ctf/rz/javascript.ipynb
+      - file: ctf/rz/malware.ipynb
+      - file: ctf/rz/pwnage.ipynb
+      - file: ctf/rz/re.ipynb
+      - file: ctf/rz/sdr.ipynb
+      - file: ctf/rz/shell.ipynb
+      - file: ctf/rz/sqi.ipynb
+      - file: ctf/rz/stego.ipynb
+      - file: ctf/rz/sysadmin.ipynb
+      - file: ctf/rz/nc8re.ipynb
+      - file: ctf/rz/web.ipynb
+
+  - caption: Linux
+    chapters:
+    - file: linux/lfs.md
+
+  - caption: Miscellaneous
+    chapters:
+    - file: testbed/testbed.md
+      sections:
+      - file: testbed/lanturtle.md
+      - file: testbed/pktsquirrel.md
+      - file: testbed/virtual_machines.md
+      - file: testbed/vpn.md
