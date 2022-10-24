@@ -1,1062 +1,834 @@
 
-<!doctype html>
-<html lang="en" class="no-js">
+<!DOCTYPE html>
+
+<html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lan Turtle &#8212; Study Notes</title>
     
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-        <meta name="description" content="Digital scrapbook of various topics">
-      
-      
-        <meta name="author" content="Rob Gillen">
-      
-      
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.4.0">
-    
-    
-      
-        <title>Lan Turtle - Study Notes</title>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#757575">
-        
-      
-      
-    
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Regular:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto Regular";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Packet Squirrel" href="pktsquirrel.html" />
+    <link rel="prev" title="Portable Testbed" href="testbed.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  
-  
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="grey" data-md-color-accent="indigo">
-  
-    
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#lan-turtle" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="Study Notes" class="md-header__button md-logo" aria-label="Study Notes" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+    
+    <div class="container-fluid" id="banner"></div>
 
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            Study Notes
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              Lan Turtle
-            
-          </span>
-        </div>
-      </div>
-    </div>
     
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/argodev/study" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
-    GitHub
-  </div>
-</a>
-      </div>
-    
-  </nav>
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
+
+    <div class="container-xl">
+      <div class="row">
           
-        
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="Study Notes" class="md-nav__button md-logo" aria-label="Study Notes" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
-
+      
+      <h1 class="site-logo" id="site-title">Study Notes</h1>
+      
     </a>
-    Study Notes
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Vulnerability Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vs/languages/languages.html">
+   Languages
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/argodev/study" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
-    GitHub
-  </div>
-</a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
-        Overview
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Core Skills
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Core Skills" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Core Skills
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2_1">
-          Assembly
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Assembly" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_1">
-          <span class="md-nav__icon md-icon"></span>
-          Assembly
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/assembly/ppc.html" class="md-nav__link">
-        PowerPC
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2_2">
-          Languages
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Languages" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_2">
-          <span class="md-nav__icon md-icon"></span>
-          Languages
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/languages/cpp.html" class="md-nav__link">
-        C++
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2_3">
-          Password Cracking
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Password Cracking" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_3">
-          <span class="md-nav__icon md-icon"></span>
-          Password Cracking
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/passwords/index.html" class="md-nav__link">
-        Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/passwords/searchspace.html" class="md-nav__link">
-        Search Space
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/passwords/hashcat.html" class="md-nav__link">
-        HashCat
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/passwords/john.html" class="md-nav__link">
-        John the Ripper
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2_4">
-          Reverse Engineering
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Reverse Engineering" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_4">
-          <span class="md-nav__icon md-icon"></span>
-          Reverse Engineering
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/re/ghidra.html" class="md-nav__link">
-        Ghidra
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/re/virtual_funcs.html" class="md-nav__link">
-        Virtual Functions
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../skills/webexploit.html" class="md-nav__link">
-        Website Exploitation
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
-          Capture The Flag (CTF)
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Capture The Flag (CTF)" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Capture The Flag (CTF)
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/htb.html" class="md-nav__link">
-        Hack The Box (HTB)
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
-          RingZer0 Team Online CTF
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="RingZer0 Team Online CTF" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
-          RingZer0 Team Online CTF
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/rzeroctf.html" class="md-nav__link">
-        Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/rz-coding.html" class="md-nav__link">
-        Coding Challenges
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/rz-xdata.html" class="md-nav__link">
-        Exotic Data Storage
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/rz-jailescape.html" class="md-nav__link">
-        Jail Escapes
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/rz-javascript.html" class="md-nav__link">
-        Javascript
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
-          PortSwigger Academy
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="PortSwigger Academy" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          PortSwigger Academy
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/portswigger.html" class="md-nav__link">
-        Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/ps-accesscontrol.html" class="md-nav__link">
-        Access Control
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/ps-xss.html" class="md-nav__link">
-        Cross-Site Scripting
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/ps-oscmdi.html" class="md-nav__link">
-        OS Command Injection
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/ps-sqi.html" class="md-nav__link">
-        SQL Injection
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/ps-csrf.html" class="md-nav__link">
-        Cross-Site Request Forgery
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/ps-dirtrav.html" class="md-nav__link">
-        Directory Traversal
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/ps-hostheader.html" class="md-nav__link">
-        HTTP Host Headers
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          PicoCTF
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="PicoCTF" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          PicoCTF
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/picoCTF.html" class="md-nav__link">
-        Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/pico-general.html" class="md-nav__link">
-        General Skills
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/pico-webex.html" class="md-nav__link">
-        Web Exploitation
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/pico-binex.html" class="md-nav__link">
-        Binary Exploitation
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/pico-crypto.html" class="md-nav__link">
-        Cryptography
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/pico-forensics.html" class="md-nav__link">
-        Forensics
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/pico-re.html" class="md-nav__link">
-        Reverse Engineering
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ctf/pico-2019.html" class="md-nav__link">
-        2019 Competition
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vs/languages/assembly.html">
+     Assembly Language
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vs/languages/cpp.html">
+     C/C++
+    </a>
+   </li>
   </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../vs/fuzzing.html">
+   Fuzzing
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vs/re/re.html">
+   Reverse Engineering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vs/re/ghidra.html">
+     Ghidra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vs/re/virtual_funcs.html">
+     Reversing Virtual Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../vs/postexploit.html">
+   Post-Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../vs/webex.html">
+   Web Site Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../vs/passwords/passwords.html">
+   Password Cracking
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vs/passwords/searchspace.html">
+     Search Space Calculations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vs/passwords/hashcat.html">
+     HashCat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../vs/passwords/john.html">
+     John the Ripper (aka John)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Capture The Flag
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ctf/htb/htb.html">
+   Hack The Box (HTB)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ctf/pico/picoctf.html">
+   PicoGym
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/webex.html">
+     Web Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/general.html">
+     General Skills
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/binex.html">
+     Binary Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/uncat.html">
+     Uncategorized
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/picomini.html">
+     PicoMINI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/pico2019.html">
+     PicoCTF 2019
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/pico2020.html">
+     PicoCTF 2020 Mini-Competition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/pico/pico2021.html">
+     PicoCTF 2021
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ctf/ps/portswigger.html">
+   PortSwigger Academy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/accesscontrol.html">
+     Access Control Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/xss.html">
+     Cross-Site Scripting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/csrf.html">
+     Cross-site Request Forgery (CSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/clickjacking.html">
+     Clickjacking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/domvuln.html">
+     DOM-based Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/cors.html">
+     Cross-Origin Resource Sharing (CORS)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/xxe.html">
+     XML External Entity (XXE) injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/ssrf.html">
+     Server-Side Request Forgery (SSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/dirtrav.html">
+     Directory Traversal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/auth.html">
+     Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/websockets.html">
+     WebSockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/webcache.html">
+     Web Cache Poisoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/deserial.html">
+     Insecure Deserialization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/infodisclosure.html">
+     Information Disclosure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/logic.html">
+     Business Logic Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/hostheader.html">
+     HTTP Host Header Attacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/oauth.html">
+     OAuth Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/oscmdi.html">
+     OS Command Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/reqsmuggling.html">
+     HTTP Request Smuggling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/ps/ssti.html">
+     Server-Side Template Injection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ctf/rz/ringzeroctf.html">
+   Ring Zero CTF
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/coding.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/exoticdata.html">
+     Exotic Data Storage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/jailescape.html">
+     Jail Escaping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/javascript.html">
+     JavaScript
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/malware.html">
+     Malware Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/pwnage.html">
+     Pwnage Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/sdr.html">
+     Software Defined Radio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/shell.html">
+     Shellcoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/stego.html">
+     Steganography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/sysadmin.html">
+     SysAdmin Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/nc8re.html">
+     NC8 Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ctf/rz/web.html">
+     Web Warning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linux
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../linux/lfs.html">
+   Linux From Scratch
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="testbed.html">
+   Portable Testbed
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lan Turtle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pktsquirrel.html">
+     Packet Squirrel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="virtual_machines.html">
+     Virtual Machine Hosting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vpn.html">
+     VPN
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
   
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/argodev/Cogitation"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
       
-        <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
-  </a>
+      <li>
+        <a href="https://github.com/argodev/Cogitation/issues/new?title=Issue%20on%20page%20%2Ftestbed/lanturtle.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
   
-    <nav class="md-nav" aria-label="Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#modules" class="md-nav__link">
-    Modules
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#keymanager" class="md-nav__link">
-    KeyManager
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#autossh" class="md-nav__link">
-    AutoSSH
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sshfs" class="md-nav__link">
-    SSHFS
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deployment" class="md-nav__link">
-    Deployment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use" class="md-nav__link">
-    Use
-  </a>
-  
-</li>
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
       
     </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/testbed/lanturtle.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</nav>
-                  </div>
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   Configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modules">
+     Modules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#keymanager">
+     KeyManager
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autossh">
+     AutoSSH
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sshfs">
+     SSHFS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deployment">
+   Deployment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use">
+   Use
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lan Turtle</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   Configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modules">
+     Modules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#keymanager">
+     KeyManager
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autossh">
+     AutoSSH
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sshfs">
+     SSHFS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deployment">
+   Deployment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use">
+   Use
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
                 </div>
-              </div>
-            
-          
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+            </div>
+            <main id="main-content" role="main">
                 
-
-
-<h1 id="lan-turtle">Lan Turtle<a class="headerlink" href="#lan-turtle" title="Permanent link">&para;</a></h1>
-<p>To represent a physical implant that provides persistent remote access, we selected the <a href="https://hak5.org/products/lan-turtle">Lan Turtle by Hak5</a>. This device is designed to look like a USB Ethernet adapter (or a USB-to-Ethernet KVM) but is really an embedded Linux system that can provide a number of simple capabilities. The unit we had also contained the 3G modem, but we elected not to use it for this setup.</p>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>In theory, updating the device to the latest firmware should be easy and straight-forward. It isn't... at least not for me, and a number of others who (helpfully) posted their struggles online.</p>
-<p>You should be able to use the <code>turtle</code> command, enter the configuration menu, check for updates, apply, reboot, and be golden. The problem I faced, however, was that when I did this, I ended up with a device that would no longer pull modules, check for updates, anything.</p>
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lan-turtle">
+<h1>Lan Turtle<a class="headerlink" href="#lan-turtle" title="Permalink to this headline">#</a></h1>
+<p>To represent a physical implant that provides persistent remote access, we selected the <a class="reference external" href="https://hak5.org/products/lan-turtle">Lan Turtle by Hak5</a>. This device is designed to look like a USB Ethernet adapter (or a USB-to-Ethernet KVM) but is really an embedded Linux system that can provide a number of simple capabilities. The unit we had also contained the 3G modem, but we elected not to use it for this setup.</p>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
+<p>In theory, updating the device to the latest firmware should be easy and straight-forward. It isn’t… at least not for me, and a number of others who (helpfully) posted their struggles online.</p>
+<p>You should be able to use the <code class="docutils literal notranslate"><span class="pre">turtle</span></code> command, enter the configuration menu, check for updates, apply, reboot, and be golden. The problem I faced, however, was that when I did this, I ended up with a device that would no longer pull modules, check for updates, anything.</p>
 <p>After much debugging and gnashing of teeth, it became clear that the issue was that the date/time on the device was out of sync, and therefore SSL validation would fail. Some suggested simply disabling SSL cert validation, but this seems unwise on a security-focused device. Making things further frustrating, I learned that AT&amp;T blocks NTP packets due to network threats, so the configured-by-default NTP client on the turtle fails to obtain an updated time value.</p>
 <p>What I ended up figuring out, is as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># ssh into the turtle, exit the configuration utility </span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ssh into the turtle, exit the configuration utility </span>
 <span class="c1"># and end up at the shell</span>
 
 <span class="c1"># update the software listing</span>
@@ -1068,75 +840,84 @@ $ opkg install htpdate
 <span class="c1"># force the time to be updated (using the webserver at 1.1.1.1;</span>
 <span class="c1"># could be really any valid site)</span>
 $ htpdate -s <span class="m">1</span>.1.1.1
-</code></pre></div>
-<p>Once this is done, it is not a bad idea to add this last command (<code>htpdate -s 1.1.1.1</code>) into <code>/etc/rc.local</code> so it gets executed on each system start. </p>
+</pre></div>
+</div>
+<p>Once this is done, it is not a bad idea to add this last command (<code class="docutils literal notranslate"><span class="pre">htpdate</span> <span class="pre">-s</span> <span class="pre">1.1.1.1</span></code>) into <code class="docutils literal notranslate"><span class="pre">/etc/rc.local</span></code> so it gets executed on each system start.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>It might make most sense to change this to daemon mode so it runs all the time</p>
-<div class="highlight"><pre><span></span><code>htpdate -D 1.1.1.1
-</code></pre></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
+htpdate -D 1.1.1.1
+```
+</pre></div>
 </div>
-<p>After following all of these steps, I was able to successfully update the device to firmware version <code>6.2-stable</code>. For reference, additional firmware files and details are available here: <a href="https://downloads.hak5.org/turtle">https://downloads.hak5.org/turtle</a>. </p>
-<p>Another general configuration step to assist with the <em>stealthy-ness</em> of the activities, is to edit <code>/etc/config/system</code> and change the <code>hostname</code> to something other than <code>turtle</code>. Making it something less obvious may help hide it longer (e.g. <code>usbeth0</code>).</p>
+</div>
+<p>After following all of these steps, I was able to successfully update the device to firmware version <code class="docutils literal notranslate"><span class="pre">6.2-stable</span></code>. For reference, additional firmware files and details are available here: <a class="reference external" href="https://downloads.hak5.org/turtle">https://downloads.hak5.org/turtle</a>.</p>
+<p>Another general configuration step to assist with the <em>stealthy-ness</em> of the activities, is to edit <code class="docutils literal notranslate"><span class="pre">/etc/config/system</span></code> and change the <code class="docutils literal notranslate"><span class="pre">hostname</span></code> to something other than <code class="docutils literal notranslate"><span class="pre">turtle</span></code>. Making it something less obvious may help hide it longer (e.g. <code class="docutils literal notranslate"><span class="pre">usbeth0</span></code>).</p>
 <p>Additionally, I deployed the ssh public key from my attacker machine to the turtle to make subsequent logins easier.</p>
-<div class="highlight"><pre><span></span><code>ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.16.84.1
-</code></pre></div>
-<p>The next configuration activities included installing and configuring the modules. </p>
-<h3 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
-<p>From within the <code>turtle</code> shell, you can choose <code>Modules</code> and then select the <code>modulemanager</code> module. The <code>start</code> and <code>enable</code> functions do not really apply for this module, but <code>Configure</code> does. From the configuration manager, you choose to update the directory, agree to connect to <code>lanturtle.com</code> and then browse/select the modules you'd like to install. For this instance, I chose to keep things simple and just installed the following: <code>autossh</code>, <code>keymanager</code>, and <code>sshfs</code>. Once these have been installed, you can step back a few screens to the main <em>Modules</em> window where you will see and be able to configure the installed modules.</p>
-<h3 id="keymanager">KeyManager<a class="headerlink" href="#keymanager" title="Permanent link">&para;</a></h3>
-<p>This module is another that you simply configure, and the only thing I needed to do here was the <code>generate_key</code> command. This is just a UI-wrapper on <code>ssh-keygen</code>. Once this is done, I needed to transfer the public key (<code>/.ssh/id_rsa.pub</code>) to the account on the cloud-hosted jump server. </p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.16.84.1
+</pre></div>
+</div>
+<p>The next configuration activities included installing and configuring the modules.</p>
+<section id="modules">
+<h3>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h3>
+<p>From within the <code class="docutils literal notranslate"><span class="pre">turtle</span></code> shell, you can choose <code class="docutils literal notranslate"><span class="pre">Modules</span></code> and then select the <code class="docutils literal notranslate"><span class="pre">modulemanager</span></code> module. The <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">enable</span></code> functions do not really apply for this module, but <code class="docutils literal notranslate"><span class="pre">Configure</span></code> does. From the configuration manager, you choose to update the directory, agree to connect to <code class="docutils literal notranslate"><span class="pre">lanturtle.com</span></code> and then browse/select the modules you’d like to install. For this instance, I chose to keep things simple and just installed the following: <code class="docutils literal notranslate"><span class="pre">autossh</span></code>, <code class="docutils literal notranslate"><span class="pre">keymanager</span></code>, and <code class="docutils literal notranslate"><span class="pre">sshfs</span></code>. Once these have been installed, you can step back a few screens to the main <em>Modules</em> window where you will see and be able to configure the installed modules.</p>
+</section>
+<section id="keymanager">
+<h3>KeyManager<a class="headerlink" href="#keymanager" title="Permalink to this headline">#</a></h3>
+<p>This module is another that you simply configure, and the only thing I needed to do here was the <code class="docutils literal notranslate"><span class="pre">generate_key</span></code> command. This is just a UI-wrapper on <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code>. Once this is done, I needed to transfer the public key (<code class="docutils literal notranslate"><span class="pre">/.ssh/id_rsa.pub</span></code>) to the account on the cloud-hosted jump server.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>On the jump server, I had previously configured an account (<code>turtle</code>) that would be used by this device. Additionally, if the jump server allowed password-based SSH connections, the <code>KeyManager</code> module would have allowed me to deploy my key directly. However, since I am only allowing keys, I have to shuffle it through another account and cannot use the automated scripts.</p>
+<p>On the jump server, I had previously configured an account (<code class="docutils literal notranslate"><span class="pre">turtle</span></code>) that would be used by this device. Additionally, if the jump server allowed password-based SSH connections, the <code class="docutils literal notranslate"><span class="pre">KeyManager</span></code> module would have allowed me to deploy my key directly. However, since I am only allowing keys, I have to shuffle it through another account and cannot use the automated scripts.</p>
 </div>
-<h3 id="autossh">AutoSSH<a class="headerlink" href="#autossh" title="Permanent link">&para;</a></h3>
-<p>The <code>autossh</code> module maintains persistent SSH shells to another server and can forward local ports to the remote server for the purpose of enabling reverse tunnling through the established shell. This is a more <em>normal</em> module, so we begin by configuring it:</p>
-<ul>
-<li>user@host: <code>turtle@george.bitpredator.com</code></li>
-<li>Port: <code>22</code></li>
-<li>Remote Port: <code>2222</code></li>
-<li>Local Port: <code>22</code></li>
+</section>
+<section id="autossh">
+<h3>AutoSSH<a class="headerlink" href="#autossh" title="Permalink to this headline">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">autossh</span></code> module maintains persistent SSH shells to another server and can forward local ports to the remote server for the purpose of enabling reverse tunnling through the established shell. This is a more <em>normal</em> module, so we begin by configuring it:</p>
+<ul class="simple">
+<li><p>user&#64;host: <code class="docutils literal notranslate"><span class="pre">turtle&#64;george.bitpredator.com</span></code></p></li>
+<li><p>Port: <code class="docutils literal notranslate"><span class="pre">22</span></code></p></li>
+<li><p>Remote Port: <code class="docutils literal notranslate"><span class="pre">2222</span></code></p></li>
+<li><p>Local Port: <code class="docutils literal notranslate"><span class="pre">22</span></code></p></li>
 </ul>
-<p>The last two lines expose port <code>22</code> on the turtle's local network interface to port <code>2222</code> on the host it is going to tunnel to (in this case, <code>george.bitpredator.com</code>). We submit these settings and then select <code>enable</code> to have it start each time the device boots up, and finally we click <code>start</code> to get it up and running.</p>
+<p>The last two lines expose port <code class="docutils literal notranslate"><span class="pre">22</span></code> on the turtle’s local network interface to port <code class="docutils literal notranslate"><span class="pre">2222</span></code> on the host it is going to tunnel to (in this case, <code class="docutils literal notranslate"><span class="pre">george.bitpredator.com</span></code>). We submit these settings and then select <code class="docutils literal notranslate"><span class="pre">enable</span></code> to have it start each time the device boots up, and finally we click <code class="docutils literal notranslate"><span class="pre">start</span></code> to get it up and running.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>In prior versions, the instructions up to this point would have worked just fine. However, the last <code>start</code> command now fails because my jump server host is not in the <code>known_hosts</code> file. In an effort to be maybe a little too smart, this is now bundled into the <code>copy_key</code> configuration option of the <code>keymanager</code> module, which won't work for me because of my password-less restriction on the jump server. I simply exited to the shell, manually established an SSH connection to my jump server which caused bash to prompt me to update <code>authorized_keys</code>. This being done (and confirming that the connection worked), I was able to return to the turtle shell (<code>turtle</code>) and start this module.</p>
+<p>In prior versions, the instructions up to this point would have worked just fine. However, the last <code class="docutils literal notranslate"><span class="pre">start</span></code> command now fails because my jump server host is not in the <code class="docutils literal notranslate"><span class="pre">known_hosts</span></code> file. In an effort to be maybe a little too smart, this is now bundled into the <code class="docutils literal notranslate"><span class="pre">copy_key</span></code> configuration option of the <code class="docutils literal notranslate"><span class="pre">keymanager</span></code> module, which won’t work for me because of my password-less restriction on the jump server. I simply exited to the shell, manually established an SSH connection to my jump server which caused bash to prompt me to update <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code>. This being done (and confirming that the connection worked), I was able to return to the turtle shell (<code class="docutils literal notranslate"><span class="pre">turtle</span></code>) and start this module.</p>
 </div>
-<h3 id="sshfs">SSHFS<a class="headerlink" href="#sshfs" title="Permanent link">&para;</a></h3>
-<p>The last module to configure is <code>sshfs</code>. This simply mounts a remote file system as if it were local. In this case, it allows us to expand the rather meager storage of the turtle to whatever amount of disk is available in my jump server. The configuration of this module is rather simple:</p>
-<ul>
-<li>Host: <code>george.bitpredator.com</code></li>
-<li>Port: <code>22</code></li>
-<li>User: <code>turtle</code></li>
-<li>Path: <code>/home/turtle</code></li>
+</section>
+<section id="sshfs">
+<h3>SSHFS<a class="headerlink" href="#sshfs" title="Permalink to this headline">#</a></h3>
+<p>The last module to configure is <code class="docutils literal notranslate"><span class="pre">sshfs</span></code>. This simply mounts a remote file system as if it were local. In this case, it allows us to expand the rather meager storage of the turtle to whatever amount of disk is available in my jump server. The configuration of this module is rather simple:</p>
+<ul class="simple">
+<li><p>Host: <code class="docutils literal notranslate"><span class="pre">george.bitpredator.com</span></code></p></li>
+<li><p>Port: <code class="docutils literal notranslate"><span class="pre">22</span></code></p></li>
+<li><p>User: <code class="docutils literal notranslate"><span class="pre">turtle</span></code></p></li>
+<li><p>Path: <code class="docutils literal notranslate"><span class="pre">/home/turtle</span></code></p></li>
 </ul>
-<p>This will map the local <code>/sshfs</code> directory on the turtle to the <code>/home/turtle</code> directory on the jump server. Now we submit the configuration, enable it, and then start it.</p>
-<h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h2>
-<p>In the testbed, the turtle is plugged into a USB port on <code>Lap01</code> for the purposes of providing power. It could theoretically also provide some MITM capabilities for this machine, but we are not using them. The ethernet jack is connected directly to the primary switch and it serves as a remotely-accesible beachhead. </p>
+<p>This will map the local <code class="docutils literal notranslate"><span class="pre">/sshfs</span></code> directory on the turtle to the <code class="docutils literal notranslate"><span class="pre">/home/turtle</span></code> directory on the jump server. Now we submit the configuration, enable it, and then start it.</p>
+</section>
+</section>
+<section id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">#</a></h2>
+<p>In the testbed, the turtle is plugged into a USB port on <code class="docutils literal notranslate"><span class="pre">Lap01</span></code> for the purposes of providing power. It could theoretically also provide some MITM capabilities for this machine, but we are not using them. The ethernet jack is connected directly to the primary switch and it serves as a remotely-accesible beachhead.</p>
 <!-- 
-<div class="highlight"><pre><span></span><code>graph LR
-  A[Router] -- &gt; B[Switch];
-  B -- &gt; C[Lap01];
-  B -- &gt; D[Turtle];
-  C -- &gt; D;
-  B -- &gt; E[Lap02];
-</code></pre></div>
+```mermaid
+graph LR
+  A[Router] -- > B[Switch];
+  B -- > C[Lap01];
+  B -- > D[Turtle];
+  C -- > D;
+  B -- > E[Lap02];
+```
 -->
-
-<figure>
-<p><a href="../assets/images/turtle_layout.png"><img alt="Turtle Layout" src="../assets/images/turtle_layout.png" /></a>
-  </p>
-<figcaption>Turtle Layout</figcaption>
-</figure>
-<figure id="turtle">
-<p><a href="../assets/images/turtle.jpg"><img alt="Deployed LanTurtle" src="../assets/images/turtle.jpg" width="400&quot;" /></a>
-  </p>
-<figcaption>Deployed LanTurtle</figcaption>
-</figure>
-<h2 id="use">Use<a class="headerlink" href="#use" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../_images/turtle_layout.png" /></p>
+<p><img alt="" src="../_images/turtle.jpg" /></p>
+</section>
+<section id="use">
+<h2>Use<a class="headerlink" href="#use" title="Permalink to this headline">#</a></h2>
 <p>With the device configured and deployed into the test bed, it will provide me a remotely-accessible shell any time I need it. The following demonstrates its use:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Connect from my attacker machine to my jump server</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect from my attacker machine to my jump server</span>
 $ ssh root@george.bitpredator.com
 
 <span class="c1"># copy my local ssh key (on jump server) to turtle</span>
@@ -1147,96 +928,79 @@ $ ssh root@localhost -p <span class="m">2222</span>
 
 <span class="c1"># write files to turtle&#39;s &quot;local&quot; storage, remapped to jump server</span>
 $ touch /sshfs/bubb02
-</code></pre></div>
+</pre></div>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>One key feature of using <code>sshfs</code> on the turtle as the storage location for "loot", is that if the device happens to be found and/ore disconnected by a local user/network admin, anything that you had gathered will not actually reside on the turtle, but instead on the drive of the jump server which remains in your control</p>
+<p>One key feature of using <code class="docutils literal notranslate"><span class="pre">sshfs</span></code> on the turtle as the storage location for “loot”, is that if the device happens to be found and/ore disconnected by a local user/network admin, anything that you had gathered will not actually reside on the turtle, but instead on the drive of the jump server which remains in your control</p>
 </div>
+</section>
+</section>
 
-  <hr>
-<div class="md-source-file">
-  <small>
-    
-      Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2021-10-29 17:49:21</span>
-      
-    
-  </small>
-</div>
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./testbed"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
-
-
-
+              </div>
               
-            </article>
-            
-          </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="testbed.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Portable Testbed</p>
         </div>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      Copyright &copy; 2021-2022 Rob Gillen
-    </div>
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
     </a>
-  
+    <a class='right-next' id="next-link" href="pktsquirrel.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Packet Squirrel</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-      
-        <div class="md-social">
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
   
-    
-    
-      
-      
-    
-    <a href="https://github.com/argodev" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
-    </a>
+    By Rob Gillen<br/>
   
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-    
-      
-      
-    
-    <a href="https://twitter.com/argodev" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
-    </a>
-  
 </div>
-      
+
+
+      </div>
     </div>
-  </div>
-</footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-    
-    
-      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
-      
-        <script src="../javascripts/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-      
-        <script src="../javascripts/tex-mml-chtml.js"></script>
-      
-        <script src="../javascripts/mermaid.min.js"></script>
-      
-    
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
   </body>
 </html>

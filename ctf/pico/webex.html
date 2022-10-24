@@ -1,0 +1,1469 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Web Exploitation &#8212; Study Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cryptography" href="crypto.html" />
+    <link rel="prev" title="PicoGym" href="picoctf.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Study Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Vulnerability Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/languages/languages.html">
+   Languages
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/languages/assembly.html">
+     Assembly Language
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/languages/cpp.html">
+     C/C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/fuzzing.html">
+   Fuzzing
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/re/re.html">
+   Reverse Engineering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/re/ghidra.html">
+     Ghidra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/re/virtual_funcs.html">
+     Reversing Virtual Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/postexploit.html">
+   Post-Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/webex.html">
+   Web Site Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/passwords/passwords.html">
+   Password Cracking
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/searchspace.html">
+     Search Space Calculations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/hashcat.html">
+     HashCat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/john.html">
+     John the Ripper (aka John)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Capture The Flag
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../htb/htb.html">
+   Hack The Box (HTB)
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="picoctf.html">
+   PicoGym
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Web Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="general.html">
+     General Skills
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="binex.html">
+     Binary Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="uncat.html">
+     Uncategorized
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="picomini.html">
+     PicoMINI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pico2019.html">
+     PicoCTF 2019
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pico2020.html">
+     PicoCTF 2020 Mini-Competition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pico2021.html">
+     PicoCTF 2021
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ps/portswigger.html">
+   PortSwigger Academy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/accesscontrol.html">
+     Access Control Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/xss.html">
+     Cross-Site Scripting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/csrf.html">
+     Cross-site Request Forgery (CSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/clickjacking.html">
+     Clickjacking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/domvuln.html">
+     DOM-based Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/cors.html">
+     Cross-Origin Resource Sharing (CORS)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/xxe.html">
+     XML External Entity (XXE) injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/ssrf.html">
+     Server-Side Request Forgery (SSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/dirtrav.html">
+     Directory Traversal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/auth.html">
+     Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/websockets.html">
+     WebSockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/webcache.html">
+     Web Cache Poisoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/deserial.html">
+     Insecure Deserialization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/infodisclosure.html">
+     Information Disclosure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/logic.html">
+     Business Logic Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/hostheader.html">
+     HTTP Host Header Attacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/oauth.html">
+     OAuth Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/oscmdi.html">
+     OS Command Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/reqsmuggling.html">
+     HTTP Request Smuggling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/ssti.html">
+     Server-Side Template Injection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rz/ringzeroctf.html">
+   Ring Zero CTF
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/coding.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/exoticdata.html">
+     Exotic Data Storage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/jailescape.html">
+     Jail Escaping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/javascript.html">
+     JavaScript
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/malware.html">
+     Malware Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/pwnage.html">
+     Pwnage Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sdr.html">
+     Software Defined Radio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/shell.html">
+     Shellcoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/stego.html">
+     Steganography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sysadmin.html">
+     SysAdmin Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/nc8re.html">
+     NC8 Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/web.html">
+     Web Warning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linux
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linux/lfs.html">
+   Linux From Scratch
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../testbed/testbed.html">
+   Portable Testbed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/lanturtle.html">
+     Lan Turtle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/pktsquirrel.html">
+     Packet Squirrel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/virtual_machines.html">
+     Virtual Machine Hosting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/vpn.html">
+     VPN
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/argodev/Cogitation/master?urlpath=tree/docs/ctf/pico/webex.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/argodev/Cogitation"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/argodev/Cogitation/issues/new?title=Issue%20on%20page%20%2Fctf/pico/webex.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/ctf/pico/webex.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-ahead">
+   GET aHEAD
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cookies">
+   Cookies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#insp3ct0r">
+   Insp3ct0r
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scavenger-hunt">
+   Scavenger Hunt
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-assembly-required-1">
+   Some Assembly Required 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-cookies">
+   More Cookies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#where-are-the-robots">
+   where are the robots
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logon">
+   logon
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dont-use-client-side">
+   dont-use-client-side
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#it-is-my-birthday">
+   It is my Birthday
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-are-you">
+   Who are you?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#login">
+   login
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-assembly-required-2">
+   Some Assembly Required 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#super-serial">
+   Super Serial
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#most-cookies">
+   Most Cookies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caas">
+   caas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-assembly-required-3">
+   Some Assembly Required 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-gauntlet-2">
+   Web Gauntlet 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#picobrowser">
+   picobrowser
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#client-side-again">
+   Client-side-again
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-gauntlet">
+   Web Gauntlet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-assembly-required-4">
+   Some Assembly Required 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#x-marks-the-spot">
+   X marks the spot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notepad">
+   notepad
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#irish-name-repo-1">
+   Irish-Name-Repo 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-gauntlet-3">
+   Web Gauntlet 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jauth">
+   JAuth
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#irish-name-repo-2">
+   Irish-Name-Repo 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#irish-name-repo-3">
+   Irish-Name-Repo 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jawt-scratchpad">
+   JaWT Scratchpad
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#java-script-kiddie">
+   Java Script Kiddie
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#java-script-kiddie-2">
+   Java Script Kiddie 2
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Web Exploitation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-ahead">
+   GET aHEAD
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cookies">
+   Cookies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#insp3ct0r">
+   Insp3ct0r
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scavenger-hunt">
+   Scavenger Hunt
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-assembly-required-1">
+   Some Assembly Required 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-cookies">
+   More Cookies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#where-are-the-robots">
+   where are the robots
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logon">
+   logon
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dont-use-client-side">
+   dont-use-client-side
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#it-is-my-birthday">
+   It is my Birthday
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-are-you">
+   Who are you?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#login">
+   login
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-assembly-required-2">
+   Some Assembly Required 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#super-serial">
+   Super Serial
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#most-cookies">
+   Most Cookies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caas">
+   caas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-assembly-required-3">
+   Some Assembly Required 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-gauntlet-2">
+   Web Gauntlet 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#picobrowser">
+   picobrowser
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#client-side-again">
+   Client-side-again
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-gauntlet">
+   Web Gauntlet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-assembly-required-4">
+   Some Assembly Required 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#x-marks-the-spot">
+   X marks the spot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notepad">
+   notepad
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#irish-name-repo-1">
+   Irish-Name-Repo 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-gauntlet-3">
+   Web Gauntlet 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jauth">
+   JAuth
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#irish-name-repo-2">
+   Irish-Name-Repo 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#irish-name-repo-3">
+   Irish-Name-Repo 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jawt-scratchpad">
+   JaWT Scratchpad
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#java-script-kiddie">
+   Java Script Kiddie
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#java-script-kiddie-2">
+   Java Script Kiddie 2
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="web-exploitation">
+<h1>Web Exploitation<a class="headerlink" href="#web-exploitation" title="Permalink to this headline">#</a></h1>
+<section id="get-ahead">
+<h2>GET aHEAD<a class="headerlink" href="#get-ahead" title="Permalink to this headline">#</a></h2>
+<p>This probably goes down as one of those “boy, did you make it harder than it should have been” activities.</p>
+<p>You are asked to find the flag hidden at <a class="reference external" href="http://mercury.picoctf.net:47967">http://mercury.picoctf.net:47967</a>.</p>
+<p>After a bit of benign poking around, I assumed that you need to use burp (or similar) to modify the requests, so I fired it up and started looking around. I had expected to find something in the headers taht would give the answer, but no joy. After fighting with this for too long, I broke down and looked at the first hint, which said something like <em>“maybe you have more than two choices”</em>. Score one for my lack of creativity. Looking at the page code again, I noticed that one option submitted a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request and the other did a <code class="docutils literal notranslate"><span class="pre">POST</span></code> request.</p>
+<p>Great! All I need to do is loop through the valid HTTP verbs, and I’ll be set. So, I captured a request in burp, sent it to the Repeater tool, modified the verb, and sent it… did it again for each verb (<code class="docutils literal notranslate"><span class="pre">GET</span></code>, <code class="docutils literal notranslate"><span class="pre">PUT</span></code>, <code class="docutils literal notranslate"><span class="pre">POST</span></code>, <code class="docutils literal notranslate"><span class="pre">PATCH</span></code>, <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>) and, as you might guess… no joy. My creative thinking fails again. Finally, I tried <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> (a guess, based on the title of the challenge) and, wouldn’t you guess… bingo.</p>
+<p>I then stepped back to <code class="docutils literal notranslate"><span class="pre">curl</span></code> to see if I could have done it there, and ended up with this one-liner:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># -I (or --head) fetches the HTTP headers only. --&gt; this is the same as sending a HEAD verb</span>
+$ curl http://mercury.picoctf.net:47967 -I     
+HTTP/1.1 <span class="m">200</span> OK
+flag: picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+Content-type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>UTF-8
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="cookies">
+<h2>Cookies<a class="headerlink" href="#cookies" title="Permalink to this headline">#</a></h2>
+<p>Need to try to figure out the “best” cookie from <a class="reference external" href="http://mercury.picoctf.net:27177">http://mercury.picoctf.net:27177</a></p>
+<p>So, the purpose of this challenge is really to ensure you know how to use Burp Suite’s Intruder tool, or something similar. After poking around a bit with valid cookie names, you will notice that upon finding a valid cookie, the user is directed to <a class="reference external" href="http://mercury.picoctf.net:27177/check">http://mercury.picoctf.net:27177/check</a> with a cookie value of <code class="docutils literal notranslate"><span class="pre">name=,some_int&gt;</span></code>. The value of <code class="docutils literal notranslate"><span class="pre">&lt;some_int&gt;</span></code> changes based on the cookie name, and appears to be a lookup value of some sort.</p>
+<p>If you configure Intruder to use a sequential numerical payload that goes from say, <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">50</span></code> in steps of <code class="docutils literal notranslate"><span class="pre">1</span></code> and then run the attack, you’ll see that the length property of the response for <code class="docutils literal notranslate"><span class="pre">18</span></code> is different than the rest. Inspecting the returned html will show you the key.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>hint
+A helpful link found while working on this challenge is <a class="reference external" href="https://github.com/swisskyrepo/PayloadsAllTheThings">https://github.com/swisskyrepo/PayloadsAllTheThings</a> which provides word lists and various payloads for different situations</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="insp3ct0r">
+<h2>Insp3ct0r<a class="headerlink" href="#insp3ct0r" title="Permalink to this headline">#</a></h2>
+<p>We are encouraged to inspect the following URL: <a class="reference external" href="https://jupiter.challenges.picoctf.org/problem/9670/">https://jupiter.challenges.picoctf.org/problem/9670/</a></p>
+<p>Upon viewing the source, we quickly see 1/3rd of the key in the comment string at the bottom: <code class="docutils literal notranslate"><span class="pre">picoCTF{tru3_d3</span></code> … now to find the remaining 2/3rds.  Poking around at the downloaded JS file <code class="docutils literal notranslate"><span class="pre">myjs.js</span></code>, we see the end of the flag: <code class="docutils literal notranslate"><span class="pre">_lucky?2e7b23e3}</span></code>. All we are missing now is the middle part… Thinking ever so little, we assume that we can go to the only other referenced file (<code class="docutils literal notranslate"><span class="pre">mycss.css</span></code>) and find the middle part of the key, which we do: <code class="docutils literal notranslate"><span class="pre">t3ct1ve_0r_ju5t</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>for what it is worth, I found this to be a very easy “challenge”, and more on the lines of a 10 point challenge than the two prior ones…</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="scavenger-hunt">
+<h2>Scavenger Hunt<a class="headerlink" href="#scavenger-hunt" title="Permalink to this headline">#</a></h2>
+<p>We are asked to find the interesting information hidden here: <a class="reference external" href="http://mercury.picoctf.net:39491/">http://mercury.picoctf.net:39491/</a></p>
+<ul class="simple">
+<li><p>looking at the page source, we find <code class="docutils literal notranslate"><span class="pre">picoCTF{t</span></code></p></li>
+<li><p>looking at the css source we find <code class="docutils literal notranslate"><span class="pre">h4ts_4_l0</span></code></p></li>
+<li><p>looking at the JS source, we find a hint… <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">How</span> <span class="pre">can</span> <span class="pre">I</span> <span class="pre">keep</span> <span class="pre">Google</span> <span class="pre">from</span> <span class="pre">indexing</span> <span class="pre">my</span> <span class="pre">website?</span> <span class="pre">*/</span></code> which points us to <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code></p></li>
+<li><p>looking at <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code>, we find <code class="docutils literal notranslate"><span class="pre">t_0f_pl4c</span></code> as well as a hint that this is an apache server</p></li>
+<li><p>looking at <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> (clearly a mis-configured apache server), we find <code class="docutils literal notranslate"><span class="pre">3s_2_lO0k</span></code>. We also see that this was built on a mac and that we can store alot of info there.</p></li>
+<li><p>looking at <code class="docutils literal notranslate"><span class="pre">.DS_Store</span></code>, we find the last portion: <code class="docutils literal notranslate"><span class="pre">_f7ce8828}</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="some-assembly-required-1">
+<h2>Some Assembly Required 1<a class="headerlink" href="#some-assembly-required-1" title="Permalink to this headline">#</a></h2>
+<p>No description provided, no hints provided, just this url: <code class="docutils literal notranslate"><span class="pre">http://mercury.picoctf.net:26318/index.html</span></code>. Once you get there, you have a form that says “enter flag” with a submit button.</p>
+<p>After noodling around a little, this challenge looks like an introduction to <a class="reference external" href="https://webassembly.org">Web Assembly</a></p>
+<p>As I normally do, I spent way too much time trying to unravel the JS code here (mild obfuscation) only to realize that I was missing the really obvious piece… the following is the magic line:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">_0x5f0229</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">_0x48c3be</span><span class="p">(</span><span class="mf">489</span><span class="p">)),</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In order to understand what is going on (and get the flag), you need to know the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_0x48c3be</span></code> is a function pointer, declared two lines prior, that points to the function defined on line 28 of the de-mangled javascript (<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">_0x4e0e</span> <span class="pre">=</span> <span class="pre">function</span> <span class="pre">(_0x553839,</span> <span class="pre">_0x53c021)</span> <span class="pre">{</span></code>).</p></li>
+<li><p>you then need to know how the <code class="docutils literal notranslate"><span class="pre">_0x4e0e()</span></code> function works.</p></li>
+<li><p>It essentially takes in a number, subtracts <code class="docutils literal notranslate"><span class="pre">470</span></code> from it, and then uses the result as an index into the <code class="docutils literal notranslate"><span class="pre">_0x402c</span></code> array defined at the top of the file.</p></li>
+<li><p>Before you get too excited, however, you need to understand that the immediately-executing function defined prior to the current code block (line <code class="docutils literal notranslate"><span class="pre">33</span></code> for me, which starts liek <code class="docutils literal notranslate"><span class="pre">(function</span> <span class="pre">(_0x76dd13,</span> <span class="pre">_0x3dfcae)</span> <span class="pre">{</span></code>) modifies/sorts the array into a different order. Without this knowledge, your indicies will point to the wrong place.</p></li>
+<li><p>Having done all of that, you can determine that <code class="docutils literal notranslate"><span class="pre">fetch()</span></code> call referenced above is grabbing a pre-compiled blob of web assembly code. If you download that file (<code class="docutils literal notranslate"><span class="pre">http://mercury.picoctf.net:26318/JIFxzHyW8W</span></code>) and run strings on it, you will see the flag you can submit.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A few things that were helpful for me as I worked through this one:</p>
+<ul class="simple">
+<li><p>Using <a class="reference external" href="https://jsbin.com">jsbin</a> to execute random JavaScript was quite helpful</p></li>
+<li><p>Figuring out that when FireFox’s dev tools “demangled” the javascript, it left the two words <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">fetch()</span></code> slammed together as <code class="docutils literal notranslate"><span class="pre">awaitfetch()</span></code>. The latter is <em>not</em> a function that you will find, and searching for it will leave you disappointed. Adding the space in between them and <em>then</em> trying to understand the code will place you in a much better position.</p></li>
+</ul>
+</div>
+</section>
+<hr class="docutils" />
+<section id="more-cookies">
+<h2>More Cookies<a class="headerlink" href="#more-cookies" title="Permalink to this headline">#</a></h2>
+<p>Instructions suggest that there exists “encrypted” cookies that must be modified client-side in order to solve the challenge. Pointer to url: <code class="docutils literal notranslate"><span class="pre">http://mercury.picoctf.net:15614/</span></code>. Visiting the page shows nothing other than a “reset” link and a comment that only the admin can use the cookie search page.</p>
+<p>After poking around a little in Firefox and seeing the cookie (text below), I decided to open up Burp and start there.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Cookie: name=7; auth_name=dEJSZTVtTlZOajVGSWc0WFBRckZzWmtiMi8vNWJkUzQ2MURNLzYySUlXS1BlZXFUK1BqaHk3MGlwTm96ampFTU1qUitXT2s1cXZUWUUrbS9GeXJHZzN0bTltdDBjL21YNXJWSy83YjF6SFR0ektWNWVWVmpwSnErMDFQYW9mVW4=
+</pre></div>
+</div>
+<p>After decoding the base64 version of <code class="docutils literal notranslate"><span class="pre">auth_name</span></code>, we were left with this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tBRe5mNVNj5FIg4XPQrFsZkb2//5bdS461DM/62IIWKPeeqT+Pjhy70ipNozjjEMMjR+WOk5qvTYE+m/FyrGg3tm9mt0c/mX5rVK/7b1zHTtzKV5eVVjpJq+01PaofUn
+FSly8XvmFjLPdS83KXonEoEDE4cmhz8QwWCiNnsmdS0FrZmIouQghyQcnmOayk2fJ9LNM25QxcQF69MuYoAdXJWd206be16+q39R76T3GOmW7CxUBCl7wtm7W1HmZtPA
+</pre></div>
+</div>
+<p>Which wasn’t too helpful. I decided to click on the first hint, and was pointed to a wikipedia page on <a class="reference external" href="https://en.wikipedia.org/wiki/Homomorphic_encryption">homomorphic encryption</a></p>
+<p>After reading this article and deciding that it was unhelpful, I clicked on the second hint that basically said, even if you <em>were</em> to crack it, you likely won’t be helped out. (<strong>I missed the point here</strong>).</p>
+<p>I noodled around with the challenge for a bit longer, and eventually decided that this was one of those “I need to learn” so I started googling for a write-up. I quickly found one that confirmed that I likely would not have found the solution because I wasn’t thinking creatively enough and also wasn’t noticing sufficient details.</p>
+<p>The hint about homomorphic encryption should be pointing me to the fact that I might have been able to make some changes to the encrypted text (cipher text) and cause some effect. The second hint in this direction was <em>completely</em> lost on me, in that the challenge description said the following: <em>I forgot ==Cookies== can ==Be== modified ==Client-side,== so now I decided to encrypt them!</em> You’ll note that I highlighted the three oddly-capitalized letters, forming <code class="docutils literal notranslate"><span class="pre">CBC</span></code> which (after reading a bit) should have triggered me into considering a bit-flipping attack (e.g. <code class="docutils literal notranslate"><span class="pre">admin=0</span></code> vs <code class="docutils literal notranslate"><span class="pre">admin=1</span></code>) due to the way cipher-block chaining works.</p>
+<p>I learned a bit about how to do this in Python3 and developed a script, only to have it <em>not</em> work. I did some additional reading and found that in the most recent version of the challenge (at least as of 2021), the cookie value was <em>double</em> base64 encoded. I needed to double-decode, bit flip, and then double-encode. With this in place, it “sovled” the problem on the 10th byte in, flipping the 0th bit.</p>
+<p>Helpful Writeups:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.abbasmj.com/ctf-writeups/picoctf2021#more-cookies">https://docs.abbasmj.com/ctf-writeups/picoctf2021#more-cookies</a> (don’t take this verbatim)</p></li>
+<li><p><a class="reference external" href="https://github.com/HHousen/PicoCTF-2021/blob/master/Web%20Exploitation/More%20Cookies/script.py">https://github.com/HHousen/PicoCTF-2021/blob/master/Web Exploitation/More Cookies/script.py</a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="where-are-the-robots">
+<h2>where are the robots<a class="headerlink" href="#where-are-the-robots" title="Permalink to this headline">#</a></h2>
+<p>After the last one that took me quite a long time to solve, this one was nearly a joke. The title suggests that mabye it is a robots.txt problem. Visiting the URL and then adjusting it for <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> renders a page that is prohibited (<code class="docutils literal notranslate"><span class="pre">1bb4c.html</span></code>). If you point your browser there, you will be presented the flag.</p>
+</section>
+<hr class="docutils" />
+<section id="logon">
+<h2>logon<a class="headerlink" href="#logon" title="Permalink to this headline">#</a></h2>
+<p>This one was, once again, pretty easy. You follow the instructions given and log in as <code class="docutils literal notranslate"><span class="pre">jason</span></code> (no password). Nothing is obvious other than no flag being shown. If, however, you inspect the cookies, you’ll see a parameter that says <code class="docutils literal notranslate"><span class="pre">admin=False</span></code>. If you alter this to say <code class="docutils literal notranslate"><span class="pre">admin=True</span></code> and resend the request, you’ll be rewarded with the flag to submit.</p>
+</section>
+<hr class="docutils" />
+<section id="dont-use-client-side">
+<h2>dont-use-client-side<a class="headerlink" href="#dont-use-client-side" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="it-is-my-birthday">
+<h2>It is my Birthday<a class="headerlink" href="#it-is-my-birthday" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="who-are-you">
+<h2>Who are you?<a class="headerlink" href="#who-are-you" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="login">
+<h2>login<a class="headerlink" href="#login" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="some-assembly-required-2">
+<h2>Some Assembly Required 2<a class="headerlink" href="#some-assembly-required-2" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="super-serial">
+<h2>Super Serial<a class="headerlink" href="#super-serial" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="most-cookies">
+<h2>Most Cookies<a class="headerlink" href="#most-cookies" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="caas">
+<h2>caas<a class="headerlink" href="#caas" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="some-assembly-required-3">
+<h2>Some Assembly Required 3<a class="headerlink" href="#some-assembly-required-3" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="web-gauntlet-2">
+<h2>Web Gauntlet 2<a class="headerlink" href="#web-gauntlet-2" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="picobrowser">
+<h2>picobrowser<a class="headerlink" href="#picobrowser" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="client-side-again">
+<h2>Client-side-again<a class="headerlink" href="#client-side-again" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="web-gauntlet">
+<h2>Web Gauntlet<a class="headerlink" href="#web-gauntlet" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="some-assembly-required-4">
+<h2>Some Assembly Required 4<a class="headerlink" href="#some-assembly-required-4" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="x-marks-the-spot">
+<h2>X marks the spot<a class="headerlink" href="#x-marks-the-spot" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="notepad">
+<h2>notepad<a class="headerlink" href="#notepad" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="irish-name-repo-1">
+<h2>Irish-Name-Repo 1<a class="headerlink" href="#irish-name-repo-1" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="web-gauntlet-3">
+<h2>Web Gauntlet 3<a class="headerlink" href="#web-gauntlet-3" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="jauth">
+<h2>JAuth<a class="headerlink" href="#jauth" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="irish-name-repo-2">
+<h2>Irish-Name-Repo 2<a class="headerlink" href="#irish-name-repo-2" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="irish-name-repo-3">
+<h2>Irish-Name-Repo 3<a class="headerlink" href="#irish-name-repo-3" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="jawt-scratchpad">
+<h2>JaWT Scratchpad<a class="headerlink" href="#jawt-scratchpad" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="java-script-kiddie">
+<h2>Java Script Kiddie<a class="headerlink" href="#java-script-kiddie" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="java-script-kiddie-2">
+<h2>Java Script Kiddie 2<a class="headerlink" href="#java-script-kiddie-2" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not yet started</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ctf/pico"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="picoctf.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">PicoGym</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="crypto.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cryptography</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Rob Gillen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

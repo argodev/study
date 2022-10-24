@@ -1,0 +1,1520 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>General Skills &#8212; Study Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Binary Exploitation" href="binex.html" />
+    <link rel="prev" title="Forensics" href="forensics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Study Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Vulnerability Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/languages/languages.html">
+   Languages
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/languages/assembly.html">
+     Assembly Language
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/languages/cpp.html">
+     C/C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/fuzzing.html">
+   Fuzzing
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/re/re.html">
+   Reverse Engineering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/re/ghidra.html">
+     Ghidra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/re/virtual_funcs.html">
+     Reversing Virtual Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/postexploit.html">
+   Post-Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/webex.html">
+   Web Site Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/passwords/passwords.html">
+   Password Cracking
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/searchspace.html">
+     Search Space Calculations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/hashcat.html">
+     HashCat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/john.html">
+     John the Ripper (aka John)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Capture The Flag
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../htb/htb.html">
+   Hack The Box (HTB)
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="picoctf.html">
+   PicoGym
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="webex.html">
+     Web Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     General Skills
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="binex.html">
+     Binary Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="uncat.html">
+     Uncategorized
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="picomini.html">
+     PicoMINI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pico2019.html">
+     PicoCTF 2019
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pico2020.html">
+     PicoCTF 2020 Mini-Competition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pico2021.html">
+     PicoCTF 2021
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ps/portswigger.html">
+   PortSwigger Academy
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/accesscontrol.html">
+     Access Control Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/xss.html">
+     Cross-Site Scripting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/csrf.html">
+     Cross-site Request Forgery (CSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/clickjacking.html">
+     Clickjacking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/domvuln.html">
+     DOM-based Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/cors.html">
+     Cross-Origin Resource Sharing (CORS)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/xxe.html">
+     XML External Entity (XXE) injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/ssrf.html">
+     Server-Side Request Forgery (SSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/dirtrav.html">
+     Directory Traversal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/auth.html">
+     Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/websockets.html">
+     WebSockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/webcache.html">
+     Web Cache Poisoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/deserial.html">
+     Insecure Deserialization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/infodisclosure.html">
+     Information Disclosure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/logic.html">
+     Business Logic Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/hostheader.html">
+     HTTP Host Header Attacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/oauth.html">
+     OAuth Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/oscmdi.html">
+     OS Command Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/reqsmuggling.html">
+     HTTP Request Smuggling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ps/ssti.html">
+     Server-Side Template Injection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rz/ringzeroctf.html">
+   Ring Zero CTF
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/coding.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/exoticdata.html">
+     Exotic Data Storage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/jailescape.html">
+     Jail Escaping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/javascript.html">
+     JavaScript
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/malware.html">
+     Malware Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/pwnage.html">
+     Pwnage Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sdr.html">
+     Software Defined Radio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/shell.html">
+     Shellcoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/stego.html">
+     Steganography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sysadmin.html">
+     SysAdmin Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/nc8re.html">
+     NC8 Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/web.html">
+     Web Warning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linux
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linux/lfs.html">
+   Linux From Scratch
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../testbed/testbed.html">
+   Portable Testbed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/lanturtle.html">
+     Lan Turtle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/pktsquirrel.html">
+     Packet Squirrel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/virtual_machines.html">
+     Virtual Machine Hosting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/vpn.html">
+     VPN
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/argodev/Cogitation/master?urlpath=tree/docs/ctf/pico/general.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/argodev/Cogitation"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/argodev/Cogitation/issues/new?title=Issue%20on%20page%20%2Fctf/pico/general.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/ctf/pico/general.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obedient-cat">
+   Obedient Cat
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-wrangling">
+   Python Wrangling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wave-a-flag">
+   Wave a flag
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nice-netcat">
+   Nice netcat…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#static-ain-t-always-noise">
+   Static ain’t always noise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tab-tab-attack">
+   Tab, Tab, Attack
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#magikarp-ground-mission">
+   Magikarp Ground Mission
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lets-warm-up">
+   Lets Warm Up
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#warmed-up">
+   Warmed Up
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#warm">
+   2Warm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-a-net-cat">
+   what’s a net cat?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strings-it">
+   strings it
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bases">
+   Bases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-grep">
+   First Grep
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#codebook">
+   Codebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convertme-py">
+   convertme.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fixme1-py">
+   fixme1.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fixme2-py">
+   fixme2.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#glitch-cat">
+   Glitch Cat
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hashingjobapp">
+   HashingJobApp
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-1">
+   PW Crack 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-2">
+   PW Crack 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-3">
+   PW Crack 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-4">
+   PW Crack 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-5">
+   PW Crack 5
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#runme-py">
+   runme.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#serpentine">
+   Serpentine
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-find">
+   First Find
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#big-zip">
+   Big Zip
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#based">
+   Based
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plumbing">
+   plumbing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mus1c">
+   mus1c
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flag-shop">
+   flag_shop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wanna-b3-a-r0ck5star">
+   1_wanna_b3_a_r0ck5star
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>General Skills</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obedient-cat">
+   Obedient Cat
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-wrangling">
+   Python Wrangling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wave-a-flag">
+   Wave a flag
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nice-netcat">
+   Nice netcat…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#static-ain-t-always-noise">
+   Static ain’t always noise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tab-tab-attack">
+   Tab, Tab, Attack
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#magikarp-ground-mission">
+   Magikarp Ground Mission
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lets-warm-up">
+   Lets Warm Up
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#warmed-up">
+   Warmed Up
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#warm">
+   2Warm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-a-net-cat">
+   what’s a net cat?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strings-it">
+   strings it
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bases">
+   Bases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-grep">
+   First Grep
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#codebook">
+   Codebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convertme-py">
+   convertme.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fixme1-py">
+   fixme1.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fixme2-py">
+   fixme2.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#glitch-cat">
+   Glitch Cat
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hashingjobapp">
+   HashingJobApp
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-1">
+   PW Crack 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-2">
+   PW Crack 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-3">
+   PW Crack 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-4">
+   PW Crack 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pw-crack-5">
+   PW Crack 5
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#runme-py">
+   runme.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#serpentine">
+   Serpentine
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-find">
+   First Find
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#big-zip">
+   Big Zip
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#based">
+   Based
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plumbing">
+   plumbing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mus1c">
+   mus1c
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flag-shop">
+   flag_shop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wanna-b3-a-r0ck5star">
+   1_wanna_b3_a_r0ck5star
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="general-skills">
+<h1>General Skills<a class="headerlink" href="#general-skills" title="Permalink to this headline">#</a></h1>
+<section id="obedient-cat">
+<h2>Obedient Cat<a class="headerlink" href="#obedient-cat" title="Permalink to this headline">#</a></h2>
+<p>This is basically a “test challenge” to ensure you know how things work. You download the file, read it in a text editor (or just via <code class="docutils literal notranslate"><span class="pre">cat</span></code>), and you can recover the flag for submission.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat flag
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="python-wrangling">
+<h2>Python Wrangling<a class="headerlink" href="#python-wrangling" title="Permalink to this headline">#</a></h2>
+<p>This is a “can you run python and follow instructions” challenge. You start with a script <code class="docutils literal notranslate"><span class="pre">ende.py</span></code> that can encrypt/decrypt a file (<code class="docutils literal notranslate"><span class="pre">flag.txt.en</span></code>) using the password in <code class="docutils literal notranslate"><span class="pre">pw.txt</span></code>. You can do this in two steps, or in a one-liner as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 ende.py -d flag.txt.en &lt; pw.txt
+Please enter the password:picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="wave-a-flag">
+<h2>Wave a flag<a class="headerlink" href="#wave-a-flag" title="Permalink to this headline">#</a></h2>
+<p>This is a simple test to see if you know how to interact with command-line tools by asking for arguments. Additionally, you need to know a little about execute permissions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span># make it executable
+$ chmod +x warm
+
+# run it to see what it does
+$ ./warm 
+Hello user! Pass me a -h to learn what I can do!
+
+# follow the instructions
+$ ./warm -h
+Oh, help? I actually don&#39;t do much, but I do have this flag here: picoCTF{redacted_value}
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="nice-netcat">
+<h2>Nice netcat…<a class="headerlink" href="#nice-netcat" title="Permalink to this headline">#</a></h2>
+<p>We are pointed to <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">nc</span> <span class="pre">mercury.picoctf.net</span> <span class="pre">22902</span></code> but told that the program doesn’t speak English.</p>
+<p>Looking at the response, it looks like ascii, so let’s dump the data and see if we can do something</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the data and store it in a file called data</span>
+$ nc mercury.picoctf.net <span class="m">22902</span> &gt; data
+
+<span class="c1"># loop through the file, convert each line to ascii and print it out</span>
+$ <span class="k">while</span> <span class="nb">read</span> ln<span class="p">;</span> <span class="k">do</span> <span class="nb">printf</span> <span class="s2">&quot;\x</span><span class="k">$(</span><span class="nb">printf</span> %x <span class="nv">$ln</span><span class="k">)</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">done</span> &lt; data
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="static-ain-t-always-noise">
+<h2>Static ain’t always noise<a class="headerlink" href="#static-ain-t-always-noise" title="Permalink to this headline">#</a></h2>
+<p>For this challenge you are provided two files, <code class="docutils literal notranslate"><span class="pre">static</span></code> and a potentially helpful bash script, <code class="docutils literal notranslate"><span class="pre">ltdis.sh</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ltdis.sh</span></code> script seems like a bit of a sledge hammer… I simply ran strings, grepped for ‘pico’ and found the flag.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ strings static <span class="p">|</span> grep pico
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="tab-tab-attack">
+<h2>Tab, Tab, Attack<a class="headerlink" href="#tab-tab-attack" title="Permalink to this headline">#</a></h2>
+<p>The description for this challenge suggests something about tabcomplete and rambling directory structures and filenames. Provided is a zip file, <code class="docutils literal notranslate"><span class="pre">Addadshashanammu.zip</span></code>. Finding the key is pretty easy:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unzip the file</span>
+$ unzip Addadshashanammu.zip 
+
+<span class="c1"># cat the deepest-extracted file (looked interesting)</span>
+$ cat Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku/fang-of-haynekhtnamet
+
+<span class="c1"># clear that it is a binary but there is a string version of the flag</span>
+<span class="c1"># let&#39;s get it</span>
+$ strings Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku/fang-of-haynekhtnamet <span class="p">|</span> grep pico
+*ZAP!* picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="magikarp-ground-mission">
+<h2>Magikarp Ground Mission<a class="headerlink" href="#magikarp-ground-mission" title="Permalink to this headline">#</a></h2>
+<p>This is just a simple challenge to confirm you know how to ssh, how to navigate around and read files.</p>
+<p>Once in, cat <code class="docutils literal notranslate"><span class="pre">1of3.flag.txt</span></code>, read the instructions file and cat <code class="docutils literal notranslate"><span class="pre">/2of3.flag.txt</span></code>. Read the instructions file and then cat <code class="docutils literal notranslate"><span class="pre">~/3of3.flag.txt</span></code>. Assemble the results and go.</p>
+</section>
+<hr class="docutils" />
+<section id="lets-warm-up">
+<h2>Lets Warm Up<a class="headerlink" href="#lets-warm-up" title="Permalink to this headline">#</a></h2>
+<p>A simple test to see if you can convert between hex and ASCII characters.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># simple lookup table</span>
+$ man ascii
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>I don’t like the instructions for this challenge, because you are expected to calculate the result (easy enough), but then you have to assume how to format the flag (normal format, <code class="docutils literal notranslate"><span class="pre">picoCTF{&lt;value&gt;}</span></code>). It’s not hard, but the ambiguity isn’t helpful.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="warmed-up">
+<h2>Warmed Up<a class="headerlink" href="#warmed-up" title="Permalink to this headline">#</a></h2>
+<p>Just need to convert a hex value to decimal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python -c print<span class="o">(</span>int<span class="o">(</span>0x3D<span class="o">))</span>
+<span class="m">61</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="warm">
+<h2>2Warm<a class="headerlink" href="#warm" title="Permalink to this headline">#</a></h2>
+<p>Here we convert a decimal number to a binary string</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python -c <span class="s1">&#39;print(format(42, &quot;b&quot;))&#39;</span>
+<span class="m">101010</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="what-s-a-net-cat">
+<h2>what’s a net cat?<a class="headerlink" href="#what-s-a-net-cat" title="Permalink to this headline">#</a></h2>
+<p>This is another introduction to netcat.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nc jupiter.challenges.picoctf.org 41120
+You&#39;re on your way to becoming the net cat master
+picoCTF{redacted_value}
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="strings-it">
+<h2>strings it<a class="headerlink" href="#strings-it" title="Permalink to this headline">#</a></h2>
+<p>This is getting old now… donwload the file, run strings, submit flag.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ strings strings <span class="p">|</span> grep pico
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="bases">
+<h2>Bases<a class="headerlink" href="#bases" title="Permalink to this headline">#</a></h2>
+<p>This looks like a base64 conversion question.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;bDNhcm5fdGgzX3IwcDM1&quot;</span> <span class="p">|</span> base64 -d
+redacted_value
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="first-grep">
+<h2>First Grep<a class="headerlink" href="#first-grep" title="Permalink to this headline">#</a></h2>
+<p>Another simple test to see if you can grep</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># option 1</span>
+$ cat file<span class="p">|</span> grep pico
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+
+<span class="c1"># option 2</span>
+$ grep <span class="s2">&quot;pico&quot;</span> file 
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="codebook">
+<h2>Codebook<a class="headerlink" href="#codebook" title="Permalink to this headline">#</a></h2>
+<p>Asked to run a python script in the same directory as a text file.</p>
+<p>This really wasn’t even a challenge… simply run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python3</span> <span class="pre">code.py</span></code> and you are presented with the flag.</p>
+</section>
+<hr class="docutils" />
+<section id="convertme-py">
+<h2><a class="reference external" href="http://convertme.py">convertme.py</a><a class="headerlink" href="#convertme-py" title="Permalink to this headline">#</a></h2>
+<p>In this challenge, you are given a python script that presents you a randomly-generated int in decimal that you are to convert to binary. The challenge is easy enough (use your head, a calculator, cyberchef, etc.). I quickly solved the challenge, but stumbled onto a tool chain called <code class="docutils literal notranslate"><span class="pre">expect</span></code> that is designed to automate console program interactions. I got to thinking it might be worth digging into a bit.</p>
+<p>I spent <em>way</em> more time on it than I should have, but I eventually got something working. I need to get better (and <em>much faster</em>) at this kind of scripting, but I think it might add some value.</p>
+</section>
+<hr class="docutils" />
+<section id="fixme1-py">
+<h2><a class="reference external" href="http://fixme1.py">fixme1.py</a><a class="headerlink" href="#fixme1-py" title="Permalink to this headline">#</a></h2>
+<p>In this one you needed to download a Python script and figure out what was wrong with it/was preventing it from running. This one was easy as there was an indentation problem… likely trying to highlight the importance of whitespace in the Python language.</p>
+</section>
+<hr class="docutils" />
+<section id="fixme2-py">
+<h2><a class="reference external" href="http://fixme2.py">fixme2.py</a><a class="headerlink" href="#fixme2-py" title="Permalink to this headline">#</a></h2>
+<p>Similar to the last one, we had a broken python script we needed to fix. In this one, we had an assignment (<code class="docutils literal notranslate"><span class="pre">=</span></code>) operator being used in the place of equality (<code class="docutils literal notranslate"><span class="pre">==</span></code>). A simple fix and the flag was printed.</p>
+</section>
+<hr class="docutils" />
+<section id="glitch-cat">
+<h2>Glitch Cat<a class="headerlink" href="#glitch-cat" title="Permalink to this headline">#</a></h2>
+<p>This was another simple case. When you connect to the service you get a string back, but it is a malformed code. It looks something like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&#39;picoCTF{gl17ch_m3_n07_&#39; + chr(0x39) + chr(0x63) + chr(0x34) + chr(0x32) + chr(0x61) + chr(0x34) + chr(0x35) + chr(0x64) + &#39;}&#39;
+</pre></div>
+</div>
+<p>The obvious task is to convert the encoded values to their actual values. I did this one step at a time, using some python one-liners such as <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-c</span> <span class="pre">&quot;print(char(0x39))&quot;</span></code></p>
+</section>
+<hr class="docutils" />
+<section id="hashingjobapp">
+<h2>HashingJobApp<a class="headerlink" href="#hashingjobapp" title="Permalink to this headline">#</a></h2>
+<p>This service gives you 3 strings (one at a time) that you need to calculate the md5 sum for and submit. I solved it manually, using a separate tab and an open python window. I then went back, of course, and figured that this wasn’t quite the best plan givne I would likely need to automate this sort of thing moving forward.</p>
+<p>I learned a bit more about how <code class="docutils literal notranslate"><span class="pre">expect</span></code> scripts work, and ended up solving the challenge in a nicely automated fashion.</p>
+</section>
+<hr class="docutils" />
+<section id="pw-crack-1">
+<h2>PW Crack 1<a class="headerlink" href="#pw-crack-1" title="Permalink to this headline">#</a></h2>
+<p>In this challenge, you simply need to read the python code to determine the hard-coded password. You then provide this password when running the script, and you are presented with the flag.</p>
+</section>
+<hr class="docutils" />
+<section id="pw-crack-2">
+<h2>PW Crack 2<a class="headerlink" href="#pw-crack-2" title="Permalink to this headline">#</a></h2>
+<p>Quite similar to the last one… this time you needed to convert some hex codes to ascii and then enter the password. Felt like a repeat of things we’ve already done.</p>
+</section>
+<hr class="docutils" />
+<section id="pw-crack-3">
+<h2>PW Crack 3<a class="headerlink" href="#pw-crack-3" title="Permalink to this headline">#</a></h2>
+<p>There is probably a “right” way to solve this, but I’m sure I didn’t do it. I read enough of the code to determine it would be quite easy to write a brute-force script to match the hash. I did this, figured out which value worked, and then submitted it to earn the flag.</p>
+</section>
+<hr class="docutils" />
+<section id="pw-crack-4">
+<h2>PW Crack 4<a class="headerlink" href="#pw-crack-4" title="Permalink to this headline">#</a></h2>
+<p>The point of this challenge seems to be to encourage you to script or do what I did for the prior challenge. With just some updates to a few things, the scripts/tools from pw 3 worked perfectly on pw 4.</p>
+</section>
+<hr class="docutils" />
+<section id="pw-crack-5">
+<h2>PW Crack 5<a class="headerlink" href="#pw-crack-5" title="Permalink to this headline">#</a></h2>
+<p>This challenge was similar to the last few, but you needed to adjust your brute-forcing script to read the candidate passwords in from a file. A minor key with this is to ensure that you aren’t including the line return (<code class="docutils literal notranslate"><span class="pre">\n</span></code>) in your hash attempt.</p>
+</section>
+<hr class="docutils" />
+<section id="runme-py">
+<h2><a class="reference external" href="http://runme.py">runme.py</a><a class="headerlink" href="#runme-py" title="Permalink to this headline">#</a></h2>
+<p>I don’t understand the purpose of this challenge. You simply downladed a python script, ran it, and were given the flag.</p>
+</section>
+<hr class="docutils" />
+<section id="serpentine">
+<h2>Serpentine<a class="headerlink" href="#serpentine" title="Permalink to this headline">#</a></h2>
+<p>The goal of this challenge appears to be to ensure that you know how to read a python script, understand what functions are, and to ensure that a function is called correctly. All you need to do is add a line in the switch stmt to print the flag, run it, and you are good.</p>
+</section>
+<hr class="docutils" />
+<section id="first-find">
+<h2>First Find<a class="headerlink" href="#first-find" title="Permalink to this headline">#</a></h2>
+<p>This challenge wants to confirm you know how to use the <code class="docutils literal notranslate"><span class="pre">find</span></code> command. You unzip the source file, search for the file in question, and then display the output.</p>
+</section>
+<hr class="docutils" />
+<section id="big-zip">
+<h2>Big Zip<a class="headerlink" href="#big-zip" title="Permalink to this headline">#</a></h2>
+<p>Presented with a large zip file, you need to find the flag. None of the files have particularly interesting names, so you need to recursively-grep through the files… something like <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-r</span> <span class="pre">&quot;pico&quot;</span> <span class="pre">.</span></code></p>
+</section>
+<hr class="docutils" />
+<section id="based">
+<h2>Based<a class="headerlink" href="#based" title="Permalink to this headline">#</a></h2>
+<p>This is another data encoding challenge. You are given a string of bits (binary) that you need to translate quickly, in this case, within 45 seconds. There are probably a handful of ways to solve this, including a script. Instead, I ended up using the online CyberChef tool to help out.</p>
+<p>I was presented a binary string that I translated using the <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Binary</span></code>, followed by an octal string for which I used thed <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">Octal</span></code> tool, and finally a hexadecimal string where I used the <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">Hex</span></code> tool. The easiest way to set up CyberChef for this would be to have three different input tabs, have the appropriate recipies enabled/disabled for each tab, so it is just a matter of copy/paste.</p>
+<p><em><strong>Actually</strong></em>, my first solution bothered me as I didn’t think it was scalable and wouldn’t really help me in the long term. I went back and re-solved it using a Python-based interactive netcat client. The script is available in the assets section.</p>
+</section>
+<hr class="docutils" />
+<section id="plumbing">
+<h2>plumbing<a class="headerlink" href="#plumbing" title="Permalink to this headline">#</a></h2>
+<p>This one was a bit too easy for 200 points. You connect via <code class="docutils literal notranslate"><span class="pre">nc</span></code> to a server and are given a bunch of text. Based on what we’ve seen earlier, it is pretty easy to script/find the flag.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nc jupiter.challenges.picoctf.org <span class="m">4427</span> <span class="p">|</span> grep pico
+picoCTF<span class="o">{</span>redacted_value<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="mus1c">
+<h2>mus1c<a class="headerlink" href="#mus1c" title="Permalink to this headline">#</a></h2>
+<p>This one was a bit strange, and as I comment below, a bit of a disapointment. The “trick” you need to figure out is that it is actually a program, written in a esoteric programming language called <a class="reference external" href="https://codewithrockstar.com/">RockStar</a>. If you take the lyrics provided and dump them into the <a class="reference external" href="https://codewithrockstar.com/online">online interpreter</a>, you get a series of values that look quite like ASCII. If you convert those values into ASCII characters (either via a script or online tool such as CyberChef), you’ll get the value you can then plug into the flag format for submission.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For some dumb reason, I was having trouble figuring out how to convince CyberChef to give me characters from ASCII codes. Come to find out, I was using the wrong recipie. Using the <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Decimal</span></code> tool is all that is needed, and you can change the delimiter to various things such as <code class="docutils literal notranslate"><span class="pre">Line</span> <span class="pre">feed</span></code> which was helpful in this case.</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>failure
+I <em>really</em> do not like this type of challenge and am a bit disappointed that it is included in picoCTF. For all of the other challenges, there is a clear pedagogical rationale that maps to building strong cyber security skills. This is simply searching the Internet for a weird phrase from some provided text, assuming you will guess the linking, and plugging some things together.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="flag-shop">
+<h2>flag_shop<a class="headerlink" href="#flag-shop" title="Permalink to this headline">#</a></h2>
+<p>This is a simple test to see if you can read source code and if you understand the issues with int roll-overs. You are provided the source code <code class="docutils literal notranslate"><span class="pre">store.c</span></code> and told to connect to a server via netcat.</p>
+<p>The keys to this challenge are as follows:</p>
+<ul class="simple">
+<li><p>Understand the starting balance of <code class="docutils literal notranslate"><span class="pre">1100</span></code></p></li>
+<li><p>Notice that buying the “real” flag costs <code class="docutils literal notranslate"><span class="pre">100000</span></code></p></li>
+<li><p>Notice that you can buy a number of “fake” flags at <code class="docutils literal notranslate"><span class="pre">900</span></code> each.</p></li>
+<li><p>Somehow, we need to get our balance up from <code class="docutils literal notranslate"><span class="pre">1100</span></code> to over <code class="docutils literal notranslate"><span class="pre">100000</span></code></p></li>
+<li><p>This process of buying fake flags is the only place (other than purchings the real flags) that your account balance is updated.</p></li>
+<li><p>If you try to purchase a stupidly-large number of flags (e.g. 2,500,000), the calculated <code class="docutils literal notranslate"><span class="pre">cost</span></code> will actually be negative (due to integer rollover).</p></li>
+<li><p>This then subtracts a large <em>negative</em> value from your current balance, effectively <em>adding</em> to it, making you a rich person</p></li>
+<li><p>you can then purchase the flag with ease</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>hint
+The key take-away here is that multiplying two <code class="docutils literal notranslate"><span class="pre">int</span></code> values (<em>signed</em>), can easily result in a value larger than <code class="docutils literal notranslate"><span class="pre">INT_MAX</span></code>. If this is unchecked, it will overflow, resulting in a negative number as the result.</p>
+</div>
+<p>I initially did the math to get my purchase number with a calculator, but I then went back and wrote a little program to calculate the <em>optimal</em> value just for learning purposes:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// these both are signed!</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">account_balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">number_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">total_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">account_balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1100</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">number_flags</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">total_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">900</span><span class="o">*</span><span class="n">number_flags</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">total_cost</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">account_balance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">account_balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">account_balance</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">total_cost</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">account_balance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">When the number of fake flags ordered is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">number_flags</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;The resulting cost is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_cost</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;And your account balance will be %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">account_balance</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>And if we build/run it…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -g -o mytest mytest.c
+$ ./mytest                 
+
+When the number of fake flags ordered is <span class="m">2386095</span>
+The resulting cost is -2147481796
+And your account balance will be <span class="m">2147482896</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="wanna-b3-a-r0ck5star">
+<h2>1_wanna_b3_a_r0ck5star<a class="headerlink" href="#wanna-b3-a-r0ck5star" title="Permalink to this headline">#</a></h2>
+<p>Again with the waste-of-time challenges.</p>
+<p>If you want to waste your time trying to solve it, go ahead. Otherwise, consider checking out an online write-up. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>A decent writeup of <code class="docutils literal notranslate"><span class="pre">1_wanna_b3_a_r0ck5star</span></code> can be found here: <a class="reference external" href="https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/1_wanna_b3_a_r0ck5tar.md">https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/1_wanna_b3_a_r0ck5tar.md</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ctf/pico"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="forensics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Forensics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="binex.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Binary Exploitation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Rob Gillen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

