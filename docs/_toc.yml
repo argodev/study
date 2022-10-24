@@ -94,6 +94,16 @@ parts:
       - file: ctf/re/06_pivot.md
       - file: ctf/re/07_ret2csu.md
 
+    - file: ctf/ioli/ioli.md
+      sections:
+      - file: ctf/ioli/crackme0x00.md
+      - file: ctf/ioli/crackme0x01.md
+      - file: ctf/ioli/crackme0x02.md
+      - file: ctf/ioli/crackme0x03.md
+      - file: ctf/ioli/crackme0x04.md
+      - file: ctf/ioli/crackme0x05.md
+      - file: ctf/ioli/crackme0x06.md
+
   - caption: Linux
     chapters:
     - file: linux/lfs.md

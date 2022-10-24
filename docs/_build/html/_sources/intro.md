@@ -22,6 +22,7 @@ A current list of projects are as follows:
   * [Portswigger Academy](ctf/ps/portswigger.md)
   * [Ring Zero CTF](ctf/rz/ringzeroctf.md)
   * [ROP Emporium](ctf/re/ropemporium.md)
+  * [IOLI](ctf/ioli/ioli.md)
 * Linux
   * [Linux From Scratch](linux/lfs.md)
 * Miscellaneous
