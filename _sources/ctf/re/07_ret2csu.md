@@ -62,7 +62,7 @@ You then have to provide a number of dummy entries to support the series of pop
 operations as we go through the end of the function. You then place the address 
 of `ret2win()` at the end and everything works.
 
-The solution is available in [exploit_07.py](exploit_07.py)
+The solution is available in [exploit_07.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_07.py)
 
 ## What Did I Learn?
 

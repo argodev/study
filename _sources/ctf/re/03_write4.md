@@ -59,7 +59,7 @@ program.
 > GOT. My understanding is that this *should* work, but it clearly doesn't (at 
 > least, not as I'm calling it). I need to dig into this more and understand.
 
-The solution is available in [exploit_03.py](exploit_03.py).
+The solution is available in [exploit_03.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_03.py).
 
 ## 32-bit solution
 
@@ -74,7 +74,7 @@ it took 5 "loops" through the "load into registers, move from register to point"
 process to get the entire command string in place. Once this was done, calling 
 it was easy.
 
-The solution is available in [exploit_0332.py](exploit_0332.py)
+The solution is available in [exploit_0332.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_0332.py)
 
 
 ## What Did I Learn?
