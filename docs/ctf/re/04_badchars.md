@@ -62,14 +62,14 @@ a for-loop to work over each character. Instead, I explicitly xor only the chars
 that need it. As it stands, it too 417 out of 512 byte budget to get this to 
 work and it feels... icky.
 
-Anyway, the solution is avaiable in [exploit_04.py](exploit_04.py)
+Anyway, the solution is avaiable in [exploit_04.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_04.py)
 
 ## 32 Bit Solution
 
 The 32 bit solution was rather straight forward after having solved the 64 bit 
 version above and the prior 32 bit version. All I did was essentially combine 
 the two scripts (with some mods) and it worked on the first go. The solution is 
-available in [exploit_0432.py](exploit_0432.py)
+available in [exploit_0432.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_0432.py)
 
 ## What Did I Learn?
 

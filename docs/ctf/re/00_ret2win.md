@@ -95,7 +95,7 @@ I found that I really didn't understand what I thought I did. So, I started over
 again and did it from scratch.
 
 After going back and re-working things, I bundled the solution in 
-[exploit_00.py](exploit_00.py).
+[exploit_00.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_00.py).
 
 
 ## 32-Bit Solution
@@ -105,7 +105,7 @@ that the offset is different (`44` rather than `40`), but that is determined
 automatically via the exploit script. Additionally, the exploit script needs to 
 read the value of `eip` rather than `rsp` and its related to locate the pattern.  
 Spent a bit too much time tracking down weird nuiances on that.  The solution 
-for the 32 bit verison is [exploit_0032.py](exploit_0032.py).
+for the 32 bit verison is [exploit_0032.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_0032.py).
 
 ## What Did I Learn?
 

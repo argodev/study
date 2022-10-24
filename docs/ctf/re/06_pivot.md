@@ -75,7 +75,7 @@ The final fake stack looks like the following:
 1. `add rax rbp; ret;`
 1. `call rax; ret;`
 
-The solution is available in [exploit_06.py](exploit_06.py)
+The solution is available in [exploit_06.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_06.py)
 
 
 ## What Did I Learn?
@@ -134,5 +134,5 @@ After solving the 64 bit version, this one was easy. The same gadgets were
 available and the process was exactly the same. The only work to be done was to 
 tailor for the 32-bit architecture and look up the proper gadgets and addresses.
 
-The solution is available in [exploit_0632.py](exploit_0632.py)
+The solution is available in [exploit_0632.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_0632.py)
 

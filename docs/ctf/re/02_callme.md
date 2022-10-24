@@ -205,7 +205,7 @@ Having put everything together, I ran the script with the following results:
 
 ![solution](../../assets/images/solution_02.png "Solution")
 
-The solution is available in [exploit_02.py](exploit_02.py)
+The solution is available in [exploit_02.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_02.py)
 
 
 ## 32 Bit Version
@@ -270,7 +270,7 @@ needed. I plugged it in to my ROP chain and I was immdiately successful. After
 returning from each call, I clean up and the `ret` at the end sets me up for the 
 next function call (from the now top of the stack). 
 
-The 32-bit solution is availalble in [exploit_0232.py](exploit_0232.py).
+The 32-bit solution is availalble in [exploit_0232.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_0232.py).
 
 
 ## What Did I Learn?

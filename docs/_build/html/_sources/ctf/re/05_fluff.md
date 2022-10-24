@@ -143,7 +143,7 @@ The 32 bit solution was quite easy and straight-forward (well, given the
 solution to the 64 bit version). The registers and such were slightly different 
 (obviously), but the pattern to solution was identical. Further, there were no 
 issues with MOVAPS or the excve call - it *just worked*. The exploit is availble 
-in [exploit_0532.py](exploit_0532.py).
+in [exploit_0532.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_0532.py).
 
 
 

@@ -9,8 +9,8 @@ that is listed in the notes for this challenge. I point credit there. I will say
 that, having finished this walk-through, I was able to go on and solve challenge 
 02 (callme) without any help... I understood what I needed to do.
 
-The solution for the 64 bit version is in [exploit_01.py](exploit_01.py) and the 
-32 bit solution is in [exploit_0132.py](exploit_0132.py)
+The solution for the 64 bit version is in [exploit_01.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_01.py) and the 
+32 bit solution is in [exploit_0132.py](https://github.com/argodev/study/blob/main/src/ropemporium/exploit_0132.py)
 
 ## What Did I Learn?
 
