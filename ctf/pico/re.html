@@ -879,6 +879,26 @@ title="Print to PDF"
    shop
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#armssembly-1">
+   ARMssembly 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#armssembly-2">
+   ARMssembly 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vault-door-1">
+   vault-door-1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hurry-up-wait">
+   Hurry up! Wait!
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -931,6 +951,26 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#shop">
    shop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#armssembly-1">
+   ARMssembly 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#armssembly-2">
+   ARMssembly 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vault-door-1">
+   vault-door-1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hurry-up-wait">
+   Hurry up! Wait!
   </a>
  </li>
 </ul>
@@ -1041,6 +1081,86 @@ e8a1f9146d32473b9605568ca66f7b5c2db9f271f57a8c8e9e121e48accddf2f
 <section id="shop">
 <h2>shop<a class="headerlink" href="#shop" title="Permalink to this headline">#</a></h2>
 <p>There is a store and the source of the program is provided as a 32-bit ELF file. It is a GO program, statically linked, and includes debug info (not stripped).</p>
+<p>If you connect to the application (via <code class="docutils literal notranslate"><span class="pre">nc</span></code>), you are presented with the following menu:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Welcome to the market!
+=====================
+You have 40 coins
+        Item            Price   Count
+(0) Quiet Quiches       10      12
+(1) Average Apple       15      8
+(2) Fruitful Flag       100     1
+(3) Sell an Item
+(4) Exit
+Choose an option: 
+</pre></div>
+</div>
+<p>Obviously, the goal is to purchase a “Fruitful flag” and see if you can get things. There are a couple of different ways to go about this. One would be to attempt to find a bug (via RE or otherwise) that will overflow or something to let you see the flag. Additionally, you could simply attempt to find the flag directly via RE.</p>
+<p>Poking around in the binary, we find <code class="docutils literal notranslate"><span class="pre">main.get_flag()</span></code> which appears to load <code class="docutils literal notranslate"><span class="pre">flag.txt</span></code>. So the question now is, how do we call <code class="docutils literal notranslate"><span class="pre">get_flag()</span></code>?</p>
+</section>
+<hr class="docutils" />
+<section id="armssembly-1">
+<h2>ARMssembly 1<a class="headerlink" href="#armssembly-1" title="Permalink to this headline">#</a></h2>
+<p>hmmm</p>
+</section>
+<hr class="docutils" />
+<section id="armssembly-2">
+<h2>ARMssembly 2<a class="headerlink" href="#armssembly-2" title="Permalink to this headline">#</a></h2>
+<p>hmmm</p>
+</section>
+<hr class="docutils" />
+<section id="vault-door-1">
+<h2>vault-door-1<a class="headerlink" href="#vault-door-1" title="Permalink to this headline">#</a></h2>
+<p>Another java file… pretty simple to undo. you simply take code that looks like this:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">password</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;d&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"></span>
+<span class="n">password</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">29</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"></span>
+<span class="n">password</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w">  </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;r&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"></span>
+<span class="n">password</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;5&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"></span>
+<span class="n">password</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;r&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and put together the appropriate string</p>
+</section>
+<hr class="docutils" />
+<section id="hurry-up-wait">
+<h2>Hurry up! Wait!<a class="headerlink" href="#hurry-up-wait" title="Permalink to this headline">#</a></h2>
+<p>Here you are given a simple binary written in ADA of all things, and you need to RE it and find the flag. After digging around a bit in Ghidra, I came across the following function:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">FUN_0010298a</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">ada__calendar__delays__delay_for</span><span class="p">(</span><span class="mi">1000000000000000</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102616</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001024aa</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102372</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001025e2</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102852</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102886</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001028ba</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102922</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001023a6</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102136</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102206</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_0010230a</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102206</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_0010257a</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001028ee</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_0010240e</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001026e6</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102782</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001028ee</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001023da</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_0010230a</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_0010233e</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_0010226e</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001022a2</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001023da</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_001021d2</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">FUN_00102956</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If you look into each of those functions, they appear to print out a single character. Each one builds up the now-familiar string… <code class="docutils literal notranslate"><span class="pre">picoCTF{....}</span></code></p>
+<p>Once you have this, you submit it for the flag</p>
 </section>
 </section>
 
