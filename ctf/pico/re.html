@@ -864,6 +864,21 @@ title="Print to PDF"
    ARMssembly 0
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vault-door-training">
+   vault-door-training
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#speeds-and-feeds">
+   speeds and feeds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shop">
+   shop
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -901,6 +916,21 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#armssembly-0">
    ARMssembly 0
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vault-door-training">
+   vault-door-training
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#speeds-and-feeds">
+   speeds and feeds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shop">
+   shop
   </a>
  </li>
 </ul>
@@ -989,6 +1019,28 @@ e8a1f9146d32473b9605568ca66f7b5c2db9f271f57a8c8e9e121e48accddf2f
 <section id="armssembly-0">
 <h2>ARMssembly 0<a class="headerlink" href="#armssembly-0" title="Permalink to this headline">#</a></h2>
 <p>Here we are presented a file (<code class="docutils literal notranslate"><span class="pre">chall.S</span></code>) which is an ARM-based assembly program. We then are asked “What integer does this program print with arguments <code class="docutils literal notranslate"><span class="pre">182476535</span></code> and <code class="docutils literal notranslate"><span class="pre">3742084308</span></code>? Flag format: picoCTF{XXXXXXXX} -&gt; (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})”</p>
+</section>
+<hr class="docutils" />
+<section id="vault-door-training">
+<h2>vault-door-training<a class="headerlink" href="#vault-door-training" title="Permalink to this headline">#</a></h2>
+<p>We are given a java file and told to read the source in order to find the flag. This one works out pretty easily. Downloading the file and examining it, we see the following:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">checkPassword</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">password</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;w4rm1ng_Up_w1tH_jAv4_3808d338b46&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>We take the value and craft it into the proper flag format and submit to earn our points</p>
+</section>
+<hr class="docutils" />
+<section id="speeds-and-feeds">
+<h2>speeds and feeds<a class="headerlink" href="#speeds-and-feeds" title="Permalink to this headline">#</a></h2>
+<p>We are told to connect via <code class="docutils literal notranslate"><span class="pre">nc</span></code> to <code class="docutils literal notranslate"><span class="pre">mercury.picoctf.net:59953</span></code> and attempt to figure out what is running. We do so, and download the data to <code class="docutils literal notranslate"><span class="pre">out.txt</span></code>. The output appears to be a series of <code class="docutils literal notranslate"><span class="pre">G-Code</span></code> (cnc) commands that starts with <code class="docutils literal notranslate"><span class="pre">G17</span> <span class="pre">G21</span> <span class="pre">G40...</span></code></p>
+<p>If you then take the output file and visualize it using a G-Code viewer such as <a class="reference external" href="https://ncviewer.com">https://ncviewer.com</a>, you can easily read the flag</p>
+</section>
+<hr class="docutils" />
+<section id="shop">
+<h2>shop<a class="headerlink" href="#shop" title="Permalink to this headline">#</a></h2>
+<p>There is a store and the source of the program is provided as a 32-bit ELF file. It is a GO program, statically linked, and includes debug info (not stripped).</p>
 </section>
 </section>
 
